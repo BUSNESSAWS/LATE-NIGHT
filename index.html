@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Late Night Confessions - Final Fixed</title>
+    <title>Late Night Confessions - Ultimate Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -85,9 +85,6 @@
             animation: shine 3s infinite, zoom 3s infinite;
         }
 
-        @keyframes shine { 0% { background-position: 0%; } 100% { background-position: 300%; } }
-        @keyframes zoom { 50% { transform: scale(1.08); } }
-
         /* ENTRY PAGE */
         #entryPage {
             display: none; width: 100%; height: 100vh;
@@ -126,6 +123,13 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 100;
         }
 
+        .logo {
+            font-size: 28px; font-weight: 700;
+            background: linear-gradient(90deg, #ff4ecd, #7f5cff, #00c3ff);
+            background-size: 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: shine 5s infinite;
+        }
+
         /* 📱 BOTTOM NAV BAR */
         .bottom-nav {
             position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
@@ -143,25 +147,28 @@
         .nav-item.active { color: #ff4ecd; filter: drop-shadow(0 0 8px #ff4ecd); }
         .nav-item.active svg { transform: scale(1.1); }
 
-        /* APP VIEW SECTIONS */
         .app-section { display: none; width: 92%; max-width: 680px; margin: 20px auto; animation: fadeIn 0.4s ease; }
         .app-section.active-section { display: block; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* FEED CARDS */
-        .card {
+        /* CARDS & ADS CONTAINER */
+        .card, .ads-card {
             position: relative; padding: 25px; margin-bottom: 20px; border-radius: 24px;
             background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;
         }
 
+        /* 💰 GOOGLE ADSENSE DESIGN PREVIEW */
+        .ads-card {
+            background: linear-gradient(135deg, rgba(255, 78, 205, 0.05), rgba(0, 195, 255, 0.05));
+            border: 1px dashed rgba(255, 255, 255, 0.2); text-align: center; padding: 15px;
+        }
+        .ads-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #7f5cff; opacity: 0.8; margin-bottom: 8px; }
+
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
         .card-user { color: #ff4ecd; font-weight: 600; font-size: 14px; }
-        .card-tag {
-            padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .card-tag { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
         .tag-love { background: rgba(255, 0, 136, 0.15); color: #ff0088; border: 1px solid rgba(255, 0, 136, 0.3); }
         .tag-sad { background: rgba(0, 195, 255, 0.15); color: #00c3ff; border: 1px solid rgba(0, 195, 255, 0.3); }
         .tag-romantic { background: rgba(127, 92, 255, 0.15); color: #7f5cff; border: 1px solid rgba(127, 92, 255, 0.3); }
@@ -171,9 +178,9 @@
         .actions button { background: none; border: none; color: white; font-size: 14px; cursor: pointer; opacity: 0.7; display: flex; align-items: center; gap: 6px; }
         .actions button:hover { opacity: 1; color: #ff4ecd; }
 
-        /* SEARCH CATEGORY BUTTONS */
-        .search-container { display: flex; flex-direction: column; gap: 20px; }
-        .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 15px; }
+        /* SEARCH & CATEGORY LAYOUT */
+        .search-container { display: flex; flex-direction: column; gap: 15px; }
+        .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
         .cat-btn {
             padding: 12px 5px; border: none; border-radius: 14px; font-weight: 600; font-size: 12px;
             cursor: pointer; text-align: center; transition: 0.3s; background: rgba(255,255,255,0.04); color: white;
@@ -184,7 +191,15 @@
         .cat-btn.active-cat[data-cat="sad"] { background: #00c3ff; border-color: #00c3ff; box-shadow: 0 0 15px rgba(0,195,255,0.4); }
         .cat-btn.active-cat[data-cat="romantic"] { background: #7f5cff; border-color: #7f5cff; box-shadow: 0 0 15px rgba(127,92,255,0.4); }
 
-        /* POST CREATOR CHIPS */
+        /* 📲 APPS DOWNLOAD OFFICIAL BUTTON STYLE */
+        .download-app-bar {
+            width: 100%; padding: 14px; background: linear-gradient(90deg, #7f5cff, #ff4ecd);
+            border-radius: 16px; font-weight: 700; text-align: center; font-size: 14px; cursor: pointer;
+            box-shadow: 0 5px 20px rgba(127, 92, 255, 0.4); transition: 0.3s; border: none; color: white;
+        }
+        .download-app-bar:hover { transform: scale(1.02); }
+
+        /* CHIPS */
         .post-box { background: rgba(255,255,255,0.02); padding: 25px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.06); }
         .chip-group { display: flex; gap: 10px; margin: 15px 0; }
         .chip {
@@ -195,12 +210,21 @@
         .chip.selected[data-val="sad"] { background: #00c3ff; border-color: #00c3ff; }
         .chip.selected[data-val="romantic"] { background: #7f5cff; border-color: #7f5cff; }
 
-        /* PROFILE SCREEN */
+        /* PROFILE SCENE WITH R COIN SCOREBOARD */
         .profile-header-card {
             background: rgba(255,255,255,0.03); padding: 30px 20px; border-radius: 28px;
             border: 1px solid rgba(255,255,255,0.06); text-align: center; margin-bottom: 25px;
         }
         .profile-avatar { width: 85px; height: 85px; background: linear-gradient(135deg, #ff0088, #7f5cff); border-radius: 50%; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; font-size: 35px; box-shadow: 0 0 20px rgba(255,0,136,0.3); }
+        
+        /* R COIN HUD CONTAINER */
+        .r-coin-badge-box {
+            display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; 
+            background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px; margin-top: 10px; cursor: pointer; transition: 0.2s;
+        }
+        .r-coin-badge-box:hover { background: rgba(255, 215, 0, 0.2); }
+
         .profile-stats-row { display: flex; justify-content: space-around; margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); }
         .stat-box { text-align: center; }
         .stat-num { font-size: 20px; font-weight: 700; color: #ff4ecd; }
@@ -241,7 +265,6 @@
 
     <div id="intro"><div class="introTitle">Late Night</div></div>
 
-    <!-- ENTRY PAGE -->
     <div id="entryPage">
         <div class="glass">
             <div class="mainTitle">Late Night<br>Confessions</div>
@@ -252,20 +275,20 @@
         </div>
     </div>
 
-    <!-- MAIN DASHBOARD -->
     <div id="mainPage">
         <nav>
             <div class="logo">🌙 Late Night</div>
             <div style="font-size: 12px; opacity: 0.5;" id="navStatus">Guest Mode</div>
         </nav>
 
-        <!-- SECTIONS -->
         <div id="section-home" class="app-section active-section">
             <div class="feed" id="globalFeed"></div>
         </div>
 
         <div id="section-search" class="app-section">
             <div class="search-container">
+                <button class="download-app-bar" onclick="redirectToAppDownload()">Download Official App 📲</button>
+                
                 <div class="category-grid">
                     <button class="cat-btn active-cat" data-cat="all" onclick="switchCategory('all', this)">All</button>
                     <button class="cat-btn" data-cat="love" onclick="switchCategory('love', this)">❤️ Love</button>
@@ -298,6 +321,11 @@
                 <h2 id="profileTitleName" style="font-size: 22px; font-weight: 700;">@anonymous</h2>
                 <p id="profileEmailLabel" style="font-size: 13px; opacity: 0.5; margin-top: 2px;">guest_user@latenight.com</p>
                 
+                <div class="r-coin-badge-box" onclick="triggerCoinInfoPopup()">
+                    <span style="font-size: 16px;">🪙</span>
+                    <span style="font-size: 13px; font-weight: 700; color: #ffd700;" id="r-coin-count-label">0 R-Coins</span>
+                </div>
+
                 <div class="profile-stats-row">
                     <div class="stat-box">
                         <div class="stat-num" id="stat-posts">0</div>
@@ -319,7 +347,6 @@
             <div id="myPersonalFeed"></div>
         </div>
 
-        <!-- BOTTOM NAV BAR -->
         <div class="bottom-nav">
             <div class="nav-item active" onclick="switchTab('home', this)">
                 <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -340,7 +367,6 @@
         </div>
     </div>
 
-    <!-- POPUPS -->
     <div class="popup" id="gatekeeperPopup">
         <div class="popupBox" style="text-align: center;">
             <div class="popupTitle" style="font-size: 24px;">Join Late Night Confessions 🌙</div>
@@ -354,7 +380,7 @@
     <div class="popup" id="signupPopup">
         <div class="popupBox">
             <div class="popupTitle" style="font-size: 26px;">Create Account</div>
-            <input type="text" class="input" id="signupName" placeholder="Your Display Name (Required)">
+            <input type="text" class="input" id="signupName" placeholder="Your Name/Username (No Emojis)">
             <input type="email" class="input" id="signupEmail" placeholder="Email Address">
             <input type="password" class="input" id="signupPassword" placeholder="Choose Password">
             <button class="popupBtn" onclick="signupAction()">Register Profile</button>
@@ -384,14 +410,13 @@
 
     <div class="popup" id="sharePopup">
         <div class="popupBox">
-            <div class="popupTitle" style="font-size: 22px;">Share Image</div>
+            <div class="popupTitle" style="font-size: 22px;">Share Confession</div>
             <div id="sharePreviewContainer" style="margin-bottom: 15px;"><img id="generatedImageHolder" src="" style="width:100%; border-radius:16px;" alt="Rendering..."></div>
             <button class="popupBtn" id="downloadImageBtn">Download Snap 📥</button>
             <button class="popupBtn closeBtn" onclick="hidePopup('sharePopup')">Close</button>
         </div>
     </div>
 
-    <!-- BRIDGE CONTROLLER SCRIPT -->
     <script>
         let globalUserSession = null;
         let selectedPostCategory = "";
@@ -419,10 +444,8 @@
                 showPopup('gatekeeperPopup');
                 return;
             }
-            
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             element.classList.add('active');
-
             document.querySelectorAll('.app-section').forEach(sec => sec.classList.remove('active-section'));
             document.getElementById('section-' + targetSection).classList.add('active-section');
         }
@@ -432,13 +455,31 @@
             element.classList.add('selected');
             selectedPostCategory = category;
         }
+
+        // 🪙 R COIN INFO SYSTEM POPUP BOX
+        function triggerCoinInfoPopup() {
+            alert("Earn 1 R-Coin for every 10 midnight confessions. Amass 5 R-Coins to unlock the prestigious Creator Star Badge! ⭐️");
+        }
+
+        // 📲 LINK REDIRECT ROUTER FOR APP DOWNLOAD
+        function redirectToAppDownload() {
+            // ==========================================
+            // 🌟 আপনার অ্যাপ ডাউনলোড লিংকটি নিচে বসিয়ে দিন:
+            // ==========================================
+            const appDownloadUrl = "https://your-app-download-link.com/file.apk";
+            
+            if(appDownloadUrl.includes("your-app-download-link")) {
+                alert("App download trigger successfully configured. Real link missing!");
+            } else {
+                window.open(appDownloadUrl, "_blank");
+            }
+        }
     </script>
 
-    <!-- CORE FIREBASE ENGINE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, increment } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, inMemoryPersistence, updateProfile, signOut } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserLocalPersistence, updateProfile, signOut } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDouDj1wDkZr4yy2dNTuYMVDPkzk_vt9V8",
@@ -457,7 +498,17 @@
         let globalAllStories = []; 
         let postsToShowCount = 10;
 
-        const badWords = ["খারাপশব্দ১", "খারাপশব্দ২", "gali1", "gali2", "bokachoda", "khanki", "bador", "gali"];
+        // 🛑 ANTI-PROFANITY ENGINE LLIST
+        const badWords = ["খারাপশব্দ১", "খারাপশব্দ২", "gali1", "gali2", "bokachoda", "khanki", "bador", "gali", "gandu", "baal", "chuda"];
+        
+        function hasProfanity(text) {
+            let found = false;
+            badWords.forEach(word => {
+                if(text.toLowerCase().includes(word.toLowerCase())) { found = true; }
+            });
+            return found;
+        }
+
         function cleanProfanity(text) {
             let clean = text;
             badWords.forEach(word => {
@@ -467,19 +518,33 @@
             return clean;
         }
 
-        try { await setPersistence(auth, inMemoryPersistence); } catch(e) { console.log(e); }
+        // 🔒 কড়া ইমোজি ব্লকার ফিল্টার লজিক
+        function containsEmoji(text) {
+            const regex = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g;
+            return regex.test(text);
+        }
+
+        // চিরস্থায়ী মেমোরি পারসিস্টেন্স লক করা হলো ডিভাইস সিঙ্কের জন্য
+        try { await setPersistence(auth, browserLocalPersistence); } catch(e) { console.log(e); }
 
         setTimeout(() => { document.getElementById("intro").style.display = "none"; }, 1500);
+
+        // চিরস্থায়ী সেশন রিকভারি মিররিং লজিক
+        let fallbackUid = safeStorage.getItem("permanent_uid_session");
+        if(fallbackUid && !globalUserSession) {
+            console.log("Device session sync detected.");
+        }
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 globalUserSession = user;
+                safeStorage.setItem("permanent_uid_session", user.uid); // চিরস্থায়ী মেমোরি লক
                 let cachedName = safeStorage.getItem("profile_name_" + user.uid);
                 
                 if (!user.displayName && !cachedName) {
                     document.getElementById("entryPage").style.display = "none";
                     document.getElementById("mainPage").style.display = "block";
-                    alert("Profile metadata corrupted. Please re-enter display name!");
+                    alert("Profile metadata missing. Please setup name in profile!");
                     switchTab('profile', document.querySelectorAll('.nav-item')[3]);
                 } else {
                     if (cachedName && !user.displayName) {
@@ -488,9 +553,14 @@
                     syncDashboardUI();
                 }
             } else {
-                globalUserSession = null;
-                document.getElementById("mainPage").style.display = "none";
-                document.getElementById("entryPage").style.display = "flex";
+                // শুধু যদি ম্যানুয়ালি লগআউট ট্র্রিগার হয় তবেই সেশন মুছবে
+                if(!safeStorage.getItem("permanent_uid_session")) {
+                    globalUserSession = null;
+                    document.getElementById("mainPage").style.display = "none";
+                    document.getElementById("entryPage").style.display = "flex";
+                } else {
+                    console.log("Awaiting core background engine loop data update.");
+                }
             }
         });
 
@@ -498,11 +568,18 @@
             document.getElementById("entryPage").style.display = "none";
             document.getElementById("mainPage").style.display = "block";
             
-            let finalName = globalUserSession.displayName || safeStorage.getItem("profile_name_" + globalUserSession.uid) || "anon";
-            document.getElementById("navStatus").innerText = "@" + finalName;
+            let finalRawName = globalUserSession.displayName || safeStorage.getItem("profile_name_" + globalUserSession.uid) || "anon";
             
-            document.getElementById("profileTitleName").innerText = "@" + finalName;
+            // 🧠 R COIN & STAR BADGE LIVE ASSIGNMENT GRAPH INTERACTION
+            let personalStories = globalAllStories.filter(s => s.uid === globalUserSession.uid);
+            let rCoins = Math.floor(personalStories.length / 10);
+            let badgeStar = (rCoins >= 5) ? " ⭐️" : "";
+
+            document.getElementById("navStatus").innerText = "@" + finalRawName + badgeStar;
+            document.getElementById("profileTitleName").innerText = "@" + finalRawName + badgeStar;
             document.getElementById("profileEmailLabel").innerText = globalUserSession.email;
+            document.getElementById("r-coin-count-label").innerText = rCoins + " R-Coins" + (rCoins >= 5 ? " [STAR PRO]" : "");
+            
             rebuildAllFeeds();
         }
 
@@ -512,11 +589,13 @@
             let password = document.getElementById("signupPassword").value;
             
             if(!name) { alert("Display name cannot be empty!"); return; }
+            if(containsEmoji(name)) { alert("🚫 Error: Emojis are strictly banned in usernames! Please use clean text."); return; }
             if(!email || !password) { alert("Please complete form!"); return; }
             
             try {
                 let creds = await createUserWithEmailAndPassword(auth, email, password);
                 safeStorage.setItem("profile_name_" + creds.user.uid, name);
+                safeStorage.setItem("permanent_uid_session", creds.user.uid);
                 await updateProfile(creds.user, { displayName: name });
                 hidePopup('signupPopup');
                 syncDashboardUI();
@@ -529,6 +608,7 @@
             if(!email || !password) { alert("Please fill all fields!"); return; }
             try {
                 let creds = await signInWithEmailAndPassword(auth, email, password);
+                safeStorage.setItem("permanent_uid_session", creds.user.uid);
                 if (creds.user.displayName) {
                     safeStorage.setItem("profile_name_" + creds.user.uid, creds.user.displayName);
                 }
@@ -539,10 +619,25 @@
 
         window.triggerLogout = async function() {
             if(!confirm("Are you sure you want to sign out?")) return;
+            safeStorage.setItem("permanent_uid_session", ""); // ম্যানুয়াল লগআউটে সেশন ক্লিয়ার
             await signOut(auth);
             location.reload();
         }
 
+        window.saveProfile = async function() {
+            let name = document.getElementById("profileName").value.trim();
+            if(!globalUserSession || !name) return;
+            if(containsEmoji(name)) { alert("🚫 Error: Username cannot contain emojis! Banned."); return; }
+            try {
+                safeStorage.setItem("profile_name_" + globalUserSession.uid, name);
+                await updateProfile(auth.currentUser, { displayName: name });
+                alert("Profile saved successfully!");
+                syncDashboardUI();
+                hidePopup("profilePopup");
+            } catch(e) { alert(e.message); }
+        }
+
+        // PUBLISH POST WITH ANTI-PROFANITY BLOCK & COIN SCORE BOARD ENGINE
         window.submitConfession = async function() {
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
             if(!selectedPostCategory) { alert("Error: Category selection is mandatory!"); return; }
@@ -550,7 +645,12 @@
             let rawText = document.getElementById("postContentInput").value.trim();
             if(!rawText) { alert("Write something first!"); return; }
 
-            let cleanStoryText = cleanProfanity(rawText);
+            // 🛑 কড়া খারাপ পোস্ট ব্যান ফিল্টার ট্র্যাকার
+            if(hasProfanity(rawText)) {
+                alert("🚫 Your post contains vulgar/bad language. This community bans toxic content. Post Rejected!");
+                return;
+            }
+
             let authorName = globalUserSession.displayName || safeStorage.getItem("profile_name_" + globalUserSession.uid) || "anonymous";
             let expiry = new Date(); expiry.setDate(expiry.getDate() + 29);
 
@@ -558,7 +658,7 @@
                 await addDoc(collection(db, "stories"), {
                     uid: globalUserSession.uid,
                     username: authorName,
-                    content: cleanStoryText,
+                    content: rawText,
                     category: selectedPostCategory,
                     likes: 0,
                     commentCount: 0,
@@ -569,7 +669,7 @@
                 document.getElementById("postContentInput").value = "";
                 selectedPostCategory = "";
                 document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
-                alert("Confession published 🌙");
+                alert("Confession published successfully 🌙");
                 switchTab('home', document.querySelectorAll('.nav-item')[0]);
             } catch(e) { alert("Posting error: " + e.message); }
         }
@@ -640,7 +740,7 @@
             buildFeedDOM("searchFeed", cat, false);
         }
 
-        // 🧠 ফিক্সড ইউনিভার্সাল রেন্ডারিং লজিক (প্যারামিটার বাগ ফিক্সড)
+        // 🧠 UNIVERSAL FEED GENERATOR ENGINE WITH NATIVE IN-FEED ADS SLOTS
         function buildFeedDOM(targetDivId, categoryFilter = "all", selfUidOnly = false) {
             let box = document.getElementById(targetDivId);
             if(!box) return;
@@ -659,14 +759,22 @@
                 return;
             }
 
-            dataset.slice(0, postsToShowCount).forEach(item => {
+            let cardCounter = 0;
+
+            dataset.slice(0, postsToShowCount).forEach((item) => {
+                cardCounter++;
                 let card = document.createElement("div");
                 card.className = "card"; card.id = "card-" + item.id;
                 let delBtn = (globalUserSession && item.uid === globalUserSession.uid) ? `<button class="delete-btn" onclick="deleteStory('${item.id}')">🗑️ Delete</button>` : '';
 
+                // R-Badge Calculator inside dynamic cards feed mapping
+                let authorPosts = globalAllStories.filter(s => s.uid === item.uid);
+                let authorCoins = Math.floor(authorPosts.length / 10);
+                let authorStar = (authorCoins >= 5) ? " ⭐️" : "";
+
                 card.innerHTML = `
                     <div class="card-header">
-                        <span class="card-user">@${item.username || 'anon'}***</span>
+                        <span class="card-user">@${item.username || 'anon'}${authorStar}***</span>
                         <span class="card-tag tag-${item.category || 'love'}">${item.category || 'Love'}</span>
                     </div>
                     <div class="story">${item.content}</div>
@@ -678,16 +786,34 @@
                     </div>
                 `;
                 box.appendChild(card);
+
+                // 💰 GOOGLE ADSENSE IN-FEED NATIVE AD INJECTOR SLOT
+                // প্রতি ৩টি পোস্টের পর পর এটি অটোমেটিক একটি সুন্দর ড্যামি নিয়ন স্পেস জেনারেট করবে
+                if (cardCounter % 3 === 0 && !selfUidOnly) {
+                    let adSlot = document.createElement("div");
+                    adSlot.className = "ads-card";
+                    adSlot.innerHTML = `
+                        <div class="ads-label">Sponsored Midnight Content</div>
+                        <div style="font-size:13px; opacity:0.5; padding:10px 0;">
+                            <div id="adsense-banner-slot">Google AdSense Space Locked 🔒</div>
+                        </div>
+                    `;
+                    box.appendChild(adSlot);
+                }
             });
         }
 
         function calculateAnalytics() {
             let personalStories = globalAllStories.filter(s => s.uid === globalUserSession?.uid);
+            let rCoins = Math.floor(personalStories.length / 10);
+            
             let pCount = document.getElementById("stat-posts");
             let lCount = document.getElementById("stat-likes");
             let cCount = document.getElementById("stat-comments");
+            let coinCount = document.getElementById("r-coin-count-label");
             
             if(pCount) pCount.innerText = personalStories.length;
+            if(coinCount) coinCount.innerText = rCoins + " R-Coins" + (rCoins >= 5 ? " [STAR PRO] ⭐️" : "");
             
             let totalLikes = 0, totalComments = 0;
             personalStories.forEach(s => {
@@ -699,14 +825,15 @@
         }
 
         function rebuildAllFeeds() {
-            buildFeedDOM("globalFeed", "all", false); // গ্লোবাল ফিডে সবার পোস্ট দেখার জন্য সর্বদা false
+            buildFeedDOM("globalFeed", "all", false); 
             buildFeedDOM("searchFeed", currentActiveCategoryFilter, false);
             if(globalUserSession) {
-                buildFeedDOM("myPersonalFeed", "all", true); // প্রোফাইলে শুধু নিজের পোস্ট ট্রু থাকবে
+                buildFeedDOM("myPersonalFeed", "all", true); 
                 calculateAnalytics();
             }
         }
 
+        // 📤 EXPORT CHROMATIC SNAPSHOT IMAGE WITH CAPTION LINKS FOR EASY WHATSAPP SHARE
         window.generateShareImage = function(cardId) {
             const node = document.getElementById("card-" + cardId);
             if(!node) return;
@@ -719,14 +846,27 @@
                 
                 const btn = document.getElementById("downloadImageBtn");
                 const newBtn = btn.cloneNode(true); btn.parentNode.replaceChild(newBtn, btn);
+                
                 newBtn.addEventListener("click", () => {
+                    // ডাউনলোড ট্রিগার
                     let a = document.createElement("a"); a.download = "late-night-" + cardId + ".png";
                     a.href = url; a.click();
+
+                    // 🧠 হোয়াটসঅ্যাপ স্ট্যাটাস ও শেয়ারের জন্য ক্লিপবোর্ডে লিংক এবং ক্যাপশন কপি মেকানিজম
+                    const officialAppDownloadLink = "https://your-app-download-link.com"; // আপনার ডাউনলোড লিংক
+                    const shareTextHeadline = `🌙 Read deep midnight secrets on Late Night Confessions App! 📲 Download App Now: ${officialAppDownloadLink}`;
+                    
+                    try {
+                        navigator.clipboard.writeText(shareTextHeadline);
+                        alert("Snapshot saved to gallery! 📥 App download text & link automatically copied to clipboard for your WhatsApp Status! 🔥");
+                    } catch(err) {
+                        console.log("Clipboard bypass handled.");
+                    }
                 });
             });
         }
 
-        // DATABASE SNAPSHOT LISTENER
+        // DATABASE SNAPSHOT REALTIME LISTENER
         onSnapshot(collection(db, "stories"), (snap) => {
             globalAllStories = [];
             snap.forEach(doc => {
@@ -741,6 +881,7 @@
             });
 
             rebuildAllFeeds();
+            if(globalUserSession) syncDashboardUI();
         });
     </script>
 </body>
