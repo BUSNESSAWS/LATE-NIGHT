@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Late Night Confessions - Ultimate Edition</title>
+    <title>Late Night Confessions - Final Master Build</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -23,6 +23,7 @@
             padding-bottom: 90px;
         }
 
+        /* 💡 ব্যাকগ্রাউন্ড নিয়ন লাইট */
         .bg {
             position: fixed;
             width: 100%;
@@ -35,15 +36,19 @@
         .blur1, .blur2, .blur3 {
             position: absolute;
             border-radius: 50%;
-            filter: blur(120px);
+            filter: blur(100px);
             animation: float 10s infinite ease-in-out;
+            opacity: 0.85;
         }
 
-        .blur1 { width: 320px; height: 320px; background: #ff0088; top: -80px; left: -80px; }
-        .blur2 { width: 260px; height: 260px; background: #7f5cff; bottom: -80px; right: -80px; animation-delay: 2s; }
-        .blur3 { width: 200px; height: 200px; background: #00c3ff; top: 45%; left: 45%; animation-delay: 4s; }
+        .blur1 { width: 350px; height: 350px; background: #ff0088; top: -100px; left: -100px; }
+        .blur2 { width: 300px; height: 300px; background: #7f5cff; bottom: 50px; right: -80px; animation-delay: 2s; }
+        .blur3 { width: 250px; height: 250px; background: #00c3ff; top: 35%; left: 40%; animation-delay: 4s; }
 
-        @keyframes float { 50% { transform: translateY(-30px) translateX(20px); } }
+        @keyframes float { 
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-40px) translateX(30px); } 
+        }
 
         /* 🌠 SHOOTING STARS SYSTEM */
         .shooting-star-container {
@@ -68,8 +73,8 @@
         @keyframes shooting { 0% { transform: translateX(0); opacity: 0; } 10% { opacity: 1; } 30%, 100% { transform: translateX(400px); opacity: 0; } }
 
         .particle {
-            position: absolute; width: 5px; height: 5px; background: white; border-radius: 50%; opacity: 0.4;
-            animation: particle 10s linear infinite;
+            position: absolute; width: 4px; height: 4px; background: white; border-radius: 50%; opacity: 0.3;
+            animation: particle 12s linear infinite;
         }
         @keyframes particle { from { transform: translateY(100vh) scale(0); } to { transform: translateY(-100vh) scale(1.4); } }
 
@@ -89,6 +94,7 @@
         #entryPage {
             display: none; width: 100%; height: 100vh;
             justify-content: center; align-items: center; padding: 20px;
+            z-index: 10;
         }
 
         .glass {
@@ -114,20 +120,51 @@
         .loginBtn { background: linear-gradient(135deg, #00c3ff, #0077ff); box-shadow: 0 0 20px rgba(0, 195, 255, 0.3); }
         .skipBtn { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.1); }
 
-        /* MAIN DASHBOARD */
-        #mainPage { display: none; min-height: 100vh; }
-
-        nav {
-            width: 100%; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 100;
+        /* MAIN DASHBOARD HEADER CONTAINER */
+        .header-wrapper {
+            position: sticky; top: 0; z-index: 100; width: 100%;
         }
 
+        nav {
+            width: 100%; padding: 10px 18px; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(20px); height: 54px;
+        }
+
+        /* 🍊🌌 ALEXA STYLE GLOWING ORANGE & SKY BLUE NEON REMIX STRIP LIGHT */
+        .orange-strip-light {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #ff5500, #ffaa00, #00d2ff, #0077ff);
+            background-size: 200% auto;
+            box-shadow: 0 0 8px rgba(255, 85, 0, 0.6), 0 0 15px rgba(0, 210, 255, 0.6);
+            animation: stripPulse 3s infinite linear;
+        }
+
+        @keyframes stripPulse {
+            0% { background-position: 0% center; box-shadow: 0 0 6px #ff5500, 0 0 12px #00d2ff; }
+            50% { background-position: 100% center; box-shadow: 0 0 14px #ffaa00, 0 0 20px #0077ff; }
+            100% { background-position: 0% center; box-shadow: 0 0 6px #ff5500, 0 0 12px #00d2ff; }
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 8px; }
+
+        .animated-moon {
+            font-size: 22px; display: inline-block;
+            animation: moonGlow 3s infinite ease-in-out, moonFloat 4s infinite ease-in-out;
+            filter: drop-shadow(0 0 8px #ff4ecd);
+        }
+
+        @keyframes moonGlow {
+            0%, 100% { filter: drop-shadow(0 0 4px #ff4ecd) brightness(1); }
+            50% { filter: drop-shadow(0 0 15px #00c3ff) brightness(1.3); transform: rotate(15deg); }
+        }
+        @keyframes moonFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+
         .logo {
-            font-size: 28px; font-weight: 700;
+            font-size: 22px; font-weight: 800;
             background: linear-gradient(90deg, #ff4ecd, #7f5cff, #00c3ff);
             background-size: 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shine 5s infinite;
+            animation: shine 5s infinite linear;
         }
 
         /* 📱 BOTTOM NAV BAR */
@@ -152,19 +189,33 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* CARDS & ADS CONTAINER */
-        .card, .ads-card {
+        /* CARDS CONTAINER */
+        .card {
             position: relative; padding: 25px; margin-bottom: 20px; border-radius: 24px;
             background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;
         }
 
-        /* 💰 GOOGLE ADSENSE DESIGN PREVIEW */
-        .ads-card {
-            background: linear-gradient(135deg, rgba(255, 78, 205, 0.05), rgba(0, 195, 255, 0.05));
-            border: 1px dashed rgba(255, 255, 255, 0.2); text-align: center; padding: 15px;
+        /* 🖼️ স্লাইডার বক্স */
+        .ad-slider-container {
+            width: 100%; height: 120px; position: relative; margin-bottom: 20px;
+            border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #111; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
-        .ads-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #7f5cff; opacity: 0.8; margin-bottom: 8px; }
+        .ad-slider-link { width: 100%; height: 100%; display: block; position: relative; }
+        .ad-slider-link.no-click-allowed { cursor: default; pointer-events: none; }
+        
+        .ad-slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; opacity: 0; transition: opacity 0.8s ease-in-out; z-index: 1;
+        }
+        .ad-slide.active-slide { opacity: 1; z-index: 2; }
+        
+        .ad-badge {
+            position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6);
+            color: rgba(255,255,255,0.7); font-size: 10px; padding: 2px 7px;
+            border-radius: 5px; letter-spacing: 0.5px; z-index: 5; font-weight: 600;
+        }
 
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
         .card-user { color: #ff4ecd; font-weight: 600; font-size: 14px; }
@@ -197,7 +248,6 @@
             border-radius: 16px; font-weight: 700; text-align: center; font-size: 14px; cursor: pointer;
             box-shadow: 0 5px 20px rgba(127, 92, 255, 0.4); transition: 0.3s; border: none; color: white;
         }
-        .download-app-bar:hover { transform: scale(1.02); }
 
         /* CHIPS */
         .post-box { background: rgba(255,255,255,0.02); padding: 25px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.06); }
@@ -210,20 +260,18 @@
         .chip.selected[data-val="sad"] { background: #00c3ff; border-color: #00c3ff; }
         .chip.selected[data-val="romantic"] { background: #7f5cff; border-color: #7f5cff; }
 
-        /* PROFILE SCENE WITH R COIN SCOREBOARD */
+        /* PROFILE SCENE */
         .profile-header-card {
             background: rgba(255,255,255,0.03); padding: 30px 20px; border-radius: 28px;
             border: 1px solid rgba(255,255,255,0.06); text-align: center; margin-bottom: 25px;
         }
         .profile-avatar { width: 85px; height: 85px; background: linear-gradient(135deg, #ff0088, #7f5cff); border-radius: 50%; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; font-size: 35px; box-shadow: 0 0 20px rgba(255,0,136,0.3); }
         
-        /* R COIN HUD CONTAINER */
         .r-coin-badge-box {
             display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; 
             background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 20px; margin-top: 10px; cursor: pointer; transition: 0.2s;
         }
-        .r-coin-badge-box:hover { background: rgba(255, 215, 0, 0.2); }
 
         .profile-stats-row { display: flex; justify-content: space-around; margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); }
         .stat-box { text-align: center; }
@@ -240,12 +288,9 @@
             border: 1px solid rgba(255, 255, 255, 0.08); animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             max-height: 85vh; overflow-y: auto;
         }
-        @keyframes popUp { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
         .input { width: 100%; padding: 16px; margin-top: 14px; border: none; outline: none; border-radius: 14px; background: rgba(255, 255, 255, 0.05); color: white; font-size: 15px; border: 1px solid rgba(255,255,255,0.05); }
-        .input:focus { border-color: #ff4ecd; }
         .popupBtn { width: 100%; padding: 15px; margin-top: 18px; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; background: linear-gradient(135deg, #ff0088, #7f5cff); color: white; }
         .closeBtn { background: rgba(255, 255, 255, 0.08); margin-top: 10px; color: rgba(255,255,255,0.7); }
-
         .delete-btn { background: none; border: none; color: #ff3b30; cursor: pointer; font-size: 13px; opacity: 0.7; margin-left: auto;}
     </style>
 </head>
@@ -265,6 +310,7 @@
 
     <div id="intro"><div class="introTitle">Late Night</div></div>
 
+    <!-- ENTRY PAGE -->
     <div id="entryPage">
         <div class="glass">
             <div class="mainTitle">Late Night<br>Confessions</div>
@@ -275,12 +321,20 @@
         </div>
     </div>
 
+    <!-- MAIN DASHBOARD -->
     <div id="mainPage">
-        <nav>
-            <div class="logo">🌙 Late Night</div>
-            <div style="font-size: 12px; opacity: 0.5;" id="navStatus">Guest Mode</div>
-        </nav>
+        <div class="header-wrapper">
+            <nav>
+                <div class="logo-container">
+                    <span class="animated-moon">🌙</span>
+                    <div class="logo">Late Night</div>
+                </div>
+                <div style="font-size: 11px; opacity: 0.5; font-weight: 600; letter-spacing: 0.5px;" id="navStatus">Guest Mode</div>
+            </nav>
+            <div class="orange-strip-light"></div>
+        </div>
 
+        <!-- SECTIONS -->
         <div id="section-home" class="app-section active-section">
             <div class="feed" id="globalFeed"></div>
         </div>
@@ -347,6 +401,7 @@
             <div id="myPersonalFeed"></div>
         </div>
 
+        <!-- BOTTOM NAV BAR -->
         <div class="bottom-nav">
             <div class="nav-item active" onclick="switchTab('home', this)">
                 <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -356,6 +411,7 @@
                 <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                 Search
             </div>
+            <!-- 🛠️ ফিক্সড প্লাস (+) পোস্ট বাটন আইকন লজিক -->
             <div class="nav-item" onclick="switchTab('post', this)">
                 <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
                 Post
@@ -367,6 +423,7 @@
         </div>
     </div>
 
+    <!-- POPUPS -->
     <div class="popup" id="gatekeeperPopup">
         <div class="popupBox" style="text-align: center;">
             <div class="popupTitle" style="font-size: 24px;">Join Late Night Confessions 🌙</div>
@@ -417,11 +474,13 @@
         </div>
     </div>
 
+    <!-- BRIDGE CONTROLLER SCRIPT -->
     <script>
         let globalUserSession = null;
         let selectedPostCategory = "";
         let currentActiveCategoryFilter = "all";
         let memoryBackupStore = {};
+        let sliderTimerInterval = null;
 
         const safeStorage = {
             getItem: (key) => { try { return localStorage.getItem(key); } catch(e) { return memoryBackupStore[key] || null; } },
@@ -456,26 +515,41 @@
             selectedPostCategory = category;
         }
 
-        // 🪙 R COIN INFO SYSTEM POPUP BOX
         function triggerCoinInfoPopup() {
             alert("Earn 1 R-Coin for every 10 midnight confessions. Amass 5 R-Coins to unlock the prestigious Creator Star Badge! ⭐️");
         }
 
-        // 📲 LINK REDIRECT ROUTER FOR APP DOWNLOAD
         function redirectToAppDownload() {
-            // ==========================================
-            // 🌟 আপনার অ্যাপ ডাউনলোড লিংকটি নিচে বসিয়ে দিন:
-            // ==========================================
             const appDownloadUrl = "https://your-app-download-link.com/file.apk";
-            
             if(appDownloadUrl.includes("your-app-download-link")) {
-                alert("App download trigger successfully configured. Real link missing!");
+                alert("App download link placeholder works!");
             } else {
                 window.open(appDownloadUrl, "_blank");
             }
         }
+
+        function startLiveImageSliders() {
+            if(sliderTimerInterval) clearInterval(sliderTimerInterval); 
+            
+            sliderTimerInterval = setInterval(() => {
+                document.querySelectorAll('.ad-slider-container').forEach(slider => {
+                    let slides = slider.querySelectorAll('.ad-slide');
+                    if (slides.length < 2) return;
+                    
+                    let activeIndex = 0;
+                    slides.forEach((slide, idx) => {
+                        if (slide.classList.contains('active-slide')) activeIndex = idx;
+                    });
+                    
+                    slides[activeIndex].classList.remove('active-slide');
+                    let nextIndex = (activeIndex === 0) ? 1 : 0;
+                    slides[nextIndex].classList.add('active-slide');
+                });
+            }, 2000); 
+        }
     </script>
 
+    <!-- CORE FIREBASE ENGINE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, increment } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
@@ -498,7 +572,6 @@
         let globalAllStories = []; 
         let postsToShowCount = 10;
 
-        // 🛑 ANTI-PROFANITY ENGINE LLIST
         const badWords = ["খারাপশব্দ১", "খারাপশব্দ২", "gali1", "gali2", "bokachoda", "khanki", "bador", "gali", "gandu", "baal", "chuda"];
         
         function hasProfanity(text) {
@@ -518,27 +591,19 @@
             return clean;
         }
 
-        // 🔒 কড়া ইমোজি ব্লকার ফিল্টার লজিক
         function containsEmoji(text) {
-            const regex = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g;
+            const regex = /[\uD800-\uDFFF]|\u2705|\u274C|\u2B50|[\u2000-\u3300]/g; 
             return regex.test(text);
         }
 
-        // চিরস্থায়ী মেমোরি পারসিস্টেন্স লক করা হলো ডিভাইস সিঙ্কের জন্য
         try { await setPersistence(auth, browserLocalPersistence); } catch(e) { console.log(e); }
 
-        setTimeout(() => { document.getElementById("intro").style.display = "none"; }, 1500);
-
-        // চিরস্থায়ী সেশন রিকভারি মিররিং লজিক
-        let fallbackUid = safeStorage.getItem("permanent_uid_session");
-        if(fallbackUid && !globalUserSession) {
-            console.log("Device session sync detected.");
-        }
+        setTimeout(() => { document.getElementById("intro").style.display = "none"; }, 600);
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 globalUserSession = user;
-                safeStorage.setItem("permanent_uid_session", user.uid); // চিরস্থায়ী মেমোরি লক
+                safeStorage.setItem("permanent_uid_session", user.uid);
                 let cachedName = safeStorage.getItem("profile_name_" + user.uid);
                 
                 if (!user.displayName && !cachedName) {
@@ -550,38 +615,27 @@
                     if (cachedName && !user.displayName) {
                         updateProfile(user, { displayName: cachedName }).catch(e => console.log(e));
                     }
-                    syncDashboardUI();
+                    let finalRawName = user.displayName || cachedName || "anon";
+                    let personalStories = globalAllStories.filter(s => s.uid === user.uid);
+                    let rCoins = Math.floor(personalStories.length / 10);
+                    let badgeStar = (rCoins >= 5) ? " ⭐️" : "";
+
+                    document.getElementById("entryPage").style.display = "none";
+                    document.getElementById("mainPage").style.display = "block";
+                    document.getElementById("navStatus").innerText = "@" + finalRawName + badgeStar;
+                    document.getElementById("profileTitleName").innerText = "@" + finalRawName + badgeStar;
+                    document.getElementById("profileEmailLabel").innerText = user.email;
+                    document.getElementById("r-coin-count-label").innerText = rCoins + " R-Coins";
+                    rebuildAllFeeds();
                 }
             } else {
-                // শুধু যদি ম্যানুয়ালি লগআউট ট্র্রিগার হয় তবেই সেশন মুছবে
                 if(!safeStorage.getItem("permanent_uid_session")) {
                     globalUserSession = null;
                     document.getElementById("mainPage").style.display = "none";
                     document.getElementById("entryPage").style.display = "flex";
-                } else {
-                    console.log("Awaiting core background engine loop data update.");
                 }
             }
         });
-
-        function syncDashboardUI() {
-            document.getElementById("entryPage").style.display = "none";
-            document.getElementById("mainPage").style.display = "block";
-            
-            let finalRawName = globalUserSession.displayName || safeStorage.getItem("profile_name_" + globalUserSession.uid) || "anon";
-            
-            // 🧠 R COIN & STAR BADGE LIVE ASSIGNMENT GRAPH INTERACTION
-            let personalStories = globalAllStories.filter(s => s.uid === globalUserSession.uid);
-            let rCoins = Math.floor(personalStories.length / 10);
-            let badgeStar = (rCoins >= 5) ? " ⭐️" : "";
-
-            document.getElementById("navStatus").innerText = "@" + finalRawName + badgeStar;
-            document.getElementById("profileTitleName").innerText = "@" + finalRawName + badgeStar;
-            document.getElementById("profileEmailLabel").innerText = globalUserSession.email;
-            document.getElementById("r-coin-count-label").innerText = rCoins + " R-Coins" + (rCoins >= 5 ? " [STAR PRO]" : "");
-            
-            rebuildAllFeeds();
-        }
 
         window.signupAction = async function() {
             let name = document.getElementById("signupName").value.trim();
@@ -589,7 +643,7 @@
             let password = document.getElementById("signupPassword").value;
             
             if(!name) { alert("Display name cannot be empty!"); return; }
-            if(containsEmoji(name)) { alert("🚫 Error: Emojis are strictly banned in usernames! Please use clean text."); return; }
+            if(containsEmoji(name)) { alert("🚫 Username cannot contain emojis! Only system-defined Stars allowed."); return; }
             if(!email || !password) { alert("Please complete form!"); return; }
             
             try {
@@ -598,7 +652,7 @@
                 safeStorage.setItem("permanent_uid_session", creds.user.uid);
                 await updateProfile(creds.user, { displayName: name });
                 hidePopup('signupPopup');
-                syncDashboardUI();
+                location.reload(); 
             } catch(e) { alert(e.message); }
         }
 
@@ -613,31 +667,17 @@
                     safeStorage.setItem("profile_name_" + creds.user.uid, creds.user.displayName);
                 }
                 hidePopup('loginPopup');
-                syncDashboardUI();
+                location.reload();
             } catch(e) { alert(e.message); }
         }
 
         window.triggerLogout = async function() {
             if(!confirm("Are you sure you want to sign out?")) return;
-            safeStorage.setItem("permanent_uid_session", ""); // ম্যানুয়াল লগআউটে সেশন ক্লিয়ার
+            safeStorage.setItem("permanent_uid_session", "");
             await signOut(auth);
             location.reload();
         }
 
-        window.saveProfile = async function() {
-            let name = document.getElementById("profileName").value.trim();
-            if(!globalUserSession || !name) return;
-            if(containsEmoji(name)) { alert("🚫 Error: Username cannot contain emojis! Banned."); return; }
-            try {
-                safeStorage.setItem("profile_name_" + globalUserSession.uid, name);
-                await updateProfile(auth.currentUser, { displayName: name });
-                alert("Profile saved successfully!");
-                syncDashboardUI();
-                hidePopup("profilePopup");
-            } catch(e) { alert(e.message); }
-        }
-
-        // PUBLISH POST WITH ANTI-PROFANITY BLOCK & COIN SCORE BOARD ENGINE
         window.submitConfession = async function() {
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
             if(!selectedPostCategory) { alert("Error: Category selection is mandatory!"); return; }
@@ -645,9 +685,8 @@
             let rawText = document.getElementById("postContentInput").value.trim();
             if(!rawText) { alert("Write something first!"); return; }
 
-            // 🛑 কড়া খারাপ পোস্ট ব্যান ফিল্টার ট্র্যাকার
             if(hasProfanity(rawText)) {
-                alert("🚫 Your post contains vulgar/bad language. This community bans toxic content. Post Rejected!");
+                alert("🚫 Vulgar words detected! Post Blocked and Terminated.");
                 return;
             }
 
@@ -669,7 +708,7 @@
                 document.getElementById("postContentInput").value = "";
                 selectedPostCategory = "";
                 document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
-                alert("Confession published successfully 🌙");
+                alert("Confession published 🌙");
                 switchTab('home', document.querySelectorAll('.nav-item')[0]);
             } catch(e) { alert("Posting error: " + e.message); }
         }
@@ -740,7 +779,6 @@
             buildFeedDOM("searchFeed", cat, false);
         }
 
-        // 🧠 UNIVERSAL FEED GENERATOR ENGINE WITH NATIVE IN-FEED ADS SLOTS
         function buildFeedDOM(targetDivId, categoryFilter = "all", selfUidOnly = false) {
             let box = document.getElementById(targetDivId);
             if(!box) return;
@@ -759,15 +797,15 @@
                 return;
             }
 
-            let cardCounter = 0;
+            let nextAdTriggerIndex = Math.floor(Math.random() * (6 - 3 + 1)) + 3; 
+            let processedCardsCount = 0;
 
             dataset.slice(0, postsToShowCount).forEach((item) => {
-                cardCounter++;
+                processedCardsCount++;
                 let card = document.createElement("div");
                 card.className = "card"; card.id = "card-" + item.id;
                 let delBtn = (globalUserSession && item.uid === globalUserSession.uid) ? `<button class="delete-btn" onclick="deleteStory('${item.id}')">🗑️ Delete</button>` : '';
 
-                // R-Badge Calculator inside dynamic cards feed mapping
                 let authorPosts = globalAllStories.filter(s => s.uid === item.uid);
                 let authorCoins = Math.floor(authorPosts.length / 10);
                 let authorStar = (authorCoins >= 5) ? " ⭐️" : "";
@@ -787,20 +825,31 @@
                 `;
                 box.appendChild(card);
 
-                // 💰 GOOGLE ADSENSE IN-FEED NATIVE AD INJECTOR SLOT
-                // প্রতি ৩টি পোস্টের পর পর এটি অটোমেটিক একটি সুন্দর ড্যামি নিয়ন স্পেস জেনারেট করবে
-                if (cardCounter % 3 === 0 && !selfUidOnly) {
-                    let adSlot = document.createElement("div");
-                    adSlot.className = "ads-card";
-                    adSlot.innerHTML = `
-                        <div class="ads-label">Sponsored Midnight Content</div>
-                        <div style="font-size:13px; opacity:0.5; padding:10px 0;">
-                            <div id="adsense-banner-slot">Google AdSense Space Locked 🔒</div>
-                        </div>
+                if (processedCardsCount === nextAdTriggerIndex && !selfUidOnly) {
+                    let sliderWrapper = document.createElement("div");
+                    sliderWrapper.className = "ad-slider-container";
+                    
+                    const customRedirectLink = ""; 
+                    const image1_src = "ad.jpeg";  
+                    const image2_src = "ad1.jpeg"; 
+
+                    let linkClass = customRedirectLink ? "ad-slider-link" : "ad-slider-link no-click-allowed";
+
+                    sliderWrapper.innerHTML = `
+                        <div class="ad-badge">Sponsored</div>
+                        <a href="${customRedirectLink || 'javascript:void(0)'}" target="${customRedirectLink ? '_blank' : '_self'}" class="${linkClass}">
+                            <img src="${image1_src}" class="ad-slide active-slide" alt="Promo 1">
+                            <img src="${image2_src}" class="ad-slide" alt="Promo 2">
+                        </a>
                     `;
-                    box.appendChild(adSlot);
+                    box.appendChild(sliderWrapper);
+
+                    let nextRandomGap = Math.floor(Math.random() * (6 - 3 + 1)) + 3;
+                    nextAdTriggerIndex = processedCardsCount + nextRandomGap;
                 }
             });
+            
+            startLiveImageSliders();
         }
 
         function calculateAnalytics() {
@@ -833,7 +882,6 @@
             }
         }
 
-        // 📤 EXPORT CHROMATIC SNAPSHOT IMAGE WITH CAPTION LINKS FOR EASY WHATSAPP SHARE
         window.generateShareImage = function(cardId) {
             const node = document.getElementById("card-" + cardId);
             if(!node) return;
@@ -848,25 +896,20 @@
                 const newBtn = btn.cloneNode(true); btn.parentNode.replaceChild(newBtn, btn);
                 
                 newBtn.addEventListener("click", () => {
-                    // ডাউনলোড ট্রিগার
                     let a = document.createElement("a"); a.download = "late-night-" + cardId + ".png";
                     a.href = url; a.click();
 
-                    // 🧠 হোয়াটসঅ্যাপ স্ট্যাটাস ও শেয়ারের জন্য ক্লিপবোর্ডে লিংক এবং ক্যাপশন কপি মেকানিজম
-                    const officialAppDownloadLink = "https://your-app-download-link.com"; // আপনার ডাউনলোড লিংক
+                    const officialAppDownloadLink = "https://your-app-download-link.com";
                     const shareTextHeadline = `🌙 Read deep midnight secrets on Late Night Confessions App! 📲 Download App Now: ${officialAppDownloadLink}`;
                     
                     try {
                         navigator.clipboard.writeText(shareTextHeadline);
-                        alert("Snapshot saved to gallery! 📥 App download text & link automatically copied to clipboard for your WhatsApp Status! 🔥");
-                    } catch(err) {
-                        console.log("Clipboard bypass handled.");
-                    }
+                        alert("Snapshot saved! Link copied to clipboard for WhatsApp status! 🔥");
+                    } catch(err) { console.log(err); }
                 });
             });
         }
 
-        // DATABASE SNAPSHOT REALTIME LISTENER
         onSnapshot(collection(db, "stories"), (snap) => {
             globalAllStories = [];
             snap.forEach(doc => {
@@ -881,7 +924,6 @@
             });
 
             rebuildAllFeeds();
-            if(globalUserSession) syncDashboardUI();
         });
     </script>
 </body>
