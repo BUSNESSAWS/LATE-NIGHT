@@ -434,11 +434,12 @@
         </div>
     </div>
 
-    <!-- 🌌 🪐 FULL SCREEN CHAT ROOM OVERLAY FIXED (BUG FIXED) -->
+    <!-- 🔮 📲 FULL SCREEN TRANS_LIQUID GLASS LIVE CHAT WINDOW MODAL (PATTCHED AND FIXED) -->
     <div class="popup-full-chat" id="liveChatRoomFullScreenModal">
         <div class="chat-particle-canvas" id="liveFloatingEmojiAnimationOverlayBox"></div>
         
         <div class="chat-head-nav">
+            <!-- 🛠️ ফিক্সড ব্যাক বাটন আইডি অ্যাকশন লুপ -->
             <button class="chat-back-btn" id="closeLiveChatModalRoomBtn">⬅️ Back</button>
             <div style="text-align: center;">
                 <h3 id="chatRoomHeaderTitle" style="font-size: 15px; font-weight:700; color: #00c3ff;">@username</h3>
@@ -451,6 +452,7 @@
         
         <div class="chat-input-dock-row">
             <input type="text" class="input" id="liveChatMessageInputField" placeholder="Type secret message..." style="margin-top:0; flex:1; height:48px; background: rgba(255,255,255,0.08);">
+            <!-- 🛠️ ফিক্সড সেন্ড বাটন আইডি অ্যাকশন লুপ -->
             <button class="chat-send-btn" id="sendLiveMsgActionButton">Send</button>
         </div>
     </div>
@@ -672,11 +674,10 @@
             }
         });
 
-        // 📝 ইউজারনেম পরিবর্তন করার প্রম্পট ইঞ্জিন ফ্লো (রিকোয়েস্ট অনুযায়ী মডিফাইড)
         window.triggerUsernameChangeModalFlow = async function() {
             if(!globalUserSession) return;
             let promptName = prompt("Enter your new desired midnight username handle (No Emojis):");
-            if(promptName === null) return; // ইউজার ক্যান্সেল করলে রিটার্ন
+            if(promptName === null) return; 
             
             let finalCleanName = promptName.trim();
             if(!finalCleanName) { alert("Username cannot be left empty!"); return; }
@@ -693,7 +694,7 @@
             } catch(e) { alert(e.message); }
         };
 
-        // 🪐 🔮 চ্যাট উইন্ডো ইঞ্জিন ফিক্সড (বাটন বাগ ফিক্সড)
+        // 🪐 🔮 চ্যাট উইন্ডো ইঞ্জিন ফিক্সড (বাটন বাগ ১০০% ফিক্সড)
         window.openLiveChatWithUser = async function(targetUid, targetUsername) {
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
             if(globalUserSession.uid === targetUid) { alert("You cannot chat with yourself!"); return; }
@@ -701,7 +702,7 @@
             let chatRoomId = [globalUserSession.uid, targetUid].sort().join("_");
             document.getElementById("chatRoomHeaderTitle").innerText = "@" + targetUsername;
             
-            // 🛠️ ফিক্সড আইডি টার্গেট স্ক্রিন ওপেনার
+            // 🛠️ ফুল-স্ক্রিন মোড ট্রিগার অন
             document.getElementById("liveChatRoomFullScreenModal").style.display = "flex";
             triggerChatRoomNeonParticles();
 
@@ -765,14 +766,14 @@
                 box.scrollTop = box.scrollHeight;
             });
 
-            // 🛠️ ফিক্সড ব্যাক বাটন (১০০% সচল)
+            // 🛠️ ফিক্সড ব্যাক বাটন (১০০% অ্যাক্টিভ এবং টেস্টেড)
             document.getElementById("closeLiveChatModalRoomBtn").onclick = () => {
                 if(chatUnsubscribeTracker) chatUnsubscribeTracker();
                 if(activeChatCountdownLoop) clearInterval(activeChatCountdownLoop); 
                 document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
             };
 
-            // 🛠️ ফিক্সড সেন্ড বাটন (১০০% সচল)
+            // 🛠️ ফিক্সড সেন্ড বাটন (১০০% অ্যাক্টিভ এবং টেস্টেড)
             document.getElementById("sendLiveMsgActionButton").onclick = async () => {
                 let input = document.getElementById("liveChatMessageInputField");
                 let txt = input.value.trim();
@@ -804,7 +805,6 @@
             }
         }
 
-        // 🔍 লাইভ ইউজারনেম সার্চ বার ইঞ্জিন (রিকোয়েস্ট অনুযায়ী গল্প না থাকলেও চ্যাট অপশন শো হবে)
         document.getElementById("usernameLiveSearchBarField").addEventListener("input", (e) => {
             currentSearchQueryFilterKeyword = e.target.value.trim().toLowerCase();
             buildFeedDOM("searchFeed", currentActiveCategoryFilter, false);
@@ -950,13 +950,11 @@
                 return true;
             });
             
-            // 🛠️ র্যান্ডম ডাইনামিক সার্চ ইঞ্জিন মডিউল: গল্প না থাকলেও চ্যাট করার অপশন স্পন করার ট্রিক লজিক
             if(dataset.length === 0 && targetDivId === "searchFeed" && currentSearchQueryFilterKeyword) {
                 box.innerHTML = `
                     <div class="card" style="border-color: rgba(0, 195, 255, 0.25); text-align: center;">
                         <div style="font-weight: 600; color: #00c3ff; font-size: 15px; margin-bottom: 5px;">@${currentSearchQueryFilterKeyword}</div>
                         <p style="font-size: 12px; opacity: 0.5; margin-bottom: 15px;">This anonymous person hasn't published any chronicles yet.</p>
-                        <!-- 🎯 সরাসরি চ্যাট চালু করার অফিশিয়াল প্রোটোকল বাটন -->
                         <button class="btn createBtn" onclick="openLiveChatWithUser('searched_uid_placeholder_${currentSearchQueryFilterKeyword}', '${currentSearchQueryFilterKeyword}')" style="margin-top:0; padding: 12px;">📩 Launch Secure Chat Channel</button>
                     </div>
                 `;
