@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Late Night Confessions - Final Master Build</title>
+    <title>Late Night Confessions - Ultimate Patched Master Build</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -20,37 +20,35 @@
             background: #000;
             overflow-x: hidden;
             color: white;
-            padding-bottom: 90px;
+            padding-bottom: 110px;
         }
 
-        /* 💡 ব্যাকগ্রাউন্ড নিয়ন লাইট */
         .bg {
             position: fixed;
             width: 100%;
             height: 100vh;
             overflow: hidden;
             z-index: -10;
-            background: radial-gradient(circle at top, #26001d, #050505 45%, #000 90%);
+            background: radial-gradient(circle at top, #300025, #050505 50%, #000 90%);
         }
 
         .blur1, .blur2, .blur3 {
             position: absolute;
             border-radius: 50%;
-            filter: blur(100px);
+            filter: blur(90px);
             animation: float 10s infinite ease-in-out;
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
-        .blur1 { width: 350px; height: 350px; background: #ff0088; top: -100px; left: -100px; }
-        .blur2 { width: 300px; height: 300px; background: #7f5cff; bottom: 50px; right: -80px; animation-delay: 2s; }
-        .blur3 { width: 250px; height: 250px; background: #00c3ff; top: 35%; left: 40%; animation-delay: 4s; }
+        .blur1 { width: 380px; height: 380px; background: #ff0077; top: -80px; left: -80px; }
+        .blur2 { width: 340px; height: 340px; background: #6c42ff; bottom: 80px; right: -60px; animation-delay: 2s; }
+        .blur3 { width: 280px; height: 280px; background: #00bfff; top: 30%; left: 35%; animation-delay: 4s; }
 
         @keyframes float { 
-            0%, 100% { transform: translateY(0px) translateX(0px); }
-            50% { transform: translateY(-40px) translateX(30px); } 
+            0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+            50% { transform: translateY(-30px) translateX(20px) scale(1.05); } 
         }
 
-        /* 🌠 SHOOTING STARS SYSTEM */
         .shooting-star-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%; z-index: -9;
@@ -90,17 +88,21 @@
             animation: shine 3s infinite, zoom 3s infinite;
         }
 
-        /* ENTRY PAGE */
+        /* 📍 ENTRY PAGE: TITLE POSITION FIXED (RAISED UPWARDS) */
         #entryPage {
             display: none; width: 100%; height: 100vh;
-            justify-content: center; align-items: center; padding: 20px;
-            z-index: 10;
+            justify-content: center; align-items: center; padding: 20px; z-index: 10;
+        }
+
+        .entry-container {
+            width: 100%; max-width: 400px; transform: translateY(-40px); /* টেক্সট ও ফর্ম ওপরে তোলা হলো */
         }
 
         .glass {
-            width: 100%; max-width: 400px; padding: 40px 25px; border-radius: 30px;
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 0 40px rgba(255, 0, 128, 0.15);
+            width: 100%; padding: 40px 25px; border-radius: 30px;
+            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 0 40px rgba(255, 0, 128, 0.15);
         }
 
         .mainTitle {
@@ -120,20 +122,18 @@
         .loginBtn { background: linear-gradient(135deg, #00c3ff, #0077ff); box-shadow: 0 0 20px rgba(0, 195, 255, 0.3); }
         .skipBtn { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.1); }
 
-        /* MAIN DASHBOARD HEADER CONTAINER */
-        .header-wrapper {
-            position: sticky; top: 0; z-index: 100; width: 100%;
-        }
-
+        .header-wrapper { position: sticky; top: 0; z-index: 100; width: 100%; }
         nav {
             width: 100%; padding: 10px 18px; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(20px); height: 54px;
+            background: rgba(10, 10, 10, 0.35); 
+            backdrop-filter: blur(40px) saturate(240%);
+            -webkit-backdrop-filter: blur(40px) saturate(240%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            height: 54px;
         }
 
-        /* 🍊🌌 ALEXA STYLE GLOWING ORANGE & SKY BLUE NEON REMIX STRIP LIGHT */
         .orange-strip-light {
-            width: 100%;
-            height: 2px;
+            width: 100%; height: 2px;
             background: linear-gradient(90deg, #ff5500, #ffaa00, #00d2ff, #0077ff);
             background-size: 200% auto;
             box-shadow: 0 0 8px rgba(255, 85, 0, 0.6), 0 0 15px rgba(0, 210, 255, 0.6);
@@ -147,7 +147,6 @@
         }
 
         .logo-container { display: flex; align-items: center; gap: 8px; }
-
         .animated-moon {
             font-size: 22px; display: inline-block;
             animation: moonGlow 3s infinite ease-in-out, moonFloat 4s infinite ease-in-out;
@@ -167,36 +166,59 @@
             animation: shine 5s infinite linear;
         }
 
-        /* 📱 BOTTOM NAV BAR */
+        /* 📱 ULTRA-TRANSLUCENT APP LIQUID BAR */
         .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
-            background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(25px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            position: fixed; bottom: 16px; left: 4%; width: 90%; height: 66px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(40px) saturate(240%);
+            -webkit-backdrop-filter: blur(40px) saturate(240%);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 28px;
             display: flex; justify-content: space-around; align-items: center; z-index: 999;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
 
         .nav-item {
+            position: relative; flex: 1; height: 100%;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            color: rgba(255, 255, 255, 0.5); cursor: pointer; transition: 0.3s; font-size: 11px; font-weight: 500;
+            color: rgba(255, 255, 255, 0.4); cursor: pointer; font-size: 10px; font-weight: 500;
+            z-index: 5; transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .nav-item svg { width: 24px; height: 24px; fill: currentColor; margin-bottom: 4px; transition: 0.3s; }
-        .nav-item.active { color: #ff4ecd; filter: drop-shadow(0 0 8px #ff4ecd); }
+        .nav-item svg { width: 22px; height: 22px; fill: currentColor; margin-bottom: 4px; transition: transform 0.3s ease; }
+        .nav-item.active { color: #ff4ecd; }
         .nav-item.active svg { transform: scale(1.1); }
 
-        .app-section { display: none; width: 92%; max-width: 680px; margin: 20px auto; animation: fadeIn 0.4s ease; }
-        .app-section.active-section { display: block; }
+        .nav-item::before {
+            content: ''; position: absolute; top: 12%; left: 10%; width: 80%; height: 76%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px; z-index: -1; opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
+        .nav-item.active::before { opacity: 1; transform: scale(1); }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* CARDS CONTAINER */
+        /* 📝 POST CARDS: HIGH VISIBILITY PATCD (BAG FIXED) */
         .card {
             position: relative; padding: 25px; margin-bottom: 20px; border-radius: 24px;
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;
+            background: rgba(255, 255, 255, 0.05); /* ট্রান্সপারেন্সি ফিক্স করে ভিজিবিলিটি বাড়ানো হলো */
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08); overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
         }
 
-        /* 🖼️ স্লাইডার বক্স */
+        /* 🛡️ TAB BLOCKING ISOLATION SYSTEM (OVERLAP BUG FIXED) */
+        .app-section { 
+            display: none !important; 
+            width: 92%; max-width: 680px; margin: 20px auto; 
+            animation: fadeIn 0.35s ease; 
+        }
+        .app-section.active-section { 
+            display: block !important; 
+        }
+
         .ad-slider-container {
             width: 100%; height: 120px; position: relative; margin-bottom: 20px;
             border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08);
@@ -204,90 +226,64 @@
         }
         .ad-slider-link { width: 100%; height: 100%; display: block; position: relative; }
         .ad-slider-link.no-click-allowed { cursor: default; pointer-events: none; }
-        
-        .ad-slide {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; opacity: 0; transition: opacity 0.8s ease-in-out; z-index: 1;
-        }
+        .ad-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.8s ease-in-out; z-index: 1; }
         .ad-slide.active-slide { opacity: 1; z-index: 2; }
-        
-        .ad-badge {
-            position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6);
-            color: rgba(255,255,255,0.7); font-size: 10px; padding: 2px 7px;
-            border-radius: 5px; letter-spacing: 0.5px; z-index: 5; font-weight: 600;
-        }
+        .ad-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); color: rgba(255,255,255,0.7); font-size: 10px; padding: 2px 7px; border-radius: 5px; letter-spacing: 0.5px; z-index: 5; font-weight: 600; }
 
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+        
+        .user-header-block { display: flex; align-items: center; gap: 8px; }
+        .head-chat-btn { background: rgba(0, 195, 255, 0.12); border: 1px solid rgba(0, 195, 255, 0.3); color: #00c3ff; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .head-chat-btn:hover { background: #00c3ff; color: #000; box-shadow: 0 0 10px rgba(0, 195, 255, 0.4); }
+
         .card-user { color: #ff4ecd; font-weight: 600; font-size: 14px; }
         .card-tag { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
         .tag-love { background: rgba(255, 0, 136, 0.15); color: #ff0088; border: 1px solid rgba(255, 0, 136, 0.3); }
         .tag-sad { background: rgba(0, 195, 255, 0.15); color: #00c3ff; border: 1px solid rgba(0, 195, 255, 0.3); }
         .tag-romantic { background: rgba(127, 92, 255, 0.15); color: #7f5cff; border: 1px solid rgba(127, 92, 255, 0.3); }
 
-        .story { line-height: 1.7; font-size: 15px; opacity: 0.95; word-wrap: break-word; margin-bottom: 15px; }
-        .actions { display: flex; gap: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; }
-        .actions button { background: none; border: none; color: white; font-size: 14px; cursor: pointer; opacity: 0.7; display: flex; align-items: center; gap: 6px; }
+        .story { line-height: 1.7; font-size: 15px; opacity: 0.95; word-wrap: break-word; margin-bottom: 15px; letter-spacing: 0.2px; }
+        .actions { display: flex; gap: 15px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; flex-wrap: wrap; }
+        .actions button { background: none; border: none; color: white; font-size: 13px; cursor: pointer; opacity: 0.7; display: flex; align-items: center; gap: 5px; }
         .actions button:hover { opacity: 1; color: #ff4ecd; }
 
-        /* SEARCH & CATEGORY LAYOUT */
         .search-container { display: flex; flex-direction: column; gap: 15px; }
-        .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-        .cat-btn {
-            padding: 12px 5px; border: none; border-radius: 14px; font-weight: 600; font-size: 12px;
-            cursor: pointer; text-align: center; transition: 0.3s; background: rgba(255,255,255,0.04); color: white;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .cat-btn.active-cat { background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.3); }
-        .cat-btn.active-cat[data-cat="love"] { background: #ff0088; border-color: #ff0088; box-shadow: 0 0 15px rgba(255,0,136,0.4); }
-        .cat-btn.active-cat[data-cat="sad"] { background: #00c3ff; border-color: #00c3ff; box-shadow: 0 0 15px rgba(0,195,255,0.4); }
-        .cat-btn.active-cat[data-cat="romantic"] { background: #7f5cff; border-color: #7f5cff; box-shadow: 0 0 15px rgba(127,92,255,0.4); }
+        .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 5px; }
+        .cat-btn { padding: 12px 5px; border: none; border-radius: 14px; font-weight: 600; font-size: 12px; cursor: pointer; text-align: center; transition: 0.3s; background: rgba(255,255,255,0.04); color: white; border: 1px solid rgba(255,255,255,0.08); }
+        .cat-btn.active-cat { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.25); }
+        .cat-btn.active-cat[data-cat="love"] { background: #ff0088; border-color: #ff0088; }
+        .cat-btn.active-cat[data-cat="sad"] { background: #00c3ff; border-color: #00c3ff; }
+        .cat-btn.active-cat[data-cat="romantic"] { background: #7f5cff; border-color: #7f5cff; }
 
-        /* 📲 APPS DOWNLOAD OFFICIAL BUTTON STYLE */
-        .download-app-bar {
-            width: 100%; padding: 14px; background: linear-gradient(90deg, #7f5cff, #ff4ecd);
-            border-radius: 16px; font-weight: 700; text-align: center; font-size: 14px; cursor: pointer;
-            box-shadow: 0 5px 20px rgba(127, 92, 255, 0.4); transition: 0.3s; border: none; color: white;
-        }
-
-        /* CHIPS */
+        .download-app-bar { width: 100%; padding: 14px; background: linear-gradient(90deg, #7f5cff, #ff4ecd); border-radius: 16px; font-weight: 700; text-align: center; font-size: 14px; cursor: pointer; box-shadow: 0 5px 20px rgba(127, 92, 255, 0.4); transition: 0.3s; border: none; color: white; }
         .post-box { background: rgba(255,255,255,0.02); padding: 25px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.06); }
         .chip-group { display: flex; gap: 10px; margin: 15px 0; }
-        .chip {
-            padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
-        }
+        .chip { padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
         .chip.selected[data-val="love"] { background: #ff0088; border-color: #ff0088; }
         .chip.selected[data-val="sad"] { background: #00c3ff; border-color: #00c3ff; }
         .chip.selected[data-val="romantic"] { background: #7f5cff; border-color: #7f5cff; }
 
-        /* PROFILE SCENE */
-        .profile-header-card {
-            background: rgba(255,255,255,0.03); padding: 30px 20px; border-radius: 28px;
-            border: 1px solid rgba(255,255,255,0.06); text-align: center; margin-bottom: 25px;
-        }
+        .profile-header-card { background: rgba(255,255,255,0.03); padding: 30px 20px; border-radius: 28px; border: 1px solid rgba(255,255,255,0.06); text-align: center; margin-bottom: 25px; }
         .profile-avatar { width: 85px; height: 85px; background: linear-gradient(135deg, #ff0088, #7f5cff); border-radius: 50%; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; font-size: 35px; box-shadow: 0 0 20px rgba(255,0,136,0.3); }
-        
-        .r-coin-badge-box {
-            display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; 
-            background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 20px; margin-top: 10px; cursor: pointer; transition: 0.2s;
-        }
-
+        .r-coin-badge-box { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 20px; margin-top: 10px; cursor: pointer; transition: 0.2s; }
         .profile-stats-row { display: flex; justify-content: space-around; margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); }
         .stat-box { text-align: center; }
         .stat-num { font-size: 20px; font-weight: 700; color: #ff4ecd; }
         .stat-label { font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
 
-        /* POPUPS */
-        .popup {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: none; justify-content: center; align-items: center;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 9999;
-        }
-        .popupBox {
-            width: 90%; max-width: 440px; padding: 30px; border-radius: 28px; background: rgba(20, 20, 20, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.08); animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            max-height: 85vh; overflow-y: auto;
-        }
+        .chat-user-item { display: flex; align-items: center; padding: 16px 20px; margin-bottom: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; cursor: pointer; transition: 0.3s; }
+        .chat-user-item:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+        .chat-user-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #ff4ecd, #00c3ff); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 20px; margin-right: 15px; }
+        
+        .chat-window { display: flex; flex-direction: column; height: 100%; }
+        .chat-msg-container { flex: 1; overflow-y: auto; padding: 15px 5px; display: flex; flex-direction: column; gap: 10px; max-height: 50vh; min-height: 320px; }
+        .msg-bubble { max-width: 75%; padding: 12px 16px; font-size: 14px; line-height: 1.5; border-radius: 20px; word-wrap: break-word; }
+        .msg-sent { background: linear-gradient(135deg, #ff0088, #7f5cff); align-self: flex-end; border-bottom-right-radius: 4px; color: white; }
+        .msg-received { background: rgba(255,255,255,0.08); align-self: flex-start; border-bottom-left-radius: 4px; color: rgba(255,255,255,0.95); border: 1px solid rgba(255,255,255,0.05); }
+        .msg-time-warn { font-size: 10px; opacity: 0.4; margin-top: 4px; display: block; text-align: right; }
+
+        .popup { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: none; justify-content: center; align-items: center; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 9999; }
+        .popupBox { width: 90%; max-width: 440px; padding: 30px; border-radius: 28px; background: rgba(20, 20, 20, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-height: 85vh; overflow-y: auto; }
         .input { width: 100%; padding: 16px; margin-top: 14px; border: none; outline: none; border-radius: 14px; background: rgba(255, 255, 255, 0.05); color: white; font-size: 15px; border: 1px solid rgba(255,255,255,0.05); }
         .popupBtn { width: 100%; padding: 15px; margin-top: 18px; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; background: linear-gradient(135deg, #ff0088, #7f5cff); color: white; }
         .closeBtn { background: rgba(255, 255, 255, 0.08); margin-top: 10px; color: rgba(255,255,255,0.7); }
@@ -312,12 +308,14 @@
 
     <!-- ENTRY PAGE -->
     <div id="entryPage">
-        <div class="glass">
-            <div class="mainTitle">Late Night<br>Confessions</div>
-            <div class="sub">INCOGNITO MIDNIGHT STORIES</div>
-            <button class="btn createBtn" onclick="openSignup()">Create Account</button>
-            <button class="btn loginBtn" onclick="openLogin()">Login</button>
-            <button class="btn skipBtn" onclick="skipLogin()">Skip For Now</button>
+        <div class="entry-container">
+            <div class="glass">
+                <div class="mainTitle">Late Night<br>Confessions</div>
+                <div class="sub">INCOGNITO MIDNIGHT STORIES</div>
+                <button class="btn createBtn" onclick="openSignup()">Create Account</button>
+                <button class="btn loginBtn" onclick="openLogin()">Login</button>
+                <button class="btn skipBtn" onclick="skipLogin()">Skip For Now</button>
+            </div>
         </div>
     </div>
 
@@ -329,12 +327,12 @@
                     <span class="animated-moon">🌙</span>
                     <div class="logo">Late Night</div>
                 </div>
-                <div style="font-size: 11px; opacity: 0.5; font-weight: 600; letter-spacing: 0.5px;" id="navStatus">Guest Mode</div>
+                <div style="font-size: 11px; opacity: 0.6; font-weight: 600; letter-spacing: 0.5px;" id="navStatus">Guest Mode</div>
             </nav>
             <div class="orange-strip-light"></div>
         </div>
 
-        <!-- SECTIONS -->
+        <!-- SECTIONS (ISOLATED TABS SYSTEM) -->
         <div id="section-home" class="app-section active-section">
             <div class="feed" id="globalFeed"></div>
         </div>
@@ -342,7 +340,6 @@
         <div id="section-search" class="app-section">
             <div class="search-container">
                 <button class="download-app-bar" onclick="redirectToAppDownload()">Download Official App 📲</button>
-                
                 <div class="category-grid">
                     <button class="cat-btn active-cat" data-cat="all" onclick="switchCategory('all', this)">All</button>
                     <button class="cat-btn" data-cat="love" onclick="switchCategory('love', this)">❤️ Love</button>
@@ -357,16 +354,19 @@
             <div class="post-box">
                 <h3 style="font-size: 18px; margin-bottom: 5px;">Share a Confession</h3>
                 <p style="font-size: 12px; opacity: 0.5; margin-bottom: 15px;">Select a mandatory category for your story</p>
-                
                 <div class="chip-group">
                     <div class="chip" data-val="love" onclick="selectPostChip('love', this)">❤️ Love</div>
                     <div class="chip" data-val="sad" onclick="selectPostChip('sad', this)">😢 Sad</div>
                     <div class="chip" data-val="romantic" onclick="selectPostChip('romantic', this)">✨ Romantic</div>
                 </div>
-
                 <textarea class="input" id="postContentInput" placeholder="Write your secret midnight thoughts here..." style="height: 160px; resize: none;"></textarea>
                 <button class="popupBtn" onclick="submitConfession()">Publish Confession 🌙</button>
             </div>
+        </div>
+
+        <div id="section-chats" class="app-section">
+            <h3 style="font-size: 18px; margin-bottom: 15px; color: #ff4ecd;">Active Conversations</h3>
+            <div id="inboxChannelsFeedList"></div>
         </div>
 
         <div id="section-profile" class="app-section">
@@ -374,12 +374,10 @@
                 <div class="profile-avatar">👤</div>
                 <h2 id="profileTitleName" style="font-size: 22px; font-weight: 700;">@anonymous</h2>
                 <p id="profileEmailLabel" style="font-size: 13px; opacity: 0.5; margin-top: 2px;">guest_user@latenight.com</p>
-                
                 <div class="r-coin-badge-box" onclick="triggerCoinInfoPopup()">
                     <span style="font-size: 16px;">🪙</span>
                     <span style="font-size: 13px; font-weight: 700; color: #ffd700;" id="r-coin-count-label">0 R-Coins</span>
                 </div>
-
                 <div class="profile-stats-row">
                     <div class="stat-box">
                         <div class="stat-num" id="stat-posts">0</div>
@@ -396,30 +394,45 @@
                 </div>
                 <button class="btn skipBtn" onclick="triggerLogout()" style="margin-top: 20px; padding: 10px; font-size: 14px;">Logout Account 🚪</button>
             </div>
-            
             <h3 style="font-size: 16px; margin-bottom: 15px; color: #ff4ecd;">My Secret Chronicles</h3>
             <div id="myPersonalFeed"></div>
         </div>
 
-        <!-- BOTTOM NAV BAR -->
+        <!-- 📱 IPHONE LIQUID NAV BAR WITH CAPSULE SHIFTING -->
         <div class="bottom-nav">
             <div class="nav-item active" onclick="switchTab('home', this)">
-                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                Home
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home
             </div>
             <div class="nav-item" onclick="switchTab('search', this)">
-                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                Search
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>Search
             </div>
-            <!-- 🛠️ ফিক্সড প্লাস (+) পোস্ট বাটন আইকন লজিক -->
             <div class="nav-item" onclick="switchTab('post', this)">
-                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                Post
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>Post
+            </div>
+            <div class="nav-item" onclick="switchTab('chats', this)">
+                <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>Inbox
             </div>
             <div class="nav-item" onclick="switchTab('profile', this)">
-                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-3-8-3z"/></svg>
-                Profile
+                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-3-8-3z"/></svg>Profile
             </div>
+        </div>
+    </div>
+
+    <!-- 🔮 CHAT ROOM POPUP MODAL -->
+    <div class="popup" id="liveChatRoomModal">
+        <div class="popupBox" style="max-width: 480px; padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
+                <h3 id="chatRoomHeaderTitle" style="font-size: 15px; color: #00c3ff;">Chat Room</h3>
+                <span id="chatActiveTimerHUD" style="font-size: 11px; color: #ffaa00; font-weight: 700; background: rgba(255,170,0,0.1); padding: 3px 8px; border-radius: 6px;">4h 00m left</span>
+            </div>
+            
+            <div class="chat-msg-container" id="chatMessageLiveTrackBox"></div>
+            
+            <div style="display: flex; gap: 8px; margin-top: 10px;">
+                <input type="text" class="input" id="liveChatMessageInputField" placeholder="Type secret message..." style="margin-top: 0; flex: 1;">
+                <button class="popupBtn" id="sendLiveMsgActionButton" style="margin-top: 0; width: auto; padding: 0 20px;">Send</button>
+            </div>
+            <button class="popupBtn closeBtn" id="closeLiveChatModalRoomBtn">Close Chat Room ❌</button>
         </div>
     </div>
 
@@ -474,7 +487,6 @@
         </div>
     </div>
 
-    <!-- BRIDGE CONTROLLER SCRIPT -->
     <script>
         let globalUserSession = null;
         let selectedPostCategory = "";
@@ -498,15 +510,25 @@
             document.getElementById("navStatus").innerText = "Guest Mode 👤";
         }
 
+        /* 🛡️ TAB BLOCKING ENGINE PATCD (OVERLAP BUG FIXED) */
         function switchTab(targetSection, element) {
-            if (!globalUserSession && (targetSection === 'post' || targetSection === 'profile')) {
+            if (!globalUserSession && (targetSection === 'post' || targetSection === 'chats' || targetSection === 'profile')) {
                 showPopup('gatekeeperPopup');
                 return;
             }
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             element.classList.add('active');
-            document.querySelectorAll('.app-section').forEach(sec => sec.classList.remove('active-section'));
-            document.getElementById('section-' + targetSection).classList.add('active-section');
+            
+            // সব সেকশন হাইড ফোর্স করা হলো
+            document.querySelectorAll('.app-section').forEach(sec => {
+                sec.classList.remove('active-section');
+            });
+            
+            // শুধু টার্গেট সেকশন একটিভ করা হলো
+            const targetDOM = document.getElementById('section-' + targetSection);
+            if(targetDOM) {
+                targetDOM.classList.add('active-section');
+            }
         }
 
         function selectPostChip(category, element) {
@@ -530,17 +552,12 @@
 
         function startLiveImageSliders() {
             if(sliderTimerInterval) clearInterval(sliderTimerInterval); 
-            
             sliderTimerInterval = setInterval(() => {
                 document.querySelectorAll('.ad-slider-container').forEach(slider => {
                     let slides = slider.querySelectorAll('.ad-slide');
                     if (slides.length < 2) return;
-                    
                     let activeIndex = 0;
-                    slides.forEach((slide, idx) => {
-                        if (slide.classList.contains('active-slide')) activeIndex = idx;
-                    });
-                    
+                    slides.forEach((slide, idx) => { if (slide.classList.contains('active-slide')) activeIndex = idx; });
                     slides[activeIndex].classList.remove('active-slide');
                     let nextIndex = (activeIndex === 0) ? 1 : 0;
                     slides[nextIndex].classList.add('active-slide');
@@ -552,7 +569,7 @@
     <!-- CORE FIREBASE ENGINE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, increment } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, increment, setDoc, getDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserLocalPersistence, updateProfile, signOut } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
         const firebaseConfig = {
@@ -571,33 +588,15 @@
 
         let globalAllStories = []; 
         let postsToShowCount = 10;
+        let chatUnsubscribeTracker = null;
+        let activeChatCountdownLoop = null;
 
         const badWords = ["খারাপশব্দ১", "খারাপশব্দ২", "gali1", "gali2", "bokachoda", "khanki", "bador", "gali", "gandu", "baal", "chuda"];
-        
-        function hasProfanity(text) {
-            let found = false;
-            badWords.forEach(word => {
-                if(text.toLowerCase().includes(word.toLowerCase())) { found = true; }
-            });
-            return found;
-        }
-
-        function cleanProfanity(text) {
-            let clean = text;
-            badWords.forEach(word => {
-                const regex = new RegExp(word, "gi");
-                clean = clean.replace(regex, "****");
-            });
-            return clean;
-        }
-
-        function containsEmoji(text) {
-            const regex = /[\uD800-\uDFFF]|\u2705|\u274C|\u2B50|[\u2000-\u3300]/g; 
-            return regex.test(text);
-        }
+        function hasProfanity(text) { let found = false; badWords.forEach(word => { if(text.toLowerCase().includes(word.toLowerCase())) { found = true; } }); return found; }
+        function cleanProfanity(text) { let clean = text; badWords.forEach(word => { const regex = new RegExp(word, "gi"); clean = clean.replace(regex, "****"); }); return clean; }
+        function containsEmoji(text) { const regex = /[\uD800-\uDFFF]|\u2705|\u274C|\u2B50|[\u2000-\u3300]/g; return regex.test(text); }
 
         try { await setPersistence(auth, browserLocalPersistence); } catch(e) { console.log(e); }
-
         setTimeout(() => { document.getElementById("intro").style.display = "none"; }, 600);
 
         onAuthStateChanged(auth, (user) => {
@@ -609,12 +608,8 @@
                 if (!user.displayName && !cachedName) {
                     document.getElementById("entryPage").style.display = "none";
                     document.getElementById("mainPage").style.display = "block";
-                    alert("Profile metadata missing. Please setup name in profile!");
-                    switchTab('profile', document.querySelectorAll('.nav-item')[3]);
+                    switchTab('profile', document.querySelectorAll('.nav-item')[4]);
                 } else {
-                    if (cachedName && !user.displayName) {
-                        updateProfile(user, { displayName: cachedName }).catch(e => console.log(e));
-                    }
                     let finalRawName = user.displayName || cachedName || "anon";
                     let personalStories = globalAllStories.filter(s => s.uid === user.uid);
                     let rCoins = Math.floor(personalStories.length / 10);
@@ -627,6 +622,7 @@
                     document.getElementById("profileEmailLabel").innerText = user.email;
                     document.getElementById("r-coin-count-label").innerText = rCoins + " R-Coins";
                     rebuildAllFeeds();
+                    listenToInboxChannels();
                 }
             } else {
                 if(!safeStorage.getItem("permanent_uid_session")) {
@@ -637,102 +633,196 @@
             }
         });
 
+        window.openLiveChatWithUser = async function(targetUid, targetUsername) {
+            if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
+            if(globalUserSession.uid === targetUid) { alert("You cannot chat with yourself!"); return; }
+            
+            let chatRoomId = [globalUserSession.uid, targetUid].sort().join("_");
+            document.getElementById("chatRoomHeaderTitle").innerText = "Chat with @" + targetUsername;
+            showPopup("liveChatRoomModal");
+
+            let myName = globalUserSession.displayName || "anon";
+            
+            let roomSnap = await getDoc(doc(db, "inbox_channels", chatRoomId));
+            if(roomSnap.exists() && roomSnap.data().isExpired === true) {
+                const querySnapshot = await getDocs(collection(db, "inbox_channels", chatRoomId, "messages"));
+                querySnapshot.forEach(async (d) => { await deleteDoc(doc(db, "inbox_channels", chatRoomId, "messages", d.id)); });
+                await setDoc(doc(db, "inbox_channels", chatRoomId), { isExpired: false, lastUpdated: new Date().getTime() }, { merge: true });
+            }
+
+            await setDoc(doc(db, "inbox_channels", chatRoomId), {
+                participants: [globalUserSession.uid, targetUid],
+                names: { [globalUserSession.uid]: myName, [targetUid]: targetUsername },
+                isExpired: false,
+                lastUpdated: new Date().getTime()
+            }, { merge: true });
+
+            if(chatUnsubscribeTracker) chatUnsubscribeTracker();
+            if(activeChatCountdownLoop) clearInterval(activeChatCountdownLoop);
+
+            let storageKey = "active_seconds_left_" + chatRoomId;
+            let secondsLeft = parseInt(safeStorage.getItem(storageKey));
+            if(isNaN(secondsLeft) || secondsLeft <= 0) {
+                secondsLeft = 4 * 60 * 60; 
+            }
+
+            activeChatCountdownLoop = setInterval(async () => {
+                secondsLeft--;
+                safeStorage.setItem(storageKey, secondsLeft);
+
+                let hours = Math.floor(secondsLeft / 3600);
+                let minutes = Math.floor((secondsLeft % 3600) / 60);
+                document.getElementById("chatActiveTimerHUD").innerText = `${hours}h ${minutes}m left`;
+
+                if(secondsLeft <= 0) {
+                    clearInterval(activeChatCountdownLoop);
+                    document.getElementById("chatActiveTimerHUD").innerText = "Expired 💥";
+                    
+                    await updateDoc(doc(db, "inbox_channels", chatRoomId), { isExpired: true });
+                    
+                    const querySnapshot = await getDocs(collection(db, "inbox_channels", chatRoomId, "messages"));
+                    querySnapshot.forEach(async (docSnapshot) => {
+                        await deleteDoc(doc(db, "inbox_channels", chatRoomId, "messages", docSnapshot.id));
+                    });
+
+                    alert("⏰ 4 Hours of active talk time completed! Conversation messages vanished safely.");
+                    hidePopup("liveChatRoomModal");
+                    safeStorage.setItem(storageKey, 4 * 60 * 60); 
+                }
+            }, 1000);
+
+            chatUnsubscribeTracker = onSnapshot(collection(db, "inbox_channels", chatRoomId, "messages"), (snap) => {
+                let box = document.getElementById("chatMessageLiveTrackBox");
+                box.innerHTML = "";
+                let arr = [];
+
+                snap.forEach((documentSnapshot) => { arr.push(documentSnapshot.data()); });
+                arr.sort((a,b) => (a.timestamp || 0) - (b.timestamp || 0));
+                
+                arr.forEach(m => {
+                    let bubble = document.createElement("div");
+                    bubble.className = "msg-bubble " + (m.senderUid === globalUserSession.uid ? "msg-sent" : "msg-received");
+                    bubble.innerHTML = `<div>${m.text}</div>`;
+                    box.appendChild(bubble);
+                });
+                box.scrollTop = box.scrollHeight;
+            });
+
+            document.getElementById("closeLiveChatModalRoomBtn").onclick = () => {
+                if(chatUnsubscribeTracker) chatUnsubscribeTracker();
+                if(activeChatCountdownLoop) clearInterval(activeChatCountdownLoop); 
+                hidePopup("liveChatRoomModal");
+            };
+
+            document.getElementById("sendLiveMsgActionButton").onclick = async () => {
+                let input = document.getElementById("liveChatMessageInputField");
+                let txt = input.value.trim();
+                if(!txt) return;
+
+                if(hasProfanity(txt)) { alert("🚫 Bad words are blocked!"); return; }
+
+                await addDoc(collection(db, "inbox_channels", chatRoomId, "messages"), {
+                    senderUid: globalUserSession.uid,
+                    text: cleanProfanity(txt),
+                    timestamp: new Date().getTime()
+                });
+
+                await updateDoc(doc(db, "inbox_channels", chatRoomId), { lastUpdated: new Date().getTime() });
+                input.value = "";
+            };
+        };
+
+        function listenToInboxChannels() {
+            if(!globalUserSession) return;
+            let q = query(collection(db, "inbox_channels"), where("participants", "array-contains", globalUserSession.uid));
+            
+            onSnapshot(q, (snap) => {
+                let listDiv = document.getElementById("inboxChannelsFeedList");
+                listDiv.innerHTML = "";
+                
+                if(snap.size === 0) { listDiv.innerHTML = "<p style='opacity:0.4;font-size:12px;text-align:center;'>Your active inbox list is empty.</p>"; return; }
+
+                snap.forEach(d => {
+                    let data = d.data();
+                    let opponentUid = data.participants.filter(id => id !== globalUserSession.uid)[0];
+                    let opponentName = data.names[opponentUid] || "anonymous";
+
+                    let card = document.createElement("div");
+                    card.className = "chat-user-item";
+                    card.innerHTML = `
+                        <div class="chat-user-icon">👤</div>
+                        <div style="flex:1;">
+                            <div style="font-weight:600;font-size:14px;color:#00c3ff;">@${opponentName}</div>
+                            <div style="font-size:11px;opacity:0.5;margin-top:2px;">Secured 4-Hour Active Conversation Loop</div>
+                        </div>
+                    `;
+                    card.onclick = () => window.openLiveChatWithUser(opponentUid, opponentName);
+                    listDiv.appendChild(card);
+                });
+            });
+        }
+
         window.signupAction = async function() {
             let name = document.getElementById("signupName").value.trim();
             let email = document.getElementById("signupEmail").value;
             let password = document.getElementById("signupPassword").value;
-            
-            if(!name) { alert("Display name cannot be empty!"); return; }
-            if(containsEmoji(name)) { alert("🚫 Username cannot contain emojis! Only system-defined Stars allowed."); return; }
-            if(!email || !password) { alert("Please complete form!"); return; }
-            
+            if(!name || containsEmoji(name)) { alert("🚫 Enter valid name without emojis!"); return; }
             try {
                 let creds = await createUserWithEmailAndPassword(auth, email, password);
                 safeStorage.setItem("profile_name_" + creds.user.uid, name);
                 safeStorage.setItem("permanent_uid_session", creds.user.uid);
                 await updateProfile(creds.user, { displayName: name });
-                hidePopup('signupPopup');
-                location.reload(); 
+                hidePopup('signupPopup'); location.reload();
             } catch(e) { alert(e.message); }
         }
 
         window.loginAction = async function() {
             let email = document.getElementById("loginEmail").value;
             let password = document.getElementById("loginPassword").value;
-            if(!email || !password) { alert("Please fill all fields!"); return; }
             try {
                 let creds = await signInWithEmailAndPassword(auth, email, password);
                 safeStorage.setItem("permanent_uid_session", creds.user.uid);
-                if (creds.user.displayName) {
-                    safeStorage.setItem("profile_name_" + creds.user.uid, creds.user.displayName);
-                }
-                hidePopup('loginPopup');
-                location.reload();
+                if (creds.user.displayName) safeStorage.setItem("profile_name_" + creds.user.uid, creds.user.displayName);
+                hidePopup('loginPopup'); location.reload();
             } catch(e) { alert(e.message); }
         }
 
         window.triggerLogout = async function() {
-            if(!confirm("Are you sure you want to sign out?")) return;
+            if(!confirm("Sign out from device?")) return;
             safeStorage.setItem("permanent_uid_session", "");
-            await signOut(auth);
-            location.reload();
+            await signOut(auth); location.reload();
         }
 
         window.submitConfession = async function() {
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
-            if(!selectedPostCategory) { alert("Error: Category selection is mandatory!"); return; }
-            
+            if(!selectedPostCategory) { alert("Pick category!"); return; }
             let rawText = document.getElementById("postContentInput").value.trim();
-            if(!rawText) { alert("Write something first!"); return; }
-
-            if(hasProfanity(rawText)) {
-                alert("🚫 Vulgar words detected! Post Blocked and Terminated.");
-                return;
-            }
+            if(!rawText || hasProfanity(rawText)) { alert("🚫 Blank or Vulgar content blocked!"); return; }
 
             let authorName = globalUserSession.displayName || safeStorage.getItem("profile_name_" + globalUserSession.uid) || "anonymous";
             let expiry = new Date(); expiry.setDate(expiry.getDate() + 29);
 
             try {
                 await addDoc(collection(db, "stories"), {
-                    uid: globalUserSession.uid,
-                    username: authorName,
-                    content: rawText,
-                    category: selectedPostCategory,
-                    likes: 0,
-                    commentCount: 0,
-                    timestamp: new Date().getTime(),
-                    expiryTimestamp: expiry.getTime()
+                    uid: globalUserSession.uid, username: authorName, content: rawText, category: selectedPostCategory, likes: 0, commentCount: 0, timestamp: new Date().getTime(), expiryTimestamp: expiry.getTime()
                 });
-                
                 document.getElementById("postContentInput").value = "";
-                selectedPostCategory = "";
-                document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
-                alert("Confession published 🌙");
-                switchTab('home', document.querySelectorAll('.nav-item')[0]);
-            } catch(e) { alert("Posting error: " + e.message); }
+                alert("Confession published 🌙"); switchTab('home', document.querySelectorAll('.nav-item')[0]);
+            } catch(e) { alert(e.message); }
         }
 
         window.likeStory = async function(id) {
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
             let likedKey = "liked_" + globalUserSession.uid + "_" + id;
-            if(safeStorage.getItem(likedKey)) { alert("You've already liked this post ❤️"); return; }
-
-            try {
-                await updateDoc(doc(db, "stories", id), { likes: increment(1) });
-                safeStorage.setItem(likedKey, "true");
-            } catch(e) { console.log(e); }
+            if(safeStorage.getItem(likedKey)) return;
+            try { await updateDoc(doc(db, "stories", id), { likes: increment(1) }); safeStorage.setItem(likedKey, "true"); } catch(e) { console.log(e); }
         }
 
-        window.deleteStory = async function(id) {
-            if(!confirm("Delete this story permanently?")) return;
-            await deleteDoc(doc(db, "stories", id));
-        }
+        window.deleteStory = async function(id) { if(!confirm("Delete story?")) return; await deleteDoc(doc(db, "stories", id)); }
 
         window.openCommentModal = function(storyId) {
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
             showPopup('commentPopup');
-            
             const submitBtn = document.getElementById("submitCommentBtn");
             const newSubmitBtn = submitBtn.cloneNode(true);
             submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
@@ -740,13 +830,10 @@
             const unsubscribe = onSnapshot(collection(db, "stories", storyId, "comments"), (snap) => {
                 let commentListDiv = document.getElementById("popupCommentList");
                 commentListDiv.innerHTML = "";
-                let subArr = [];
-                snap.forEach(d => subArr.push(d.data()));
+                let subArr = []; snap.forEach(d => subArr.push(d.data()));
                 subArr.sort((a,b) => (a.timestamp || 0) - (b.timestamp || 0));
-
                 subArr.forEach(c => {
-                    let box = document.createElement("div");
-                    box.className = "comment-item";
+                    let box = document.createElement("div"); box.className = "comment-item";
                     box.innerHTML = `<div class="comment-user">@${c.username}</div><div>${c.text}</div>`;
                     commentListDiv.appendChild(box);
                 });
@@ -755,55 +842,44 @@
             document.querySelector("#commentPopup .closeBtn").addEventListener("click", () => unsubscribe(), { once: true });
 
             newSubmitBtn.addEventListener("click", async () => {
-                let input = document.getElementById("newCommentText");
-                let text = input.value.trim();
-                if(!text) return;
-
-                let cleanComment = cleanProfanity(text);
-                let name = globalUserSession.displayName || safeStorage.getItem("profile_name_" + globalUserSession.uid) || "anonymous";
-
+                let input = document.getElementById("newCommentText"); let text = input.value.trim(); if(!text) return;
+                let cleanComment = cleanProfanity(text); let name = globalUserSession.displayName || safeStorage.getItem("profile_name_" + globalUserSession.uid) || "anonymous";
                 try {
-                    await addDoc(collection(db, "stories", storyId, "comments"), {
-                        username: name, text: cleanComment, timestamp: new Date().getTime()
-                    });
-                    await updateDoc(doc(db, "stories", storyId), { commentCount: increment(1) });
-                    input.value = "";
+                    await addDoc(collection(db, "stories", storyId, "comments"), { username: name, text: cleanComment, timestamp: new Date().getTime() });
+                    await updateDoc(doc(db, "stories", storyId), { commentCount: increment(1) }); input.value = "";
                 } catch(e) { console.log(e); }
             });
         }
 
+        /* 🔍 SEARCH TAB ENGINE FIXED (BUG FIXED) */
         window.switchCategory = function(cat, element) {
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active-cat'));
-            element.classList.add('active-cat');
-            currentActiveCategoryFilter = cat;
+            element.classList.add('active-cat'); 
+            currentActiveCategoryFilter = cat; 
+            
+            // সার্চ ফিড আলাদা করে বিল্ড ইঞ্জিন ট্রিগার পুশ করা হলো
             buildFeedDOM("searchFeed", cat, false);
         }
 
         function buildFeedDOM(targetDivId, categoryFilter = "all", selfUidOnly = false) {
-            let box = document.getElementById(targetDivId);
-            if(!box) return;
-            box.innerHTML = "";
+            let box = document.getElementById(targetDivId); if(!box) return; box.innerHTML = "";
             let now = new Date().getTime();
-
+            
             let dataset = globalAllStories.filter(s => {
                 if(s.expiryTimestamp && now > s.expiryTimestamp) return false;
                 if(selfUidOnly && s.uid !== globalUserSession?.uid) return false;
                 if(categoryFilter !== "all" && s.category !== categoryFilter) return false;
                 return true;
             });
-
-            if(dataset.length === 0) {
-                box.innerHTML = "<p style='text-align:center; opacity:0.4; padding:30px; font-size:13px;'>No midnight stories found here.</p>";
-                return;
-            }
+            
+            if(dataset.length === 0) { box.innerHTML = "<p style='text-align:center; opacity:0.4; padding:30px; font-size:13px;'>No confessions found here.</p>"; return; }
 
             let nextAdTriggerIndex = Math.floor(Math.random() * (6 - 3 + 1)) + 3; 
             let processedCardsCount = 0;
 
             dataset.slice(0, postsToShowCount).forEach((item) => {
                 processedCardsCount++;
-                let card = document.createElement("div");
-                card.className = "card"; card.id = "card-" + item.id;
+                let card = document.createElement("div"); card.className = "card"; card.id = "card-" + item.id;
                 let delBtn = (globalUserSession && item.uid === globalUserSession.uid) ? `<button class="delete-btn" onclick="deleteStory('${item.id}')">🗑️ Delete</button>` : '';
 
                 let authorPosts = globalAllStories.filter(s => s.uid === item.uid);
@@ -812,7 +888,10 @@
 
                 card.innerHTML = `
                     <div class="card-header">
-                        <span class="card-user">@${item.username || 'anon'}${authorStar}***</span>
+                        <div class="user-header-block">
+                            <span class="card-user">@${item.username || 'anon'}${authorStar}***</span>
+                            <button class="head-chat-btn" onclick="openLiveChatWithUser('${item.uid}', '${item.username}')">💬 Chat</button>
+                        </div>
                         <span class="card-tag tag-${item.category || 'love'}">${item.category || 'Love'}</span>
                     </div>
                     <div class="story">${item.content}</div>
@@ -826,103 +905,55 @@
                 box.appendChild(card);
 
                 if (processedCardsCount === nextAdTriggerIndex && !selfUidOnly) {
-                    let sliderWrapper = document.createElement("div");
-                    sliderWrapper.className = "ad-slider-container";
-                    
-                    const customRedirectLink = ""; 
-                    const image1_src = "ad.jpeg";  
-                    const image2_src = "ad1.jpeg"; 
-
+                    let sliderWrapper = document.createElement("div"); sliderWrapper.className = "ad-slider-container";
+                    const customRedirectLink = ""; const image1_src = "ad.jpeg"; const image2_src = "ad1.jpeg";
                     let linkClass = customRedirectLink ? "ad-slider-link" : "ad-slider-link no-click-allowed";
-
                     sliderWrapper.innerHTML = `
                         <div class="ad-badge">Sponsored</div>
                         <a href="${customRedirectLink || 'javascript:void(0)'}" target="${customRedirectLink ? '_blank' : '_self'}" class="${linkClass}">
-                            <img src="${image1_src}" class="ad-slide active-slide" alt="Promo 1">
-                            <img src="${image2_src}" class="ad-slide" alt="Promo 2">
+                            <img src="${image1_src}" class="ad-slide active-slide" alt="Promo 1"><img src="${image2_src}" class="ad-slide" alt="Promo 2">
                         </a>
                     `;
                     box.appendChild(sliderWrapper);
-
-                    let nextRandomGap = Math.floor(Math.random() * (6 - 3 + 1)) + 3;
-                    nextAdTriggerIndex = processedCardsCount + nextRandomGap;
+                    let nextRandomGap = Math.floor(Math.random() * (6 - 3 + 1)) + 3; nextAdTriggerIndex = processedCardsCount + nextRandomGap;
                 }
             });
-            
             startLiveImageSliders();
         }
 
         function calculateAnalytics() {
-            let personalStories = globalAllStories.filter(s => s.uid === globalUserSession?.uid);
-            let rCoins = Math.floor(personalStories.length / 10);
-            
-            let pCount = document.getElementById("stat-posts");
-            let lCount = document.getElementById("stat-likes");
-            let cCount = document.getElementById("stat-comments");
-            let coinCount = document.getElementById("r-coin-count-label");
-            
-            if(pCount) pCount.innerText = personalStories.length;
-            if(coinCount) coinCount.innerText = rCoins + " R-Coins" + (rCoins >= 5 ? " [STAR PRO] ⭐️" : "");
-            
-            let totalLikes = 0, totalComments = 0;
-            personalStories.forEach(s => {
-                totalLikes += (s.likes || 0);
-                totalComments += (s.commentCount || 0);
-            });
-            if(lCount) lCount.innerText = totalLikes;
-            if(cCount) cCount.innerText = totalComments;
+            let personalStories = globalAllStories.filter(s => s.uid === globalUserSession?.uid); let rCoins = Math.floor(personalStories.length / 10);
+            let pCount = document.getElementById("stat-posts"); let lCount = document.getElementById("stat-likes"); let cCount = document.getElementById("stat-comments"); let coinCount = document.getElementById("r-coin-count-label");
+            if(pCount) pCount.innerText = personalStories.length; if(coinCount) coinCount.innerText = rCoins + " R-Coins" + (rCoins >= 5 ? " [STAR PRO] ⭐️" : "");
+            let totalLikes = 0, totalComments = 0; personalStories.forEach(s => { totalLikes += (s.likes || 0); totalComments += (s.commentCount || 0); });
+            if(lCount) lCount.innerText = totalLikes; if(cCount) cCount.innerText = totalComments;
         }
 
         function rebuildAllFeeds() {
             buildFeedDOM("globalFeed", "all", false); 
             buildFeedDOM("searchFeed", currentActiveCategoryFilter, false);
-            if(globalUserSession) {
+            if(globalUserSession) { 
                 buildFeedDOM("myPersonalFeed", "all", true); 
-                calculateAnalytics();
+                calculateAnalytics(); 
             }
         }
 
         window.generateShareImage = function(cardId) {
-            const node = document.getElementById("card-" + cardId);
-            if(!node) return;
-            showPopup('sharePopup');
-            document.getElementById('generatedImageHolder').src = "";
-
+            const node = document.getElementById("card-" + cardId); if(!node) return; showPopup('sharePopup'); document.getElementById('generatedImageHolder').src = "";
             html2canvas(node, { backgroundColor: "#150212", scale: 2, useCORS: true }).then(canvas => {
-                let url = canvas.toDataURL("image/png");
-                document.getElementById('generatedImageHolder').src = url;
-                
-                const btn = document.getElementById("downloadImageBtn");
-                const newBtn = btn.cloneNode(true); btn.parentNode.replaceChild(newBtn, btn);
-                
+                let url = canvas.toDataURL("image/png"); document.getElementById('generatedImageHolder').src = url;
+                const btn = document.getElementById("downloadImageBtn"); const newBtn = btn.cloneNode(true); btn.parentNode.replaceChild(newBtn, btn);
                 newBtn.addEventListener("click", () => {
-                    let a = document.createElement("a"); a.download = "late-night-" + cardId + ".png";
-                    a.href = url; a.click();
-
-                    const officialAppDownloadLink = "https://your-app-download-link.com";
-                    const shareTextHeadline = `🌙 Read deep midnight secrets on Late Night Confessions App! 📲 Download App Now: ${officialAppDownloadLink}`;
-                    
-                    try {
-                        navigator.clipboard.writeText(shareTextHeadline);
-                        alert("Snapshot saved! Link copied to clipboard for WhatsApp status! 🔥");
-                    } catch(err) { console.log(err); }
+                    let a = document.createElement("a"); a.download = "late-night-" + cardId + ".png"; a.href = url; a.click();
+                    const officialAppDownloadLink = "https://your-app-download-link.com"; const shareTextHeadline = `🌙 Read deep midnight secrets on Late Night Confessions App! 📲 Download App Now: ${officialAppDownloadLink}`;
+                    try { navigator.clipboard.writeText(shareTextHeadline); alert("Snapshot saved! Download link copied to clipboard!"); } catch(e) { console.log(e); }
                 });
             });
         }
 
         onSnapshot(collection(db, "stories"), (snap) => {
-            globalAllStories = [];
-            snap.forEach(doc => {
-                let d = doc.data();
-                if(!d.parentStoryId) { d.id = doc.id; globalAllStories.push(d); }
-            });
-
-            globalAllStories.sort((a,b) => {
-                let tA = a.timestamp ? (typeof a.timestamp === 'object' ? a.timestamp.seconds*1000 : a.timestamp) : 0;
-                let tB = b.timestamp ? (typeof b.timestamp === 'object' ? b.timestamp.seconds*1000 : b.timestamp) : 0;
-                return tB - tA;
-            });
-
+            globalAllStories = []; snap.forEach(doc => { let d = doc.data(); if(!d.parentStoryId) { d.id = doc.id; globalAllStories.push(d); } });
+            globalAllStories.sort((a,b) => { let tA = a.timestamp ? (typeof a.timestamp === 'object' ? a.timestamp.seconds*1000 : a.timestamp) : 0; let tB = b.timestamp ? (typeof b.timestamp === 'object' ? b.timestamp.seconds*1000 : b.timestamp) : 0; return tB - tA; });
             rebuildAllFeeds();
         });
     </script>
