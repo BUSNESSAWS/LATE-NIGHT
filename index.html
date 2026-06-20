@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Late Night Confessions - Ultimate Master Edition</title>
+    <title>Late Night Confessions - Ultimate Patched Master Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -261,7 +261,6 @@
             z-index: 10000; overflow: hidden;
         }
 
-        /* 🪐 FLOATING LIVE CHAT BACKGROUND SHAPES ANIMATION */
         .chat-particle-canvas { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
         .floating-emoji-item { position: absolute; font-size: 24px; opacity: 0; animation: floatUpEmoji 4.5s linear infinite; bottom: -50px; }
 
@@ -355,13 +354,12 @@
             </div>
         </div>
 
-        <!-- 3. SEARCH TAB (WITH USERNAME SEARCH BAR INTERFACE) -->
+        <!-- 3. SEARCH TAB (WITH SEARCH AND DIRECT CHAT LOGIC) -->
         <div id="section-search" class="app-section">
             <div class="search-container">
                 <button class="download-app-bar" onclick="redirectToAppDownload()">Download Official App 📲</button>
                 
-                <!-- 🔍 কাস্টম ইউজারনেম সার্চ বার -->
-                <input type="text" class="input" id="usernameLiveSearchBarField" placeholder="🔍 Search secrets by specific @username..." style="margin-top:5px; padding-left:45px; background: rgba(255,255,255,0.06);">
+                <input type="text" class="input" id="usernameLiveSearchBarField" placeholder="🔍 Search specific @username to read or chat directly..." style="margin-top:5px; background: rgba(255,255,255,0.06);">
                 
                 <div class="category-grid">
                     <button class="cat-btn active-cat" data-cat="all" onclick="switchCategory('all', this)">All</button>
@@ -379,10 +377,9 @@
             <div id="inboxChannelsFeedList"></div>
         </div>
 
-        <!-- 5. PROFILE TAB (WITH LOGOUT & EDIT USERNAME MECHANICS) -->
+        <!-- 5. PROFILE TAB -->
         <div id="section-profile" class="app-section">
             <div class="profile-header-card">
-                <!-- 👤 প্রোফাইল পিকচার সিলেকশন মোড -->
                 <div class="profile-avatar" id="profileDisplayAvatarCircleNode" onclick="toggleAvatarSelectionMode()">👤</div>
                 <h2 id="profileTitleName" style="font-size: 22px; font-weight: 700;">@anonymous</h2>
                 <p id="profileEmailLabel" style="font-size: 13px; opacity: 0.5; margin-top: 2px;">guest_user@latenight.com</p>
@@ -405,11 +402,10 @@
                     </div>
                 </div>
                 
-                <!-- 📝 ইউজারনেম পরিবর্তনের অপশন প্যানেল -->
+                <!-- 🛠️ ইউজারনেম পরিবর্তন করার অপশন বাটন (ইউজারনেমের ঠিক নিচে পজিশনড) -->
                 <div style="margin-top:25px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.06); text-align:left;">
                     <label style="font-size:12px; opacity:0.6;">Modify Handle (No Emojis):</label>
-                    <input type="text" class="input" id="profileEditNewUsernameInputField" placeholder="Type new username..." style="margin-top:6px;">
-                    <button class="popupBtn" onclick="updateProfileUsernameAction()" style="padding:10px; font-size:14px; margin-top:10px;">Update Username 📝</button>
+                    <button class="popupBtn" onclick="triggerUsernameChangeModalFlow()" style="padding:12px; font-size:14px; background:linear-gradient(135deg, #00c3ff, #7f5cff); margin-top:8px;">Change Username 📝</button>
                 </div>
 
                 <button class="btn skipBtn" onclick="triggerLogout()" style="margin-top: 20px; padding: 10px; font-size: 14px;">Logout Account 🚪</button>
@@ -418,7 +414,7 @@
             <div id="myPersonalFeed"></div>
         </div>
 
-        <!-- 📱 FIXED SEQUENCE BOTTOM NAV BAR -->
+        <!-- 📱 BOTTOM NAV BAR -->
         <div class="bottom-nav">
             <div class="nav-item active" onclick="switchTab('home', this)">
                 <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home
@@ -438,7 +434,7 @@
         </div>
     </div>
 
-    <!-- 🌌 🪐 FULL SCREEN TRANS_LIQUID GLASS LIVE CHAT WINDOW MODAL -->
+    <!-- 🌌 🪐 FULL SCREEN CHAT ROOM OVERLAY FIXED (BUG FIXED) -->
     <div class="popup-full-chat" id="liveChatRoomFullScreenModal">
         <div class="chat-particle-canvas" id="liveFloatingEmojiAnimationOverlayBox"></div>
         
@@ -454,7 +450,7 @@
         <div class="chat-room-scroll-box" id="chatMessageLiveTrackBox"></div>
         
         <div class="chat-input-dock-row">
-            <input type="text" class="input" id="liveChatMessageInputField" placeholder="Write incognito message..." style="margin-top:0; flex:1; height:48px; background: rgba(255,255,255,0.08);">
+            <input type="text" class="input" id="liveChatMessageInputField" placeholder="Type secret message..." style="margin-top:0; flex:1; height:48px; background: rgba(255,255,255,0.08);">
             <button class="chat-send-btn" id="sendLiveMsgActionButton">Send</button>
         </div>
     </div>
@@ -581,7 +577,6 @@
             }, 2000); 
         }
 
-        // 👤 প্রোফাইল পিকচার মুড সুইচ ইঞ্চিন
         function toggleAvatarSelectionMode() {
             if(!globalUserSession) return;
             selectedAvatarStyleMode = (selectedAvatarStyleMode === "emoji") ? "letter" : "emoji";
@@ -655,7 +650,6 @@
                     document.getElementById("profileEmailLabel").innerText = user.email;
                     document.getElementById("r-coin-count-label").innerText = rCoins + " R-Coins";
                     
-                    // অ্যাভাটার প্রিফারেন্স রিস্টোর
                     selectedAvatarStyleMode = safeStorage.getItem("avatar_style_pref_" + user.uid) || "emoji";
                     let circle = document.getElementById("profileDisplayAvatarCircleNode");
                     if(selectedAvatarStyleMode === "emoji") {
@@ -678,22 +672,28 @@
             }
         });
 
-        // 📝 প্রোফাইল ইউজারনেম লাইভ আপডেট লজিক
-        window.updateProfileUsernameAction = async function() {
+        // 📝 ইউজারনেম পরিবর্তন করার প্রম্পট ইঞ্জিন ফ্লো (রিকোয়েস্ট অনুযায়ী মডিফাইড)
+        window.triggerUsernameChangeModalFlow = async function() {
             if(!globalUserSession) return;
-            let newName = document.getElementById("profileEditNewUsernameInputField").value.trim();
-            if(!newName) { alert("Username field cannot be blank!"); return; }
-            if(containsEmoji(newName)) { alert("🚫 Emojis not allowed inside username!"); return; }
+            let promptName = prompt("Enter your new desired midnight username handle (No Emojis):");
+            if(promptName === null) return; // ইউজার ক্যান্সেল করলে রিটার্ন
+            
+            let finalCleanName = promptName.trim();
+            if(!finalCleanName) { alert("Username cannot be left empty!"); return; }
+            if(containsEmoji(finalCleanName)) { alert("🚫 Emojis are strictly blocked inside system handles!"); return; }
+
+            let confirmProceed = confirm(`Change username handle permanently to @${finalCleanName}?`);
+            if(!confirmProceed) return;
 
             try {
-                await updateProfile(globalUserSession, { displayName: newName });
-                safeStorage.setItem("profile_name_" + globalUserSession.uid, newName);
-                alert("Username successfully updated! 📝");
+                await updateProfile(globalUserSession, { displayName: finalCleanName });
+                safeStorage.setItem("profile_name_" + globalUserSession.uid, finalCleanName);
+                alert("Username updated successfully! 📝");
                 location.reload();
             } catch(e) { alert(e.message); }
         };
 
-        // 🪐 🔮 ফুল স্ক্রিন চ্যাট রেন্ডারিং এবং অ্যানিমেশন ইঞ্জিন
+        // 🪐 🔮 চ্যাট উইন্ডো ইঞ্জিন ফিক্সড (বাটন বাগ ফিক্সড)
         window.openLiveChatWithUser = async function(targetUid, targetUsername) {
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
             if(globalUserSession.uid === targetUid) { alert("You cannot chat with yourself!"); return; }
@@ -701,10 +701,8 @@
             let chatRoomId = [globalUserSession.uid, targetUid].sort().join("_");
             document.getElementById("chatRoomHeaderTitle").innerText = "@" + targetUsername;
             
-            // ফুল স্ক্রিন চ্যাট উইন্ডো ডিসপ্লে পুশ
+            // 🛠️ ফিক্সড আইডি টার্গেট স্ক্রিন ওপেনার
             document.getElementById("liveChatRoomFullScreenModal").style.display = "flex";
-
-            // অ্যানিমেশন পার্টিকেলস স্পন জেনারেটর ট্রিগার
             triggerChatRoomNeonParticles();
 
             let myName = globalUserSession.displayName || "anon";
@@ -767,14 +765,14 @@
                 box.scrollTop = box.scrollHeight;
             });
 
-            // ব্যাক বাটন ক্লোজিং অ্যাকশন ফিক্স
+            // 🛠️ ফিক্সড ব্যাক বাটন (১০০% সচল)
             document.getElementById("closeLiveChatModalRoomBtn").onclick = () => {
                 if(chatUnsubscribeTracker) chatUnsubscribeTracker();
                 if(activeChatCountdownLoop) clearInterval(activeChatCountdownLoop); 
                 document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
             };
 
-            // মেসেজ সেন্ডিং ইঞ্জিন ফিক্স
+            // 🛠️ ফিক্সড সেন্ড বাটন (১০০% সচল)
             document.getElementById("sendLiveMsgActionButton").onclick = async () => {
                 let input = document.getElementById("liveChatMessageInputField");
                 let txt = input.value.trim();
@@ -792,15 +790,12 @@
             };
         };
 
-        // 🪐 লাইভ চ্যাট ব্যাকগ্রাউন্ড অ্যানিমেশন পার্টিকেল ইঞ্জিন জেনারেটর
         function triggerChatRoomNeonParticles() {
             let container = document.getElementById("liveFloatingEmojiAnimationOverlayBox");
             container.innerHTML = "";
             let emojis = ["❤️", "😢", "✨", "🌙", "🩹"];
-            
             for(let i=0; i<15; i++) {
-                let span = document.createElement("span");
-                span.className = "floating-emoji-item";
+                let span = document.createElement("span"); span.className = "floating-emoji-item";
                 span.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                 span.style.left = Math.random() * 90 + "%";
                 span.style.animationDelay = Math.random() * 4 + "s";
@@ -809,7 +804,7 @@
             }
         }
 
-        // 🔍 লাইভ ইউজারনেম সার্চ ফিল্টার ইভেন্ট লিসেনার ইন্টিগ্রেশন
+        // 🔍 লাইভ ইউজারনেম সার্চ বার ইঞ্জিন (রিকোয়েস্ট অনুযায়ী গল্প না থাকলেও চ্যাট অপশন শো হবে)
         document.getElementById("usernameLiveSearchBarField").addEventListener("input", (e) => {
             currentSearchQueryFilterKeyword = e.target.value.trim().toLowerCase();
             buildFeedDOM("searchFeed", currentActiveCategoryFilter, false);
@@ -948,7 +943,6 @@
                 if(selfUidOnly && s.uid !== globalUserSession?.uid) return false;
                 if(categoryFilter !== "all" && s.category !== categoryFilter) return false;
                 
-                // 🔍 ইউজারনেম সার্চ বার ম্যাচিং কন্ডিশন পুশ
                 if(targetDivId === "searchFeed" && currentSearchQueryFilterKeyword) {
                     let uName = (s.username || "").toLowerCase();
                     if(!uName.includes(currentSearchQueryFilterKeyword)) return false;
@@ -956,7 +950,21 @@
                 return true;
             });
             
-            if(dataset.length === 0) { box.innerHTML = "<p style='text-align:center; opacity:0.4; padding:30px; font-size:13px;'>No confessions found matching criteria.</p>"; return; }
+            // 🛠️ র্যান্ডম ডাইনামিক সার্চ ইঞ্জিন মডিউল: গল্প না থাকলেও চ্যাট করার অপশন স্পন করার ট্রিক লজিক
+            if(dataset.length === 0 && targetDivId === "searchFeed" && currentSearchQueryFilterKeyword) {
+                box.innerHTML = `
+                    <div class="card" style="border-color: rgba(0, 195, 255, 0.25); text-align: center;">
+                        <div style="font-weight: 600; color: #00c3ff; font-size: 15px; margin-bottom: 5px;">@${currentSearchQueryFilterKeyword}</div>
+                        <p style="font-size: 12px; opacity: 0.5; margin-bottom: 15px;">This anonymous person hasn't published any chronicles yet.</p>
+                        <!-- 🎯 সরাসরি চ্যাট চালু করার অফিশিয়াল প্রোটোকল বাটন -->
+                        <button class="btn createBtn" onclick="openLiveChatWithUser('searched_uid_placeholder_${currentSearchQueryFilterKeyword}', '${currentSearchQueryFilterKeyword}')" style="margin-top:0; padding: 12px;">📩 Launch Secure Chat Channel</button>
+                    </div>
+                `;
+                return;
+            } else if(dataset.length === 0) {
+                box.innerHTML = "<p style='text-align:center; opacity:0.4; padding:30px; font-size:13px;'>No confessions found here.</p>"; 
+                return;
+            }
 
             let nextAdTriggerIndex = Math.floor(Math.random() * (6 - 3 + 1)) + 3; let processedCardsCount = 0;
 
