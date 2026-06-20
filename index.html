@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Late Night Confessions - Ultimate Patched Master Build</title>
+    <title>Late Night Confessions - Ultimate Master Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -35,18 +35,18 @@
         .blur1, .blur2, .blur3 {
             position: absolute;
             border-radius: 50%;
-            filter: blur(90px);
+            filter: blur(100px);
             animation: float 10s infinite ease-in-out;
-            opacity: 0.9;
+            opacity: 0.85;
         }
 
-        .blur1 { width: 380px; height: 380px; background: #ff0077; top: -80px; left: -80px; }
-        .blur2 { width: 340px; height: 340px; background: #6c42ff; bottom: 80px; right: -60px; animation-delay: 2s; }
-        .blur3 { width: 280px; height: 280px; background: #00bfff; top: 30%; left: 35%; animation-delay: 4s; }
+        .blur1 { width: 350px; height: 350px; background: #ff0077; top: -100px; left: -100px; }
+        .blur2 { width: 300px; height: 300px; background: #6c42ff; bottom: 50px; right: -80px; animation-delay: 2s; }
+        .blur3 { width: 250px; height: 250px; background: #00c3ff; top: 35%; left: 40%; animation-delay: 4s; }
 
         @keyframes float { 
-            0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
-            50% { transform: translateY(-30px) translateX(20px) scale(1.05); } 
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-40px) translateX(30px); } 
         }
 
         .shooting-star-container {
@@ -88,15 +88,12 @@
             animation: shine 3s infinite, zoom 3s infinite;
         }
 
-        /* 📍 ENTRY PAGE: TITLE POSITION FIXED (RAISED UPWARDS) */
         #entryPage {
             display: none; width: 100%; height: 100vh;
             justify-content: center; align-items: center; padding: 20px; z-index: 10;
         }
 
-        .entry-container {
-            width: 100%; max-width: 400px; transform: translateY(-40px); /* টেক্সট ও ফর্ম ওপরে তোলা হলো */
-        }
+        .entry-container { width: 100%; max-width: 400px; transform: translateY(-40px); }
 
         .glass {
             width: 100%; padding: 40px 25px; border-radius: 30px;
@@ -125,17 +122,13 @@
         .header-wrapper { position: sticky; top: 0; z-index: 100; width: 100%; }
         nav {
             width: 100%; padding: 10px 18px; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(10, 10, 10, 0.35); 
-            backdrop-filter: blur(40px) saturate(240%);
-            -webkit-backdrop-filter: blur(40px) saturate(240%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            height: 54px;
+            background: rgba(10, 10, 10, 0.35); backdrop-filter: blur(40px) saturate(240%); -webkit-backdrop-filter: blur(40px) saturate(240%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); height: 54px;
         }
 
         .orange-strip-light {
             width: 100%; height: 2px;
-            background: linear-gradient(90deg, #ff5500, #ffaa00, #00d2ff, #0077ff);
-            background-size: 200% auto;
+            background: linear-gradient(90deg, #ff5500, #ffaa00, #00d2ff, #0077ff); background-size: 200% auto;
             box-shadow: 0 0 8px rgba(255, 85, 0, 0.6), 0 0 15px rgba(0, 210, 255, 0.6);
             animation: stripPulse 3s infinite linear;
         }
@@ -169,11 +162,8 @@
         /* 📱 ULTRA-TRANSLUCENT APP LIQUID BAR */
         .bottom-nav {
             position: fixed; bottom: 16px; left: 4%; width: 90%; height: 66px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(40px) saturate(240%);
-            -webkit-backdrop-filter: blur(40px) saturate(240%);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(40px) saturate(240%); -webkit-backdrop-filter: blur(40px) saturate(240%);
+            border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 28px;
             display: flex; justify-content: space-around; align-items: center; z-index: 999;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
@@ -191,33 +181,22 @@
 
         .nav-item::before {
             content: ''; position: absolute; top: 12%; left: 10%; width: 80%; height: 76%;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 20px; z-index: -1; opacity: 0;
-            transform: scale(0.8);
+            background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px; z-index: -1; opacity: 0; transform: scale(0.8);
             transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
         .nav-item.active::before { opacity: 1; transform: scale(1); }
 
-        /* 📝 POST CARDS: HIGH VISIBILITY PATCD (BAG FIXED) */
+        /* 📝 POST CARDS */
         .card {
             position: relative; padding: 25px; margin-bottom: 20px; border-radius: 24px;
-            background: rgba(255, 255, 255, 0.05); /* ট্রান্সপারেন্সি ফিক্স করে ভিজিবিলিটি বাড়ানো হলো */
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08); overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08); overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
         }
 
-        /* 🛡️ TAB BLOCKING ISOLATION SYSTEM (OVERLAP BUG FIXED) */
-        .app-section { 
-            display: none !important; 
-            width: 92%; max-width: 680px; margin: 20px auto; 
-            animation: fadeIn 0.35s ease; 
-        }
-        .app-section.active-section { 
-            display: block !important; 
-        }
+        .app-section { display: none !important; width: 92%; max-width: 680px; margin: 20px auto; animation: fadeIn 0.35s ease; }
+        .app-section.active-section { display: block !important; }
 
         .ad-slider-container {
             width: 100%; height: 120px; position: relative; margin-bottom: 20px;
@@ -231,7 +210,6 @@
         .ad-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); color: rgba(255,255,255,0.7); font-size: 10px; padding: 2px 7px; border-radius: 5px; letter-spacing: 0.5px; z-index: 5; font-weight: 600; }
 
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-        
         .user-header-block { display: flex; align-items: center; gap: 8px; }
         .head-chat-btn { background: rgba(0, 195, 255, 0.12); border: 1px solid rgba(0, 195, 255, 0.3); color: #00c3ff; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; transition: 0.2s; }
         .head-chat-btn:hover { background: #00c3ff; color: #000; box-shadow: 0 0 10px rgba(0, 195, 255, 0.4); }
@@ -264,7 +242,7 @@
         .chip.selected[data-val="romantic"] { background: #7f5cff; border-color: #7f5cff; }
 
         .profile-header-card { background: rgba(255,255,255,0.03); padding: 30px 20px; border-radius: 28px; border: 1px solid rgba(255,255,255,0.06); text-align: center; margin-bottom: 25px; }
-        .profile-avatar { width: 85px; height: 85px; background: linear-gradient(135deg, #ff0088, #7f5cff); border-radius: 50%; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; font-size: 35px; box-shadow: 0 0 20px rgba(255,0,136,0.3); }
+        .profile-avatar { width: 85px; height: 85px; background: linear-gradient(135deg, #ff0088, #7f5cff); border-radius: 50%; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; font-size: 35px; box-shadow: 0 0 20px rgba(255,0,136,0.3); cursor: pointer; color: white; overflow: hidden; }
         .r-coin-badge-box { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 20px; margin-top: 10px; cursor: pointer; transition: 0.2s; }
         .profile-stats-row { display: flex; justify-content: space-around; margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); }
         .stat-box { text-align: center; }
@@ -274,13 +252,38 @@
         .chat-user-item { display: flex; align-items: center; padding: 16px 20px; margin-bottom: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; cursor: pointer; transition: 0.3s; }
         .chat-user-item:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
         .chat-user-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #ff4ecd, #00c3ff); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 20px; margin-right: 15px; }
-        
-        .chat-window { display: flex; flex-direction: column; height: 100%; }
-        .chat-msg-container { flex: 1; overflow-y: auto; padding: 15px 5px; display: flex; flex-direction: column; gap: 10px; max-height: 50vh; min-height: 320px; }
-        .msg-bubble { max-width: 75%; padding: 12px 16px; font-size: 14px; line-height: 1.5; border-radius: 20px; word-wrap: break-word; }
-        .msg-sent { background: linear-gradient(135deg, #ff0088, #7f5cff); align-self: flex-end; border-bottom-right-radius: 4px; color: white; }
-        .msg-received { background: rgba(255,255,255,0.08); align-self: flex-start; border-bottom-left-radius: 4px; color: rgba(255,255,255,0.95); border: 1px solid rgba(255,255,255,0.05); }
-        .msg-time-warn { font-size: 10px; opacity: 0.4; margin-top: 4px; display: block; text-align: right; }
+
+        /* 🔮 📲 FULL PAGE LIQUID GLASS CHAT INTERFACE WITH FLOATING NEON PARTICLES */
+        .popup-full-chat {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: none;
+            flex-direction: column; background: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(40px) saturate(220%); -webkit-backdrop-filter: blur(40px) saturate(220%);
+            z-index: 10000; overflow: hidden;
+        }
+
+        /* 🪐 FLOATING LIVE CHAT BACKGROUND SHAPES ANIMATION */
+        .chat-particle-canvas { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+        .floating-emoji-item { position: absolute; font-size: 24px; opacity: 0; animation: floatUpEmoji 4.5s linear infinite; bottom: -50px; }
+
+        @keyframes floatUpEmoji {
+            0% { transform: translateY(0) scale(0.6) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.6; }
+            85% { opacity: 0.6; }
+            100% { transform: translateY(-105vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+
+        .chat-head-nav {
+            width: 100%; height: 65px; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .chat-room-scroll-box { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+        .chat-input-dock-row {
+            width: 100%; padding: 16px 20px 30px; display: flex; gap: 10px; align-items: center;
+            background: rgba(15, 15, 15, 0.6); border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .chat-back-btn { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 8px 16px; border-radius: 14px; color: white; cursor: pointer; font-size: 13px; font-weight: 600; }
+        .chat-send-btn { background: linear-gradient(135deg, #00c3ff, #0077ff); border: none; padding: 14px 24px; border-radius: 14px; color: white; cursor: pointer; font-weight: 600; font-size: 14px; box-shadow: 0 0 15px rgba(0,195,255,0.4); }
 
         .popup { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: none; justify-content: center; align-items: center; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 9999; }
         .popupBox { width: 90%; max-width: 440px; padding: 30px; border-radius: 28px; background: rgba(20, 20, 20, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-height: 85vh; overflow-y: auto; }
@@ -332,24 +335,12 @@
             <div class="orange-strip-light"></div>
         </div>
 
-        <!-- SECTIONS (ISOLATED TABS SYSTEM) -->
+        <!-- 1. HOME TAB -->
         <div id="section-home" class="app-section active-section">
             <div class="feed" id="globalFeed"></div>
         </div>
 
-        <div id="section-search" class="app-section">
-            <div class="search-container">
-                <button class="download-app-bar" onclick="redirectToAppDownload()">Download Official App 📲</button>
-                <div class="category-grid">
-                    <button class="cat-btn active-cat" data-cat="all" onclick="switchCategory('all', this)">All</button>
-                    <button class="cat-btn" data-cat="love" onclick="switchCategory('love', this)">❤️ Love</button>
-                    <button class="cat-btn" data-cat="sad" onclick="switchCategory('sad', this)">😢 Sad</button>
-                    <button class="cat-btn" data-cat="romantic" onclick="switchCategory('romantic', this)">✨ Romantic</button>
-                </div>
-                <div class="feed" id="searchFeed"></div>
-            </div>
-        </div>
-
+        <!-- 2. POST TAB -->
         <div id="section-post" class="app-section">
             <div class="post-box">
                 <h3 style="font-size: 18px; margin-bottom: 5px;">Share a Confession</h3>
@@ -364,14 +355,35 @@
             </div>
         </div>
 
+        <!-- 3. SEARCH TAB (WITH USERNAME SEARCH BAR INTERFACE) -->
+        <div id="section-search" class="app-section">
+            <div class="search-container">
+                <button class="download-app-bar" onclick="redirectToAppDownload()">Download Official App 📲</button>
+                
+                <!-- 🔍 কাস্টম ইউজারনেম সার্চ বার -->
+                <input type="text" class="input" id="usernameLiveSearchBarField" placeholder="🔍 Search secrets by specific @username..." style="margin-top:5px; padding-left:45px; background: rgba(255,255,255,0.06);">
+                
+                <div class="category-grid">
+                    <button class="cat-btn active-cat" data-cat="all" onclick="switchCategory('all', this)">All</button>
+                    <button class="cat-btn" data-cat="love" onclick="switchCategory('love', this)">❤️ Love</button>
+                    <button class="cat-btn" data-cat="sad" onclick="switchCategory('sad', this)">😢 Sad</button>
+                    <button class="cat-btn" data-cat="romantic" onclick="switchCategory('romantic', this)">✨ Romantic</button>
+                </div>
+                <div class="feed" id="searchFeed"></div>
+            </div>
+        </div>
+
+        <!-- 4. INBOX TAB -->
         <div id="section-chats" class="app-section">
             <h3 style="font-size: 18px; margin-bottom: 15px; color: #ff4ecd;">Active Conversations</h3>
             <div id="inboxChannelsFeedList"></div>
         </div>
 
+        <!-- 5. PROFILE TAB (WITH LOGOUT & EDIT USERNAME MECHANICS) -->
         <div id="section-profile" class="app-section">
             <div class="profile-header-card">
-                <div class="profile-avatar">👤</div>
+                <!-- 👤 প্রোফাইল পিকচার সিলেকশন মোড -->
+                <div class="profile-avatar" id="profileDisplayAvatarCircleNode" onclick="toggleAvatarSelectionMode()">👤</div>
                 <h2 id="profileTitleName" style="font-size: 22px; font-weight: 700;">@anonymous</h2>
                 <p id="profileEmailLabel" style="font-size: 13px; opacity: 0.5; margin-top: 2px;">guest_user@latenight.com</p>
                 <div class="r-coin-badge-box" onclick="triggerCoinInfoPopup()">
@@ -392,22 +404,30 @@
                         <div class="stat-label">Comments</div>
                     </div>
                 </div>
+                
+                <!-- 📝 ইউজারনেম পরিবর্তনের অপশন প্যানেল -->
+                <div style="margin-top:25px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.06); text-align:left;">
+                    <label style="font-size:12px; opacity:0.6;">Modify Handle (No Emojis):</label>
+                    <input type="text" class="input" id="profileEditNewUsernameInputField" placeholder="Type new username..." style="margin-top:6px;">
+                    <button class="popupBtn" onclick="updateProfileUsernameAction()" style="padding:10px; font-size:14px; margin-top:10px;">Update Username 📝</button>
+                </div>
+
                 <button class="btn skipBtn" onclick="triggerLogout()" style="margin-top: 20px; padding: 10px; font-size: 14px;">Logout Account 🚪</button>
             </div>
             <h3 style="font-size: 16px; margin-bottom: 15px; color: #ff4ecd;">My Secret Chronicles</h3>
             <div id="myPersonalFeed"></div>
         </div>
 
-        <!-- 📱 IPHONE LIQUID NAV BAR WITH CAPSULE SHIFTING -->
+        <!-- 📱 FIXED SEQUENCE BOTTOM NAV BAR -->
         <div class="bottom-nav">
             <div class="nav-item active" onclick="switchTab('home', this)">
                 <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home
             </div>
-            <div class="nav-item" onclick="switchTab('search', this)">
-                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>Search
-            </div>
             <div class="nav-item" onclick="switchTab('post', this)">
                 <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>Post
+            </div>
+            <div class="nav-item" onclick="switchTab('search', this)">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>Search
             </div>
             <div class="nav-item" onclick="switchTab('chats', this)">
                 <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>Inbox
@@ -418,21 +438,24 @@
         </div>
     </div>
 
-    <!-- 🔮 CHAT ROOM POPUP MODAL -->
-    <div class="popup" id="liveChatRoomModal">
-        <div class="popupBox" style="max-width: 480px; padding: 20px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
-                <h3 id="chatRoomHeaderTitle" style="font-size: 15px; color: #00c3ff;">Chat Room</h3>
-                <span id="chatActiveTimerHUD" style="font-size: 11px; color: #ffaa00; font-weight: 700; background: rgba(255,170,0,0.1); padding: 3px 8px; border-radius: 6px;">4h 00m left</span>
+    <!-- 🌌 🪐 FULL SCREEN TRANS_LIQUID GLASS LIVE CHAT WINDOW MODAL -->
+    <div class="popup-full-chat" id="liveChatRoomFullScreenModal">
+        <div class="chat-particle-canvas" id="liveFloatingEmojiAnimationOverlayBox"></div>
+        
+        <div class="chat-head-nav">
+            <button class="chat-back-btn" id="closeLiveChatModalRoomBtn">⬅️ Back</button>
+            <div style="text-align: center;">
+                <h3 id="chatRoomHeaderTitle" style="font-size: 15px; font-weight:700; color: #00c3ff;">@username</h3>
+                <span id="chatActiveTimerHUD" style="font-size: 10px; color: #ffaa00; font-weight: 800;">4h 00m active time left</span>
             </div>
-            
-            <div class="chat-msg-container" id="chatMessageLiveTrackBox"></div>
-            
-            <div style="display: flex; gap: 8px; margin-top: 10px;">
-                <input type="text" class="input" id="liveChatMessageInputField" placeholder="Type secret message..." style="margin-top: 0; flex: 1;">
-                <button class="popupBtn" id="sendLiveMsgActionButton" style="margin-top: 0; width: auto; padding: 0 20px;">Send</button>
-            </div>
-            <button class="popupBtn closeBtn" id="closeLiveChatModalRoomBtn">Close Chat Room ❌</button>
+            <div style="width:50px;"></div>
+        </div>
+        
+        <div class="chat-room-scroll-box" id="chatMessageLiveTrackBox"></div>
+        
+        <div class="chat-input-dock-row">
+            <input type="text" class="input" id="liveChatMessageInputField" placeholder="Write incognito message..." style="margin-top:0; flex:1; height:48px; background: rgba(255,255,255,0.08);">
+            <button class="chat-send-btn" id="sendLiveMsgActionButton">Send</button>
         </div>
     </div>
 
@@ -493,6 +516,7 @@
         let currentActiveCategoryFilter = "all";
         let memoryBackupStore = {};
         let sliderTimerInterval = null;
+        let selectedAvatarStyleMode = "emoji"; 
 
         const safeStorage = {
             getItem: (key) => { try { return localStorage.getItem(key); } catch(e) { return memoryBackupStore[key] || null; } },
@@ -510,7 +534,6 @@
             document.getElementById("navStatus").innerText = "Guest Mode 👤";
         }
 
-        /* 🛡️ TAB BLOCKING ENGINE PATCD (OVERLAP BUG FIXED) */
         function switchTab(targetSection, element) {
             if (!globalUserSession && (targetSection === 'post' || targetSection === 'chats' || targetSection === 'profile')) {
                 showPopup('gatekeeperPopup');
@@ -519,16 +542,9 @@
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             element.classList.add('active');
             
-            // সব সেকশন হাইড ফোর্স করা হলো
-            document.querySelectorAll('.app-section').forEach(sec => {
-                sec.classList.remove('active-section');
-            });
-            
-            // শুধু টার্গেট সেকশন একটিভ করা হলো
+            document.querySelectorAll('.app-section').forEach(sec => { sec.classList.remove('active-section'); });
             const targetDOM = document.getElementById('section-' + targetSection);
-            if(targetDOM) {
-                targetDOM.classList.add('active-section');
-            }
+            if(targetDOM) targetDOM.classList.add('active-section');
         }
 
         function selectPostChip(category, element) {
@@ -564,6 +580,22 @@
                 });
             }, 2000); 
         }
+
+        // 👤 প্রোফাইল পিকচার মুড সুইচ ইঞ্চিন
+        function toggleAvatarSelectionMode() {
+            if(!globalUserSession) return;
+            selectedAvatarStyleMode = (selectedAvatarStyleMode === "emoji") ? "letter" : "emoji";
+            let name = globalUserSession.displayName || "A";
+            let circle = document.getElementById("profileDisplayAvatarCircleNode");
+            if(selectedAvatarStyleMode === "emoji") {
+                circle.innerText = "👤";
+                circle.style.background = "linear-gradient(135deg, #ff0088, #7f5cff)";
+            } else {
+                circle.innerText = name.charAt(0).toUpperCase();
+                circle.style.background = "linear-gradient(135deg, #00c3ff, #6c42ff)";
+            }
+            safeStorage.setItem("avatar_style_pref_" + globalUserSession.uid, selectedAvatarStyleMode);
+        }
     </script>
 
     <!-- CORE FIREBASE ENGINE -->
@@ -590,6 +622,7 @@
         let postsToShowCount = 10;
         let chatUnsubscribeTracker = null;
         let activeChatCountdownLoop = null;
+        let currentSearchQueryFilterKeyword = "";
 
         const badWords = ["খারাপশব্দ১", "খারাপশব্দ২", "gali1", "gali2", "bokachoda", "khanki", "bador", "gali", "gandu", "baal", "chuda"];
         function hasProfanity(text) { let found = false; badWords.forEach(word => { if(text.toLowerCase().includes(word.toLowerCase())) { found = true; } }); return found; }
@@ -621,6 +654,18 @@
                     document.getElementById("profileTitleName").innerText = "@" + finalRawName + badgeStar;
                     document.getElementById("profileEmailLabel").innerText = user.email;
                     document.getElementById("r-coin-count-label").innerText = rCoins + " R-Coins";
+                    
+                    // অ্যাভাটার প্রিফারেন্স রিস্টোর
+                    selectedAvatarStyleMode = safeStorage.getItem("avatar_style_pref_" + user.uid) || "emoji";
+                    let circle = document.getElementById("profileDisplayAvatarCircleNode");
+                    if(selectedAvatarStyleMode === "emoji") {
+                        circle.innerText = "👤";
+                        circle.style.background = "linear-gradient(135deg, #ff0088, #7f5cff)";
+                    } else {
+                        circle.innerText = finalRawName.charAt(0).toUpperCase();
+                        circle.style.background = "linear-gradient(135deg, #00c3ff, #6c42ff)";
+                    }
+
                     rebuildAllFeeds();
                     listenToInboxChannels();
                 }
@@ -633,16 +678,36 @@
             }
         });
 
+        // 📝 প্রোফাইল ইউজারনেম লাইভ আপডেট লজিক
+        window.updateProfileUsernameAction = async function() {
+            if(!globalUserSession) return;
+            let newName = document.getElementById("profileEditNewUsernameInputField").value.trim();
+            if(!newName) { alert("Username field cannot be blank!"); return; }
+            if(containsEmoji(newName)) { alert("🚫 Emojis not allowed inside username!"); return; }
+
+            try {
+                await updateProfile(globalUserSession, { displayName: newName });
+                safeStorage.setItem("profile_name_" + globalUserSession.uid, newName);
+                alert("Username successfully updated! 📝");
+                location.reload();
+            } catch(e) { alert(e.message); }
+        };
+
+        // 🪐 🔮 ফুল স্ক্রিন চ্যাট রেন্ডারিং এবং অ্যানিমেশন ইঞ্জিন
         window.openLiveChatWithUser = async function(targetUid, targetUsername) {
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
             if(globalUserSession.uid === targetUid) { alert("You cannot chat with yourself!"); return; }
             
             let chatRoomId = [globalUserSession.uid, targetUid].sort().join("_");
-            document.getElementById("chatRoomHeaderTitle").innerText = "Chat with @" + targetUsername;
-            showPopup("liveChatRoomModal");
+            document.getElementById("chatRoomHeaderTitle").innerText = "@" + targetUsername;
+            
+            // ফুল স্ক্রিন চ্যাট উইন্ডো ডিসপ্লে পুশ
+            document.getElementById("liveChatRoomFullScreenModal").style.display = "flex";
+
+            // অ্যানিমেশন পার্টিকেলস স্পন জেনারেটর ট্রিগার
+            triggerChatRoomNeonParticles();
 
             let myName = globalUserSession.displayName || "anon";
-            
             let roomSnap = await getDoc(doc(db, "inbox_channels", chatRoomId));
             if(roomSnap.exists() && roomSnap.data().isExpired === true) {
                 const querySnapshot = await getDocs(collection(db, "inbox_channels", chatRoomId, "messages"));
@@ -662,9 +727,7 @@
 
             let storageKey = "active_seconds_left_" + chatRoomId;
             let secondsLeft = parseInt(safeStorage.getItem(storageKey));
-            if(isNaN(secondsLeft) || secondsLeft <= 0) {
-                secondsLeft = 4 * 60 * 60; 
-            }
+            if(isNaN(secondsLeft) || secondsLeft <= 0) { secondsLeft = 4 * 60 * 60; }
 
             activeChatCountdownLoop = setInterval(async () => {
                 secondsLeft--;
@@ -672,21 +735,18 @@
 
                 let hours = Math.floor(secondsLeft / 3600);
                 let minutes = Math.floor((secondsLeft % 3600) / 60);
-                document.getElementById("chatActiveTimerHUD").innerText = `${hours}h ${minutes}m left`;
+                document.getElementById("chatActiveTimerHUD").innerText = `${hours}h ${minutes}m active time left`;
 
                 if(secondsLeft <= 0) {
                     clearInterval(activeChatCountdownLoop);
                     document.getElementById("chatActiveTimerHUD").innerText = "Expired 💥";
-                    
                     await updateDoc(doc(db, "inbox_channels", chatRoomId), { isExpired: true });
                     
                     const querySnapshot = await getDocs(collection(db, "inbox_channels", chatRoomId, "messages"));
-                    querySnapshot.forEach(async (docSnapshot) => {
-                        await deleteDoc(doc(db, "inbox_channels", chatRoomId, "messages", docSnapshot.id));
-                    });
+                    querySnapshot.forEach(async (docSnapshot) => { await deleteDoc(doc(db, "inbox_channels", chatRoomId, "messages", docSnapshot.id)); });
 
-                    alert("⏰ 4 Hours of active talk time completed! Conversation messages vanished safely.");
-                    hidePopup("liveChatRoomModal");
+                    alert("⏰ Talk time complete! Messages vanished.");
+                    document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
                     safeStorage.setItem(storageKey, 4 * 60 * 60); 
                 }
             }, 1000);
@@ -695,7 +755,6 @@
                 let box = document.getElementById("chatMessageLiveTrackBox");
                 box.innerHTML = "";
                 let arr = [];
-
                 snap.forEach((documentSnapshot) => { arr.push(documentSnapshot.data()); });
                 arr.sort((a,b) => (a.timestamp || 0) - (b.timestamp || 0));
                 
@@ -708,12 +767,14 @@
                 box.scrollTop = box.scrollHeight;
             });
 
+            // ব্যাক বাটন ক্লোজিং অ্যাকশন ফিক্স
             document.getElementById("closeLiveChatModalRoomBtn").onclick = () => {
                 if(chatUnsubscribeTracker) chatUnsubscribeTracker();
                 if(activeChatCountdownLoop) clearInterval(activeChatCountdownLoop); 
-                hidePopup("liveChatRoomModal");
+                document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
             };
 
+            // মেসেজ সেন্ডিং ইঞ্জিন ফিক্স
             document.getElementById("sendLiveMsgActionButton").onclick = async () => {
                 let input = document.getElementById("liveChatMessageInputField");
                 let txt = input.value.trim();
@@ -726,11 +787,33 @@
                     text: cleanProfanity(txt),
                     timestamp: new Date().getTime()
                 });
-
                 await updateDoc(doc(db, "inbox_channels", chatRoomId), { lastUpdated: new Date().getTime() });
                 input.value = "";
             };
         };
+
+        // 🪐 লাইভ চ্যাট ব্যাকগ্রাউন্ড অ্যানিমেশন পার্টিকেল ইঞ্জিন জেনারেটর
+        function triggerChatRoomNeonParticles() {
+            let container = document.getElementById("liveFloatingEmojiAnimationOverlayBox");
+            container.innerHTML = "";
+            let emojis = ["❤️", "😢", "✨", "🌙", "🩹"];
+            
+            for(let i=0; i<15; i++) {
+                let span = document.createElement("span");
+                span.className = "floating-emoji-item";
+                span.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                span.style.left = Math.random() * 90 + "%";
+                span.style.animationDelay = Math.random() * 4 + "s";
+                span.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                container.appendChild(span);
+            }
+        }
+
+        // 🔍 লাইভ ইউজারনেম সার্চ ফিল্টার ইভেন্ট লিসেনার ইন্টিগ্রেশন
+        document.getElementById("usernameLiveSearchBarField").addEventListener("input", (e) => {
+            currentSearchQueryFilterKeyword = e.target.value.trim().toLowerCase();
+            buildFeedDOM("searchFeed", currentActiveCategoryFilter, false);
+        });
 
         function listenToInboxChannels() {
             if(!globalUserSession) return;
@@ -739,7 +822,6 @@
             onSnapshot(q, (snap) => {
                 let listDiv = document.getElementById("inboxChannelsFeedList");
                 listDiv.innerHTML = "";
-                
                 if(snap.size === 0) { listDiv.innerHTML = "<p style='opacity:0.4;font-size:12px;text-align:center;'>Your active inbox list is empty.</p>"; return; }
 
                 snap.forEach(d => {
@@ -851,13 +933,9 @@
             });
         }
 
-        /* 🔍 SEARCH TAB ENGINE FIXED (BUG FIXED) */
         window.switchCategory = function(cat, element) {
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active-cat'));
-            element.classList.add('active-cat'); 
-            currentActiveCategoryFilter = cat; 
-            
-            // সার্চ ফিড আলাদা করে বিল্ড ইঞ্জিন ট্রিগার পুশ করা হলো
+            element.classList.add('active-cat'); currentActiveCategoryFilter = cat; 
             buildFeedDOM("searchFeed", cat, false);
         }
 
@@ -869,13 +947,18 @@
                 if(s.expiryTimestamp && now > s.expiryTimestamp) return false;
                 if(selfUidOnly && s.uid !== globalUserSession?.uid) return false;
                 if(categoryFilter !== "all" && s.category !== categoryFilter) return false;
+                
+                // 🔍 ইউজারনেম সার্চ বার ম্যাচিং কন্ডিশন পুশ
+                if(targetDivId === "searchFeed" && currentSearchQueryFilterKeyword) {
+                    let uName = (s.username || "").toLowerCase();
+                    if(!uName.includes(currentSearchQueryFilterKeyword)) return false;
+                }
                 return true;
             });
             
-            if(dataset.length === 0) { box.innerHTML = "<p style='text-align:center; opacity:0.4; padding:30px; font-size:13px;'>No confessions found here.</p>"; return; }
+            if(dataset.length === 0) { box.innerHTML = "<p style='text-align:center; opacity:0.4; padding:30px; font-size:13px;'>No confessions found matching criteria.</p>"; return; }
 
-            let nextAdTriggerIndex = Math.floor(Math.random() * (6 - 3 + 1)) + 3; 
-            let processedCardsCount = 0;
+            let nextAdTriggerIndex = Math.floor(Math.random() * (6 - 3 + 1)) + 3; let processedCardsCount = 0;
 
             dataset.slice(0, postsToShowCount).forEach((item) => {
                 processedCardsCount++;
@@ -932,10 +1015,7 @@
         function rebuildAllFeeds() {
             buildFeedDOM("globalFeed", "all", false); 
             buildFeedDOM("searchFeed", currentActiveCategoryFilter, false);
-            if(globalUserSession) { 
-                buildFeedDOM("myPersonalFeed", "all", true); 
-                calculateAnalytics(); 
-            }
+            if(globalUserSession) { buildFeedDOM("myPersonalFeed", "all", true); calculateAnalytics(); }
         }
 
         window.generateShareImage = function(cardId) {
