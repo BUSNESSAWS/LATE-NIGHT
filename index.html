@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Late Night Confessions - Patched 2H Edition</title>
+    <title>Late Night Confessions - Secure Safety Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -76,9 +76,27 @@
         }
         @keyframes particle { from { transform: translateY(100vh) scale(0); } to { transform: translateY(-100vh) scale(1.4); } }
 
+        /* 🪐 🍏 INTRO/LOADING SCREEN: ULTIMATE IPHONE MIX-COLOR GLASS EFFECT FIXED */
         #intro {
-            position: fixed; width: 100%; height: 100vh; display: flex; justify-content: center;
-            align-items: center; background: black; z-index: 99999;
+            position: fixed; 
+            width: 100%; 
+            height: 100vh; 
+            display: flex; 
+            justify-content: center;
+            align-items: center; 
+            z-index: 99999;
+            /* ব্ল্যাক মুছে লিকুইড মিক্সড নিয়ন ব্যাকগ্রাউন্ড জেনারেট করা হলো */
+            background: linear-gradient(135deg, #1f0018 0%, #050505 40%, #000c1a 100%);
+            backdrop-filter: blur(50px) saturate(220%);
+            -webkit-backdrop-filter: blur(50px) saturate(220%);
+        }
+
+        /* ইন্ট্রো স্ক্রিনের পেছনে ডাইনামিক লাইট ইফেক্ট গ্লো */
+        #intro::before {
+            content: ''; position: absolute; width: 300px; height: 300px; background: #ff0077; border-radius: 50%; filter: blur(120px); top: 20%; left: 10%; opacity: 0.6;
+        }
+        #intro::after {
+            content: ''; position: absolute; width: 250px; height: 250px; background: #00c3ff; border-radius: 50%; filter: blur(120px); bottom: 20%; right: 10%; opacity: 0.5;
         }
 
         .introTitle {
@@ -86,6 +104,8 @@
             background: linear-gradient(90deg, #fff, #ff4ecd, #7f5cff, #00c3ff, #fff);
             background-size: 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: shine 3s infinite, zoom 3s infinite;
+            z-index: 10;
+            filter: drop-shadow(0 4px 15px rgba(255, 78, 205, 0.3));
         }
 
         #entryPage {
@@ -189,7 +209,7 @@
         .card-user { color: #ff4ecd; font-weight: 600; font-size: 14px; }
         .card-tag { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
         .tag-love { background: rgba(255, 0, 136, 0.15); color: #ff0088; border: 1px solid rgba(255, 0, 136, 0.3); }
-        .tag-sad { background: rgba(0, 195, 255, 0.15); color: #00c3ff; border: 1px solid rgba(0, 195, 255, 0.3); }
+        .tag-sad { background: rgba(0, 195, 255, 0.15); color: #00c3ff; border: 1px solid rgba(255, 0, 136, 0.3); }
         .tag-romantic { background: rgba(127, 92, 255, 0.15); color: #7f5cff; border: 1px solid rgba(127, 92, 255, 0.3); }
 
         .story { line-height: 1.7; font-size: 15px; opacity: 0.95; word-wrap: break-word; margin-bottom: 15px; letter-spacing: 0.2px; }
@@ -221,7 +241,6 @@
         .stat-num { font-size: 20px; font-weight: 700; color: #ff4ecd; }
         .stat-label { font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
 
-        /* 🟢 লাইভ চ্যাট নোটিফিকেশন ডট ডিজাইন */
         .online-dot { width: 10px; height: 10px; background-color: #00ff66; border-radius: 50%; display: inline-block; margin-left: auto; box-shadow: 0 0 8px #00ff66; }
 
         /* 🔮 📲 FULL PAGE LIQUID GLASS CHAT INTERFACE */
@@ -248,18 +267,14 @@
         }
         .chat-room-scroll-box { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
         
-        /* 🎨 চ্যাট বাবলের সুনির্দিষ্ট ডান এবং বাম ডিরেকশন এবং ডট কনফিগারেশন */
         .msg-bubble { max-width: 75%; padding: 12px 16px; font-size: 14px; line-height: 1.5; border-radius: 20px; word-wrap: break-word; display: flex; flex-direction: column; position: relative; }
-        
-        /* ডানদিকের বাবল (যে মেসেজ লিখছে তার ফোনে সর্বদা ডানদিকে) */
         .msg-sent { background: linear-gradient(135deg, #ff0088, #7f5cff); align-self: flex-end; border-bottom-right-radius: 4px; color: white; }
-        
-        /* বামদিকের বাবল (ওপার থেকে কেউ মেসেজ করলে সর্বদা বামদিকে) */
         .msg-received { background: rgba(255,255,255,0.08); align-self: flex-start; border-bottom-left-radius: 4px; color: rgba(255,255,255,0.95); border: 1px solid rgba(255,255,255,0.05); }
-        
-        /* 🔵 মেসেজের ভেতরে ছোট নিয়ন ডট ইনজেকশন লজিক */
         .msg-bubble::after { content: ''; position: absolute; bottom: 6px; right: 8px; width: 4px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 50%; }
         .msg-received::after { background: #00c3ff; left: auto; right: 8px; }
+
+        .chat-wipe-action-btn { background: rgba(255, 59, 48, 0.15); border: 1px solid rgba(255, 59, 48, 0.4); padding: 8px 14px; border-radius: 14px; color: #ff3b30; cursor: pointer; font-size: 12px; font-weight: 700; transition: 0.2s; }
+        .chat-wipe-action-btn:hover { background: #ff3b30; color: white; box-shadow: 0 0 15px rgba(255, 59, 48, 0.5); }
 
         .chat-input-dock-row {
             width: 100%; padding: 16px 20px 30px; display: flex; gap: 10px; align-items: center;
@@ -291,6 +306,7 @@
     <div class="particle" style="left:55%;animation-delay:3s;"></div>
     <div class="particle" style="left:85%;animation-delay:1.5s;"></div>
 
+    <!-- 🌌 🪐 INTRO SCREEN MASTER BUILD FIXED -->
     <div id="intro"><div class="introTitle">Late Night</div></div>
 
     <!-- ENTRY PAGE -->
@@ -428,10 +444,9 @@
             <button class="chat-back-btn" id="closeLiveChatModalRoomBtn">⬅️ Back</button>
             <div style="text-align: center;">
                 <h3 id="chatRoomHeaderTitle" style="font-size: 15px; font-weight:700; color: #00c3ff;">@username</h3>
-                <!-- ⏱️ টাইমলক ২ ঘণ্টা সেট করা হলো -->
                 <span id="chatActiveTimerHUD" style="font-size: 10px; color: #ffaa00; font-weight: 800;">2h 00m active time left</span>
             </div>
-            <div style="width:50px;"></div>
+            <button class="chat-wipe-action-btn" id="wipeEntireConversationHistoryActionButton">🗑️ Delete Local Chat</button>
         </div>
         
         <div class="chat-room-scroll-box" id="chatMessageLiveTrackBox"></div>
@@ -623,9 +638,21 @@
             targetUsername: null
         };
 
-        const badWords = ["খারাপশব্দ১", "খারাপশব্দ২", "gali1", "gali2", "bokachoda", "khanki", "bador", "gali", "gandu", "baal", "chuda"];
-        function hasProfanity(text) { let found = false; badWords.forEach(word => { if(text.toLowerCase().includes(word.toLowerCase())) { found = true; } }); return found; }
-        function cleanProfanity(text) { let clean = text; badWords.forEach(word => { const regex = new RegExp(word, "gi"); clean = clean.replace(regex, "****"); }); return clean; }
+        const strictlyProhibitedWords = [
+            "খারাপশব্দ১", "খারাপশব্দ২", "gali1", "gali2", "bokachoda", "khanki", "bador", "gali", "gandu", 
+            "baal", "chuda", "bainchod", "madarchod", "shala", "shorner", "chudirbhai", "shuor", "magi", 
+            "vodai", "baler", "huga", "pawra", "pussy", "sex", "adult", "নগ্ন", "চুদ", "বাল", "খানকি", 
+            "মাদারচোদ", "বোকাচোদা", "মাগি", "বেশ্যা", "চুদাচোদি"
+        ];
+
+        function hasProfanity(text) { 
+            let found = false; 
+            strictlyProhibitedWords.forEach(word => { 
+                if(text.toLowerCase().includes(word.toLowerCase())) { found = true; } 
+            }); 
+            return found; 
+        }
+
         function containsEmoji(text) { const regex = /[\uD800-\uDFFF]|\u2705|\u274C|\u2B50|[\u2000-\u3300]/g; return regex.test(text); }
 
         async function checkIfUsernameIsAlreadyTaken(targetName) {
@@ -636,7 +663,9 @@
         }
 
         try { await setPersistence(auth, browserLocalPersistence); } catch(e) { console.log(e); }
-        setTimeout(() => { document.getElementById("intro").style.display = "none"; }, 600);
+        
+        // ⏱️ ৩ সেকেন্ড (৩০০০ মিলি-সেকেন্ড) পর ডাইনামিকলি স্প্ল্যাশ ইনট্রো স্ক্রিন ভ্যানিশ প্রোটোকল
+        setTimeout(() => { document.getElementById("intro").style.display = "none"; }, 3000);
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -748,7 +777,6 @@
             let storageKey = "active_seconds_left_" + chatRoomId;
             let secondsLeft = parseInt(safeStorage.getItem(storageKey));
             
-            // ⏰ টাইমলক ২ ঘণ্টা (২ ঘণ্টা = ৭২০০ সেকেন্ড) করা হলো
             if(isNaN(secondsLeft) || secondsLeft <= 0) { secondsLeft = 2 * 60 * 60; }
 
             activeChatCountdownLoop = setInterval(async () => {
@@ -774,6 +802,8 @@
                 }
             }, 1000);
 
+            let clearedTimestampMarker = parseInt(safeStorage.getItem("local_chat_cleared_ts_" + globalUserSession.uid + "_" + chatRoomId)) || 0;
+
             chatUnsubscribeTracker = onSnapshot(collection(db, "inbox_channels", chatRoomId, "messages"), (snap) => {
                 let box = document.getElementById("chatMessageLiveTrackBox");
                 if(!box) return;
@@ -783,17 +813,18 @@
                 arr.sort((a,b) => (a.timestamp || 0) - (b.timestamp || 0));
                 
                 arr.forEach(m => {
-                    let bubble = document.createElement("div");
-                    // 🛡️ ডিরেকশন ফিক্সড: নিজের মেসেজ সবসময় ডানদিকে (msg-sent), অন্যের মেসেজ বামদিকে (msg-received)
-                    bubble.className = "msg-bubble " + (m.senderUid === globalUserSession.uid ? "msg-sent" : "msg-received");
-                    bubble.innerHTML = `<div>${m.text}</div>`;
-                    box.appendChild(bubble);
+                    if (m.timestamp > clearedTimestampMarker) {
+                        let bubble = document.createElement("div");
+                        bubble.className = "msg-bubble " + (m.senderUid === globalUserSession.uid ? "msg-sent" : "msg-received");
+                        bubble.innerHTML = `<div>${m.text}</div>`;
+                        box.appendChild(bubble);
+                    }
                 });
                 box.scrollTop = box.scrollHeight;
             });
         };
 
-        document.getElementById("closeLiveChatModalRoomBtn").onclick = function() {
+        document.getElementById("closeLiveChatModalRoomBtn").onclick = () => {
             if(chatUnsubscribeTracker) chatUnsubscribeTracker();
             if(activeChatCountdownLoop) clearInterval(activeChatCountdownLoop); 
             document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
@@ -811,20 +842,37 @@
             let txt = inputField.value.trim();
             if(!txt) return;
 
-            if(hasProfanity(txt)) { alert("🚫 Bad words are blocked!"); return; }
+            if(hasProfanity(txt)) { 
+                alert("🚫 Safety Guard Activated: Sharing sensitive, vulgar, or abusive messages is strictly forbidden inside incognito rooms!"); 
+                return; 
+            }
 
             try {
                 await addDoc(collection(db, "inbox_channels", activeRoomId, "messages"), {
                     senderUid: globalUserSession.uid,
-                    text: cleanProfanity(txt),
+                    text: txt, 
                     timestamp: new Date().getTime()
                 });
                 await updateDoc(doc(db, "inbox_channels", activeRoomId), { lastUpdated: new Date().getTime() });
                 inputField.value = ""; 
                 inputField.focus();
             } catch(err) {
-                alert("Failed to send message: " + err.message);
+                console.error("Error sending message: ", err);
             }
+        };
+
+        document.getElementById("wipeEntireConversationHistoryActionButton").onclick = function() {
+            let activeRoomId = window.activeChatMetaEngineContainer.currentRoomId;
+            if(!activeRoomId || !globalUserSession) return;
+
+            let localConfirm = confirm("🗑️ Clear chat history from your screen? (This will NOT delete the chat history from the other user's mobile device)");
+            if(!localConfirm) return;
+
+            let currentTimestamp = new Date().getTime();
+            safeStorage.setItem("local_chat_cleared_ts_" + globalUserSession.uid + "_" + activeRoomId, currentTimestamp);
+
+            alert("Chonicles cleared from your screen! 🪐");
+            document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
         };
 
         function triggerChatRoomNeonParticles() {
@@ -866,7 +914,6 @@
                     card.className = "card";
                     card.style = "padding: 16px 20px; margin-bottom: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; display: flex; align-items: center; cursor: pointer;";
                     
-                    // 🟢 নিয়ন নোটিফিকেশন ডট যুক্ত করা হলো চ্যানেলের পাশে
                     card.innerHTML = `
                         <div class="chat-user-icon">👤</div>
                         <div style="flex:1; display: flex; align-items: center; justify-content: space-between;">
@@ -936,7 +983,7 @@
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
             if(!selectedPostCategory) { alert("Pick category!"); return; }
             let rawText = document.getElementById("postContentInput").value.trim();
-            if(!rawText || hasProfanity(rawText)) { alert("🚫 Blank or Vulgar content blocked!"); return; }
+            if(!rawText || hasProfanity(rawText)) { alert("🚫 Sensitive or Vulgar content blocked!"); return; }
 
             let authorName = globalUserSession.displayName || safeStorage.getItem("profile_name_" + globalUserSession.uid) || "anonymous";
             let expiry = new Date(); expiry.setDate(expiry.getDate() + 29);
@@ -954,7 +1001,7 @@
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
             let likedKey = "liked_" + globalUserSession.uid + "_" + id;
             if(safeStorage.getItem(likedKey)) return;
-            try { await updateDoc(doc(db, "stories", id), { likes: increment(1) }); safeStorage.setItem(likedKey, "true"); } catch(e) { console.log(e); }
+            try { updateDoc(doc(db, "stories", id), { likes: increment(1) }); safeStorage.setItem(likedKey, "true"); } catch(e) { console.log(e); }
         }
 
         window.deleteStory = async function(id) { if(!confirm("Delete story?")) return; await deleteDoc(doc(db, "stories", id)); }
@@ -983,9 +1030,10 @@
 
             newSubmitBtn.addEventListener("click", async () => {
                 let input = document.getElementById("newCommentText"); let text = input.value.trim(); if(!text) return;
-                let cleanComment = cleanProfanity(text); let name = globalUserSession.displayName || safeStorage.getItem("profile_name_" + globalUserSession.uid) || "anonymous";
+                if(hasProfanity(text)) { alert("🚫 Inappropriate text blocked."); return; }
+                let name = globalUserSession.displayName || safeStorage.getItem("profile_name_" + globalUserSession.uid) || "anonymous";
                 try {
-                    await addDoc(collection(db, "stories", storyId, "comments"), { username: name, text: cleanComment, timestamp: new Date().getTime() });
+                    await addDoc(collection(db, "stories", storyId, "comments"), { username: name, text: text, timestamp: new Date().getTime() });
                     await updateDoc(doc(db, "stories", storyId), { commentCount: increment(1) }); input.value = "";
                 } catch(e) { console.log(e); }
             });
@@ -1114,7 +1162,7 @@
 
         onSnapshot(collection(db, "stories"), (snap) => {
             globalAllStories = []; snap.forEach(doc => { let d = doc.data(); if(!d.parentStoryId) { d.id = doc.id; globalAllStories.push(d); } });
-            globalAllStories.sort((a,b) => { let tA = a.timestamp ? (typeof a.timestamp === 'object' ? a.timestamp.seconds*1000 : a.timestamp) : 0; let tB = b.timestamp ? (typeof b.timestamp === 'object' ? b.timestamp.seconds*1000 : b.timestamp) : 0; return tB - tA; });
+            globalAllStories.sort((a,b) => { let tA = a.timestamp ? (typeof a.timestamp === 'object' * 1000 ? a.timestamp.seconds*1000 : a.timestamp) : 0; let tB = b.timestamp ? (typeof b.timestamp === 'object' ? b.timestamp.seconds*1000 : b.timestamp) : 0; return tB - tA; });
             rebuildAllFeeds();
         });
     </script>
