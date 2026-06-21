@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Late Night Confessions - Patched Final Edition</title>
+    <title>Late Night Confessions - Patched 2H Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -184,7 +184,7 @@
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
         .user-header-block { display: flex; align-items: center; gap: 8px; }
         .head-chat-btn { background: rgba(0, 195, 255, 0.12); border: 1px solid rgba(0, 195, 255, 0.3); color: #00c3ff; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; transition: 0.2s; }
-        .head-chat-btn:hover { background: #00c3ff; color: #0 Black; box-shadow: 0 0 10px rgba(0, 195, 255, 0.4); }
+        .head-chat-btn:hover { background: #00c3ff; color: #000; box-shadow: 0 0 10px rgba(0, 195, 255, 0.4); }
 
         .card-user { color: #ff4ecd; font-weight: 600; font-size: 14px; }
         .card-tag { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
@@ -208,7 +208,7 @@
         .download-app-bar { width: 100%; padding: 14px; background: linear-gradient(90deg, #7f5cff, #ff4ecd); border-radius: 16px; font-weight: 700; text-align: center; font-size: 14px; cursor: pointer; box-shadow: 0 5px 20px rgba(127, 92, 255, 0.4); transition: 0.3s; border: none; color: white; }
         .post-box { background: rgba(255,255,255,0.02); padding: 25px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.06); }
         .chip-group { display: flex; gap: 10px; margin: 15px 0; }
-        .chip { padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+        .chip { padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; background: rgba(255,255,255,0.05); border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s; }
         .chip.selected[data-val="love"] { background: #ff0088; border-color: #ff0088; }
         .chip.selected[data-val="sad"] { background: #00c3ff; border-color: #00c3ff; }
         .chip.selected[data-val="romantic"] { background: #7f5cff; border-color: #7f5cff; }
@@ -221,11 +221,10 @@
         .stat-num { font-size: 20px; font-weight: 700; color: #ff4ecd; }
         .stat-label { font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
 
-        .chat-user-item { display: flex; align-items: center; padding: 16px 20px; margin-bottom: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; cursor: pointer; transition: 0.3s; }
-        .chat-user-item:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
-        .chat-user-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #ff4ecd, #00c3ff); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 20px; margin-right: 15px; }
+        /* 🟢 লাইভ চ্যাট নোটিফিকেশন ডট ডিজাইন */
+        .online-dot { width: 10px; height: 10px; background-color: #00ff66; border-radius: 50%; display: inline-block; margin-left: auto; box-shadow: 0 0 8px #00ff66; }
 
-        /* 🔮 📲 FULL PAGE LIQUID GLASS CHAT INTERFACE WITH FLOATING NEON PARTICLES */
+        /* 🔮 📲 FULL PAGE LIQUID GLASS CHAT INTERFACE */
         .popup-full-chat {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: none;
             flex-direction: column; background: rgba(10, 10, 10, 0.4);
@@ -248,6 +247,20 @@
             padding: 0 20px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .chat-room-scroll-box { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+        
+        /* 🎨 চ্যাট বাবলের সুনির্দিষ্ট ডান এবং বাম ডিরেকশন এবং ডট কনফিগারেশন */
+        .msg-bubble { max-width: 75%; padding: 12px 16px; font-size: 14px; line-height: 1.5; border-radius: 20px; word-wrap: break-word; display: flex; flex-direction: column; position: relative; }
+        
+        /* ডানদিকের বাবল (যে মেসেজ লিখছে তার ফোনে সর্বদা ডানদিকে) */
+        .msg-sent { background: linear-gradient(135deg, #ff0088, #7f5cff); align-self: flex-end; border-bottom-right-radius: 4px; color: white; }
+        
+        /* বামদিকের বাবল (ওপার থেকে কেউ মেসেজ করলে সর্বদা বামদিকে) */
+        .msg-received { background: rgba(255,255,255,0.08); align-self: flex-start; border-bottom-left-radius: 4px; color: rgba(255,255,255,0.95); border: 1px solid rgba(255,255,255,0.05); }
+        
+        /* 🔵 মেসেজের ভেতরে ছোট নিয়ন ডট ইনজেকশন লজিক */
+        .msg-bubble::after { content: ''; position: absolute; bottom: 6px; right: 8px; width: 4px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 50%; }
+        .msg-received::after { background: #00c3ff; left: auto; right: 8px; }
+
         .chat-input-dock-row {
             width: 100%; padding: 16px 20px 30px; display: flex; gap: 10px; align-items: center;
             background: rgba(15, 15, 15, 0.6); border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -415,7 +428,8 @@
             <button class="chat-back-btn" id="closeLiveChatModalRoomBtn">⬅️ Back</button>
             <div style="text-align: center;">
                 <h3 id="chatRoomHeaderTitle" style="font-size: 15px; font-weight:700; color: #00c3ff;">@username</h3>
-                <span id="chatActiveTimerHUD" style="font-size: 10px; color: #ffaa00; font-weight: 800;">4h 00m active time left</span>
+                <!-- ⏱️ টাইমলক ২ ঘণ্টা সেট করা হলো -->
+                <span id="chatActiveTimerHUD" style="font-size: 10px; color: #ffaa00; font-weight: 800;">2h 00m active time left</span>
             </div>
             <div style="width:50px;"></div>
         </div>
@@ -603,7 +617,6 @@
         let activeChatCountdownLoop = null;
         let currentSearchQueryFilterKeyword = "";
         
-        // 🚨 সবচেয়ে গুরুত্বপূর্ণ লাইভ ফিক্স: চ্যাট রুম ট্র্যাক করার সিকিউর গ্লোবাল স্কোপ অবজেক্ট
         window.activeChatMetaEngineContainer = {
             currentRoomId: null,
             targetUid: null,
@@ -700,14 +713,12 @@
             } catch(e) { alert(e.message); }
         };
 
-        // 🪐 🔮 চ্যাট উইন্ডো ইঞ্জিন (১০০% বাটন বাগ ফিক্সড মাস্টার লেয়ার)
         window.openLiveChatWithUser = async function(targetUid, targetUsername) {
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
             if(globalUserSession.uid === targetUid) { alert("You cannot chat with yourself!"); return; }
             
             let chatRoomId = [globalUserSession.uid, targetUid].sort().join("_");
             
-            // 🚨 গ্লোবাল ট্র্যাকার অবজেক্ট ম্যাপিং রিস্টোর লক
             window.activeChatMetaEngineContainer.currentRoomId = chatRoomId;
             window.activeChatMetaEngineContainer.targetUid = targetUid;
             window.activeChatMetaEngineContainer.targetUsername = targetUsername;
@@ -736,7 +747,9 @@
 
             let storageKey = "active_seconds_left_" + chatRoomId;
             let secondsLeft = parseInt(safeStorage.getItem(storageKey));
-            if(isNaN(secondsLeft) || secondsLeft <= 0) { secondsLeft = 4 * 60 * 60; }
+            
+            // ⏰ টাইমলক ২ ঘণ্টা (২ ঘণ্টা = ৭২০০ সেকেন্ড) করা হলো
+            if(isNaN(secondsLeft) || secondsLeft <= 0) { secondsLeft = 2 * 60 * 60; }
 
             activeChatCountdownLoop = setInterval(async () => {
                 secondsLeft--;
@@ -757,7 +770,7 @@
 
                     alert("⏰ Talk time complete! Messages vanished.");
                     document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
-                    safeStorage.setItem(storageKey, 4 * 60 * 60); 
+                    safeStorage.setItem(storageKey, 2 * 60 * 60); 
                 }
             }, 1000);
 
@@ -771,6 +784,7 @@
                 
                 arr.forEach(m => {
                     let bubble = document.createElement("div");
+                    // 🛡️ ডিরেকশন ফিক্সড: নিজের মেসেজ সবসময় ডানদিকে (msg-sent), অন্যের মেসেজ বামদিকে (msg-received)
                     bubble.className = "msg-bubble " + (m.senderUid === globalUserSession.uid ? "msg-sent" : "msg-received");
                     bubble.innerHTML = `<div>${m.text}</div>`;
                     box.appendChild(bubble);
@@ -779,12 +793,11 @@
             });
         };
 
-        // 🛠️ 🪐 ১০০% গ্লোবাল বাটন কন্ট্রোলার (যা ডক ব্রেকিং বাগ চিরতরে রিমুভ করবে)
         document.getElementById("closeLiveChatModalRoomBtn").onclick = function() {
             if(chatUnsubscribeTracker) chatUnsubscribeTracker();
             if(activeChatCountdownLoop) clearInterval(activeChatCountdownLoop); 
             document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
-            window.activeChatMetaEngineContainer.currentRoomId = null; // সেশন রিলিজ
+            window.activeChatMetaEngineContainer.currentRoomId = null; 
         };
 
         document.getElementById("sendLiveMsgActionButton").onclick = async function() {
@@ -801,7 +814,6 @@
             if(hasProfanity(txt)) { alert("🚫 Bad words are blocked!"); return; }
 
             try {
-                // সরাসরি ডাইনামিক লক করা রুমে মেসেজ পুশ
                 await addDoc(collection(db, "inbox_channels", activeRoomId, "messages"), {
                     senderUid: globalUserSession.uid,
                     text: cleanProfanity(txt),
@@ -853,11 +865,16 @@
                     let card = document.createElement("div");
                     card.className = "card";
                     card.style = "padding: 16px 20px; margin-bottom: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; display: flex; align-items: center; cursor: pointer;";
+                    
+                    // 🟢 নিয়ন নোটিফিকেশন ডট যুক্ত করা হলো চ্যানেলের পাশে
                     card.innerHTML = `
                         <div class="chat-user-icon">👤</div>
-                        <div style="flex:1;">
-                            <div style="font-weight:600;font-size:14px;color:#00c3ff;">@${opponentName}</div>
-                            <div style="font-size:11px;opacity:0.5;margin-top:2px;">Secured 4-Hour Active Conversation Loop</div>
+                        <div style="flex:1; display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <div style="font-weight:600;font-size:14px;color:#00c3ff;">@${opponentName}</div>
+                                <div style="font-size:11px;opacity:0.5;margin-top:2px;">Secured 2-Hour Active Conversation Loop</div>
+                            </div>
+                            <span class="online-dot"></span>
                         </div>
                     `;
                     card.onclick = () => window.openLiveChatWithUser(opponentUid, opponentName);
@@ -1010,7 +1027,7 @@
                         <div class="card" style="border: 1px solid rgba(0, 195, 255, 0.4); background: rgba(0, 195, 255, 0.02); text-align: center; padding: 30px 20px;">
                             <div style="font-weight: 700; color: #00c3ff; font-size: 18px; margin-bottom: 4px;">@${verifiedUsername}</div>
                             <p style="font-size: 12px; opacity: 0.5; margin-bottom: 18px;">This midnight soul exists in our chronicles but hasn't published any secret stories yet.</p>
-                            <button class="btn createBtn" onclick="openLiveChatWithUser('${verifiedUid}', '${verifiedUsername}')" style="margin-top:0; padding: 12px; max-width: 250px; margin: 0 auto;">💬 Launch Live 4H Chat</button>
+                            <button class="btn createBtn" onclick="openLiveChatWithUser('${verifiedUid}', '${verifiedUsername}')" style="margin-top:0; padding: 12px; max-width: 250px; margin: 0 auto;">💬 Launch Live 2H Chat</button>
                         </div>
                     `;
                 } else {
