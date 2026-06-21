@@ -65,7 +65,7 @@
 
         .star:nth-child(1) { left: 30%; animation-delay: 0s; animation-duration: 3.5s; }
         .star:nth-child(2) { left: 60%; animation-delay: 1.5s; animation-duration: 4.5s; filter: drop-shadow(0 0 6px #00c3ff); }
-        .star:nth-child(3) { left: 15%; animation-delay: 3s; animation-duration: 3.8s; filter: drop-shadow(0 0 6px #7f5cff); }
+        .star:nth-child(3) { left: 15%; animation-delay: 3s; animation-duration: 3.8s; filter: drop-shadow(0 0 6px #6c42ff); }
 
         @keyframes tail { 0%, 100% { width: 0; } 30% { width: 100px; } }
         @keyframes shooting { 0% { transform: translateX(0); opacity: 0; } 10% { opacity: 1; } 30%, 100% { transform: translateX(400px); opacity: 0; } }
@@ -184,12 +184,12 @@
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
         .user-header-block { display: flex; align-items: center; gap: 8px; }
         .head-chat-btn { background: rgba(0, 195, 255, 0.12); border: 1px solid rgba(0, 195, 255, 0.3); color: #00c3ff; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; transition: 0.2s; }
-        .head-chat-btn:hover { background: #00c3ff; color: #000; box-shadow: 0 0 10px rgba(0, 195, 255, 0.4); }
+        .head-chat-btn:hover { background: #00c3ff; color: #0 Black; box-shadow: 0 0 10px rgba(0, 195, 255, 0.4); }
 
         .card-user { color: #ff4ecd; font-weight: 600; font-size: 14px; }
         .card-tag { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
         .tag-love { background: rgba(255, 0, 136, 0.15); color: #ff0088; border: 1px solid rgba(255, 0, 136, 0.3); }
-        .tag-sad { background: rgba(0, 195, 255, 0.15); color: #00c3ff; border: 1px solid rgba(255, 0, 136, 0.3); }
+        .tag-sad { background: rgba(0, 195, 255, 0.15); color: #00c3ff; border: 1px solid rgba(0, 195, 255, 0.3); }
         .tag-romantic { background: rgba(127, 92, 255, 0.15); color: #7f5cff; border: 1px solid rgba(127, 92, 255, 0.3); }
 
         .story { line-height: 1.7; font-size: 15px; opacity: 0.95; word-wrap: break-word; margin-bottom: 15px; letter-spacing: 0.2px; }
@@ -220,6 +220,10 @@
         .stat-box { text-align: center; }
         .stat-num { font-size: 20px; font-weight: 700; color: #ff4ecd; }
         .stat-label { font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+        .chat-user-item { display: flex; align-items: center; padding: 16px 20px; margin-bottom: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; cursor: pointer; transition: 0.3s; }
+        .chat-user-item:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+        .chat-user-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #ff4ecd, #00c3ff); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 20px; margin-right: 15px; }
 
         /* 🔮 📲 FULL PAGE LIQUID GLASS CHAT INTERFACE WITH FLOATING NEON PARTICLES */
         .popup-full-chat {
@@ -598,7 +602,13 @@
         let chatUnsubscribeTracker = null;
         let activeChatCountdownLoop = null;
         let currentSearchQueryFilterKeyword = "";
-        let globalActiveChatRoomId = null; // চ্যাট সেশন ট্র্যাকার
+        
+        // 🚨 সবচেয়ে গুরুত্বপূর্ণ লাইভ ফিক্স: চ্যাট রুম ট্র্যাক করার সিকিউর গ্লোবাল স্কোপ অবজেক্ট
+        window.activeChatMetaEngineContainer = {
+            currentRoomId: null,
+            targetUid: null,
+            targetUsername: null
+        };
 
         const badWords = ["খারাপশব্দ১", "খারাপশব্দ২", "gali1", "gali2", "bokachoda", "khanki", "bador", "gali", "gandu", "baal", "chuda"];
         function hasProfanity(text) { let found = false; badWords.forEach(word => { if(text.toLowerCase().includes(word.toLowerCase())) { found = true; } }); return found; }
@@ -690,13 +700,17 @@
             } catch(e) { alert(e.message); }
         };
 
-        // 🔮 🛠️ গ্লোবাল চ্যাট ওপেনার (বাটন লুপ সেপারেটেড)
+        // 🪐 🔮 চ্যাট উইন্ডো ইঞ্জিন (১০০% বাটন বাগ ফিক্সড মাস্টার লেয়ার)
         window.openLiveChatWithUser = async function(targetUid, targetUsername) {
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
             if(globalUserSession.uid === targetUid) { alert("You cannot chat with yourself!"); return; }
             
             let chatRoomId = [globalUserSession.uid, targetUid].sort().join("_");
-            globalActiveChatRoomId = chatRoomId; // কারেন্ট রুম লক
+            
+            // 🚨 গ্লোবাল ট্র্যাকার অবজেক্ট ম্যাপিং রিস্টোর লক
+            window.activeChatMetaEngineContainer.currentRoomId = chatRoomId;
+            window.activeChatMetaEngineContainer.targetUid = targetUid;
+            window.activeChatMetaEngineContainer.targetUsername = targetUsername;
             
             document.getElementById("chatRoomHeaderTitle").innerText = "@" + targetUsername;
             document.getElementById("liveChatRoomFullScreenModal").style.display = "flex";
@@ -730,11 +744,12 @@
 
                 let hours = Math.floor(secondsLeft / 3600);
                 let minutes = Math.floor((secondsLeft % 3600) / 60);
-                document.getElementById("chatActiveTimerHUD").innerText = `${hours}h ${minutes}m active time left`;
+                let hudDisplay = document.getElementById("chatActiveTimerHUD");
+                if(hudDisplay) hudDisplay.innerText = `${hours}h ${minutes}m active time left`;
 
                 if(secondsLeft <= 0) {
                     clearInterval(activeChatCountdownLoop);
-                    document.getElementById("chatActiveTimerHUD").innerText = "Expired 💥";
+                    if(hudDisplay) hudDisplay.innerText = "Expired 💥";
                     await updateDoc(doc(db, "inbox_channels", chatRoomId), { isExpired: true });
                     
                     const querySnapshot = await getDocs(collection(db, "inbox_channels", chatRoomId, "messages"));
@@ -748,6 +763,7 @@
 
             chatUnsubscribeTracker = onSnapshot(collection(db, "inbox_channels", chatRoomId, "messages"), (snap) => {
                 let box = document.getElementById("chatMessageLiveTrackBox");
+                if(!box) return;
                 box.innerHTML = "";
                 let arr = [];
                 snap.forEach((documentSnapshot) => { arr.push(documentSnapshot.data()); });
@@ -763,16 +779,20 @@
             });
         };
 
-        // 🛠️ 🪐 গ্লোবাল স্কোপ বাটন লিসেনারস (যা ১০০% বাটন ফ্রিজিং বাগ ফিক্স করবে)
-        document.getElementById("closeLiveChatModalRoomBtn").onclick = () => {
+        // 🛠️ 🪐 ১০০% গ্লোবাল বাটন কন্ট্রোলার (যা ডক ব্রেকিং বাগ চিরতরে রিমুভ করবে)
+        document.getElementById("closeLiveChatModalRoomBtn").onclick = function() {
             if(chatUnsubscribeTracker) chatUnsubscribeTracker();
             if(activeChatCountdownLoop) clearInterval(activeChatCountdownLoop); 
             document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
-            globalActiveChatRoomId = null;
+            window.activeChatMetaEngineContainer.currentRoomId = null; // সেশন রিলিজ
         };
 
-        document.getElementById("sendLiveMsgActionButton").onclick = async () => {
-            if(!globalActiveChatRoomId || !globalUserSession) return;
+        document.getElementById("sendLiveMsgActionButton").onclick = async function() {
+            let activeRoomId = window.activeChatMetaEngineContainer.currentRoomId;
+            if(!activeRoomId || !globalUserSession) {
+                alert("Session error! Re-open chat room.");
+                return;
+            }
             
             let inputField = document.getElementById("liveChatMessageInputField");
             let txt = inputField.value.trim();
@@ -781,20 +801,23 @@
             if(hasProfanity(txt)) { alert("🚫 Bad words are blocked!"); return; }
 
             try {
-                await addDoc(collection(db, "inbox_channels", globalActiveChatRoomId, "messages"), {
+                // সরাসরি ডাইনামিক লক করা রুমে মেসেজ পুশ
+                await addDoc(collection(db, "inbox_channels", activeRoomId, "messages"), {
                     senderUid: globalUserSession.uid,
                     text: cleanProfanity(txt),
                     timestamp: new Date().getTime()
                 });
-                await updateDoc(doc(db, "inbox_channels", globalActiveChatRoomId), { lastUpdated: new Date().getTime() });
+                await updateDoc(doc(db, "inbox_channels", activeRoomId), { lastUpdated: new Date().getTime() });
                 inputField.value = ""; 
+                inputField.focus();
             } catch(err) {
-                console.error("Error sending message: ", err);
+                alert("Failed to send message: " + err.message);
             }
         };
 
         function triggerChatRoomNeonParticles() {
             let container = document.getElementById("liveFloatingEmojiAnimationOverlayBox");
+            if(!container) return;
             container.innerHTML = "";
             let emojis = ["❤️", "😢", "✨", "🌙", "🩹"];
             for(let i=0; i<15; i++) {
@@ -818,6 +841,7 @@
             
             onSnapshot(q, (snap) => {
                 let listDiv = document.getElementById("inboxChannelsFeedList");
+                if(!listDiv) return;
                 listDiv.innerHTML = "";
                 if(snap.size === 0) { listDiv.innerHTML = "<p style='opacity:0.4;font-size:12px;text-align:center;'>Your active inbox list is empty.</p>"; return; }
 
@@ -927,6 +951,7 @@
 
             const unsubscribe = onSnapshot(collection(db, "stories", storyId, "comments"), (snap) => {
                 let commentListDiv = document.getElementById("popupCommentList");
+                if(!commentListDiv) return;
                 commentListDiv.innerHTML = "";
                 let subArr = []; snap.forEach(d => subArr.push(d.data()));
                 subArr.sort((a,b) => (a.timestamp || 0) - (b.timestamp || 0));
