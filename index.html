@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Late Night Confessions - Ultimate Patched Master Edition</title>
+    <title>Late Night Confessions - Ultimate Secure Build</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -91,15 +91,15 @@
         #entryPage {
             display: none; width: 100%; height: 100vh;
             justify-content: center; align-items: center; padding: 20px; z-index: 10;
+            background: rgba(10, 10, 10, 0.2); backdrop-filter: blur(35px) saturate(200%); -webkit-backdrop-filter: blur(35px) saturate(200%);
         }
 
         .entry-container { width: 100%; max-width: 400px; transform: translateY(-40px); }
 
         .glass {
-            width: 100%; padding: 40px 25px; border-radius: 30px;
-            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 0 40px rgba(255, 0, 128, 0.15);
+            width: 100%; padding: 45px 25px; border-radius: 32px;
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.16); 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
         .mainTitle {
@@ -133,39 +133,13 @@
             animation: stripPulse 3s infinite linear;
         }
 
-        @keyframes stripPulse {
-            0% { background-position: 0% center; box-shadow: 0 0 6px #ff5500, 0 0 12px #00d2ff; }
-            50% { background-position: 100% center; box-shadow: 0 0 14px #ffaa00, 0 0 20px #0077ff; }
-            100% { background-position: 0% center; box-shadow: 0 0 6px #ff5500, 0 0 12px #00d2ff; }
-        }
-
-        .logo-container { display: flex; align-items: center; gap: 8px; }
-        .animated-moon {
-            font-size: 22px; display: inline-block;
-            animation: moonGlow 3s infinite ease-in-out, moonFloat 4s infinite ease-in-out;
-            filter: drop-shadow(0 0 8px #ff4ecd);
-        }
-
-        @keyframes moonGlow {
-            0%, 100% { filter: drop-shadow(0 0 4px #ff4ecd) brightness(1); }
-            50% { filter: drop-shadow(0 0 15px #00c3ff) brightness(1.3); transform: rotate(15deg); }
-        }
-        @keyframes moonFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-
-        .logo {
-            font-size: 22px; font-weight: 800;
-            background: linear-gradient(90deg, #ff4ecd, #7f5cff, #00c3ff);
-            background-size: 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shine 5s infinite linear;
-        }
-
-        /* 📱 ULTRA-TRANSLUCENT APP LIQUID BAR */
+        /* 📱 🍏 IPHONE TRUE LIQUID CRYSTAL GLASS BOTTOM BAR */
         .bottom-nav {
             position: fixed; bottom: 16px; left: 4%; width: 90%; height: 66px;
-            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(40px) saturate(240%); -webkit-backdrop-filter: blur(40px) saturate(240%);
-            border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 28px;
+            background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(45px) saturate(250%); -webkit-backdrop-filter: blur(45px) saturate(250%);
+            border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 28px;
             display: flex; justify-content: space-around; align-items: center; z-index: 999;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), inset 0 1px 1px rgba(255, 255, 255, 0.2);
         }
 
         .nav-item {
@@ -175,18 +149,16 @@
             z-index: 5; transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .nav-item svg { width: 22px; height: 22px; fill: currentColor; margin-bottom: 4px; transition: transform 0.3s ease; }
+        .nav-item svg { width: 22px; height: 22px; fill: currentColor; margin-bottom: 4px; transition: transform 0.25s ease; }
         .nav-item.active { color: #ff4ecd; }
         .nav-item.active svg { transform: scale(1.1); }
 
-        .nav-item::before {
-            content: ''; position: absolute; top: 12%; left: 10%; width: 80%; height: 76%;
-            background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 20px; z-index: -1; opacity: 0; transform: scale(0.8);
-            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        .glass-sliding-capsule-ring {
+            position: absolute; top: 12%; left: 2%; width: 16%; height: 76%;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 20px; z-index: 1;
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); pointer-events: none;
+            transition: left 0.45s cubic-bezier(0.25, 1, 0.5, 1), width 0.45s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .nav-item.active::before { opacity: 1; transform: scale(1); }
 
         /* 📝 POST CARDS */
         .card {
@@ -308,7 +280,7 @@
 
     <div id="intro"><div class="introTitle">Late Night</div></div>
 
-    <!-- ENTRY PAGE -->
+    <!-- ENTRY PAGE WITH REAL GLASS GLASSMORPHISM FILTER OVERLAY -->
     <div id="entryPage">
         <div class="entry-container">
             <div class="glass">
@@ -354,12 +326,12 @@
             </div>
         </div>
 
-        <!-- 3. SEARCH TAB (WITH SEARCH AND DIRECT CHAT LOGIC) -->
+        <!-- 3. SEARCH TAB -->
         <div id="section-search" class="app-section">
             <div class="search-container">
                 <button class="download-app-bar" onclick="redirectToAppDownload()">Download Official App 📲</button>
                 
-                <input type="text" class="input" id="usernameLiveSearchBarField" placeholder="🔍 Search specific @username to read or chat directly..." style="margin-top:5px; background: rgba(255,255,255,0.06);">
+                <input type="text" class="input" id="usernameLiveSearchBarField" placeholder="🔍 Enter exact @username to match user profile..." style="margin-top:5px; background: rgba(255,255,255,0.06);">
                 
                 <div class="category-grid">
                     <button class="cat-btn active-cat" data-cat="all" onclick="switchCategory('all', this)">All</button>
@@ -402,9 +374,8 @@
                     </div>
                 </div>
                 
-                <!-- 🛠️ ইউজারনেম পরিবর্তন করার অপশন বাটন (ইউজারনেমের ঠিক নিচে পজিশনড) -->
                 <div style="margin-top:25px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.06); text-align:left;">
-                    <label style="font-size:12px; opacity:0.6;">Modify Handle (No Emojis):</label>
+                    <label style="font-size:12px; opacity:0.6;">Modify Handle (Unique Name):</label>
                     <button class="popupBtn" onclick="triggerUsernameChangeModalFlow()" style="padding:12px; font-size:14px; background:linear-gradient(135deg, #00c3ff, #7f5cff); margin-top:8px;">Change Username 📝</button>
                 </div>
 
@@ -414,32 +385,33 @@
             <div id="myPersonalFeed"></div>
         </div>
 
-        <!-- 📱 BOTTOM NAV BAR -->
-        <div class="bottom-nav">
-            <div class="nav-item active" onclick="switchTab('home', this)">
+        <!-- 📱 GLASS BOTTOM NAV BAR WITH LIVE SLIDING CAPSULE LAYER -->
+        <div class="bottom-nav" id="mainCoreBottomNavigationDOMTrackNode">
+            <div class="glass-sliding-capsule-ring" id="liquidSlidingGlassCapsuleIndicatorBubble"></div>
+            
+            <div class="nav-item active" data-index="0" onclick="switchTab('home', this)">
                 <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home
             </div>
-            <div class="nav-item" onclick="switchTab('post', this)">
+            <div class="nav-item" data-index="1" onclick="switchTab('post', this)">
                 <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>Post
             </div>
-            <div class="nav-item" onclick="switchTab('search', this)">
+            <div class="nav-item" data-index="2" onclick="switchTab('search', this)">
                 <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>Search
             </div>
-            <div class="nav-item" onclick="switchTab('chats', this)">
+            <div class="nav-item" data-index="3" onclick="switchTab('chats', this)">
                 <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>Inbox
             </div>
-            <div class="nav-item" onclick="switchTab('profile', this)">
+            <div class="nav-item" data-index="4" onclick="switchTab('profile', this)">
                 <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-3-8-3z"/></svg>Profile
             </div>
         </div>
     </div>
 
-    <!-- 🔮 📲 FULL SCREEN TRANS_LIQUID GLASS LIVE CHAT WINDOW MODAL (PATTCHED AND FIXED) -->
+    <!-- 🔮 📲 FULL SCREEN TRANS_LIQUID GLASS LIVE CHAT WINDOW MODAL -->
     <div class="popup-full-chat" id="liveChatRoomFullScreenModal">
         <div class="chat-particle-canvas" id="liveFloatingEmojiAnimationOverlayBox"></div>
         
         <div class="chat-head-nav">
-            <!-- 🛠️ ফিক্সড ব্যাক বাটন আইডি অ্যাকশন লুপ -->
             <button class="chat-back-btn" id="closeLiveChatModalRoomBtn">⬅️ Back</button>
             <div style="text-align: center;">
                 <h3 id="chatRoomHeaderTitle" style="font-size: 15px; font-weight:700; color: #00c3ff;">@username</h3>
@@ -452,7 +424,6 @@
         
         <div class="chat-input-dock-row">
             <input type="text" class="input" id="liveChatMessageInputField" placeholder="Type secret message..." style="margin-top:0; flex:1; height:48px; background: rgba(255,255,255,0.08);">
-            <!-- 🛠️ ফিক্সড সেন্ড বাটন আইডি অ্যাকশন লুপ -->
             <button class="chat-send-btn" id="sendLiveMsgActionButton">Send</button>
         </div>
     </div>
@@ -471,7 +442,7 @@
     <div class="popup" id="signupPopup">
         <div class="popupBox">
             <div class="popupTitle" style="font-size: 26px;">Create Account</div>
-            <input type="text" class="input" id="signupName" placeholder="Your Name/Username (No Emojis)">
+            <input type="text" class="input" id="signupName" placeholder="Unique Username Handle (No Emojis)">
             <input type="email" class="input" id="signupEmail" placeholder="Email Address">
             <input type="password" class="input" id="signupPassword" placeholder="Choose Password">
             <button class="popupBtn" onclick="signupAction()">Register Profile</button>
@@ -530,6 +501,7 @@
             document.getElementById("entryPage").style.display = "none";
             document.getElementById("mainPage").style.display = "block";
             document.getElementById("navStatus").innerText = "Guest Mode 👤";
+            realignLiquidPillIndicator(0);
         }
 
         function switchTab(targetSection, element) {
@@ -540,9 +512,19 @@
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             element.classList.add('active');
             
+            let tabIndex = parseInt(element.getAttribute('data-index'));
+            realignLiquidPillIndicator(tabIndex);
+
             document.querySelectorAll('.app-section').forEach(sec => { sec.classList.remove('active-section'); });
             const targetDOM = document.getElementById('section-' + targetSection);
             if(targetDOM) targetDOM.classList.add('active-section');
+        }
+
+        function realignLiquidPillIndicator(index) {
+            let pill = document.getElementById("liquidSlidingGlassCapsuleIndicatorBubble");
+            if(!pill) return;
+            let calculatedLeftPosition = 2 + (index * 19.6); 
+            pill.style.left = calculatedLeftPosition + "%";
         }
 
         function selectPostChip(category, element) {
@@ -626,6 +608,14 @@
         function cleanProfanity(text) { let clean = text; badWords.forEach(word => { const regex = new RegExp(word, "gi"); clean = clean.replace(regex, "****"); }); return clean; }
         function containsEmoji(text) { const regex = /[\uD800-\uDFFF]|\u2705|\u274C|\u2B50|[\u2000-\u3300]/g; return regex.test(text); }
 
+        // 🛡️ ইউজারনেম গ্লোবাল ইউনিক ম্যাচিং চেকার ফাংশন
+        async function checkIfUsernameIsAlreadyTaken(targetName) {
+            let cleanCheckName = targetName.trim().toLowerCase();
+            let q = query(collection(db, "users"), where("searchName", "==", cleanCheckName));
+            let snap = await getDocs(q);
+            return !snap.empty; // খালি না হলে ট্রু (নাম অলরেডি টেকেন)
+        }
+
         try { await setPersistence(auth, browserLocalPersistence); } catch(e) { console.log(e); }
         setTimeout(() => { document.getElementById("intro").style.display = "none"; }, 600);
 
@@ -664,6 +654,7 @@
 
                     rebuildAllFeeds();
                     listenToInboxChannels();
+                    setTimeout(() => { realignLiquidPillIndicator(0); }, 200);
                 }
             } else {
                 if(!safeStorage.getItem("permanent_uid_session")) {
@@ -674,27 +665,37 @@
             }
         });
 
+        // 📝 প্রোফাইল হ্যান্ডেল এডিট ইঞ্জিন (ইউনিক মেমোরি লক প্যাটচড)
         window.triggerUsernameChangeModalFlow = async function() {
             if(!globalUserSession) return;
-            let promptName = prompt("Enter your new desired midnight username handle (No Emojis):");
+            let promptName = prompt("Enter your unique new desired username handle (No Emojis):");
             if(promptName === null) return; 
             
             let finalCleanName = promptName.trim();
             if(!finalCleanName) { alert("Username cannot be left empty!"); return; }
-            if(containsEmoji(finalCleanName)) { alert("🚫 Emojis are strictly blocked inside system handles!"); return; }
+            if(containsEmoji(finalCleanName)) { alert("🚫 Emojis are strictly blocked inside handles!"); return; }
+
+            // 🛑 ইউনিক নেম ম্যাচ ভ্যালিডেশন চেক
+            let isTaken = await checkIfUsernameIsAlreadyTaken(finalCleanName);
+            if(isTaken) { alert(`🚫 The username handle "@${finalCleanName}" is already taken by another person! Pick a different name.`); return; }
 
             let confirmProceed = confirm(`Change username handle permanently to @${finalCleanName}?`);
             if(!confirmProceed) return;
 
             try {
                 await updateProfile(globalUserSession, { displayName: finalCleanName });
+                await setDoc(doc(db, "users", globalUserSession.uid), {
+                    username: finalCleanName,
+                    searchName: finalCleanName.toLowerCase(),
+                    uid: globalUserSession.uid
+                }, { merge: true });
+
                 safeStorage.setItem("profile_name_" + globalUserSession.uid, finalCleanName);
                 alert("Username updated successfully! 📝");
                 location.reload();
             } catch(e) { alert(e.message); }
         };
 
-        // 🪐 🔮 চ্যাট উইন্ডো ইঞ্জিন ফিক্সড (বাটন বাগ ১০০% ফিক্সড)
         window.openLiveChatWithUser = async function(targetUid, targetUsername) {
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
             if(globalUserSession.uid === targetUid) { alert("You cannot chat with yourself!"); return; }
@@ -702,7 +703,6 @@
             let chatRoomId = [globalUserSession.uid, targetUid].sort().join("_");
             document.getElementById("chatRoomHeaderTitle").innerText = "@" + targetUsername;
             
-            // 🛠️ ফুল-স্ক্রিন মোড ট্রিগার অন
             document.getElementById("liveChatRoomFullScreenModal").style.display = "flex";
             triggerChatRoomNeonParticles();
 
@@ -766,28 +766,30 @@
                 box.scrollTop = box.scrollHeight;
             });
 
-            // 🛠️ ফিক্সড ব্যাক বাটন (১০০% অ্যাক্টিভ এবং টেস্টেড)
             document.getElementById("closeLiveChatModalRoomBtn").onclick = () => {
                 if(chatUnsubscribeTracker) chatUnsubscribeTracker();
                 if(activeChatCountdownLoop) clearInterval(activeChatCountdownLoop); 
                 document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
             };
 
-            // 🛠️ ফিক্সড সেন্ড বাটন (১০০% অ্যাক্টিভ এবং টেস্টেড)
             document.getElementById("sendLiveMsgActionButton").onclick = async () => {
-                let input = document.getElementById("liveChatMessageInputField");
-                let txt = input.value.trim();
+                let inputField = document.getElementById("liveChatMessageInputField");
+                let txt = inputField.value.trim();
                 if(!txt) return;
 
                 if(hasProfanity(txt)) { alert("🚫 Bad words are blocked!"); return; }
 
-                await addDoc(collection(db, "inbox_channels", chatRoomId, "messages"), {
-                    senderUid: globalUserSession.uid,
-                    text: cleanProfanity(txt),
-                    timestamp: new Date().getTime()
-                });
-                await updateDoc(doc(db, "inbox_channels", chatRoomId), { lastUpdated: new Date().getTime() });
-                input.value = "";
+                try {
+                    await addDoc(collection(db, "inbox_channels", chatRoomId, "messages"), {
+                        senderUid: globalUserSession.uid,
+                        text: cleanProfanity(txt),
+                        timestamp: new Date().getTime()
+                    });
+                    await updateDoc(doc(db, "inbox_channels", chatRoomId), { lastUpdated: new Date().getTime() });
+                    inputField.value = ""; 
+                } catch(err) {
+                    console.error("Error sending message: ", err);
+                }
             };
         };
 
@@ -825,7 +827,8 @@
                     let opponentName = data.names[opponentUid] || "anonymous";
 
                     let card = document.createElement("div");
-                    card.className = "chat-user-item";
+                    card.className = "card";
+                    card.style = "padding: 16px 20px; margin-bottom: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; display: flex; align-items: center; cursor: pointer;";
                     card.innerHTML = `
                         <div class="chat-user-icon">👤</div>
                         <div style="flex:1;">
@@ -844,8 +847,21 @@
             let email = document.getElementById("signupEmail").value;
             let password = document.getElementById("signupPassword").value;
             if(!name || containsEmoji(name)) { alert("🚫 Enter valid name without emojis!"); return; }
+            
+            // 🛑 একাউন্ট খোলার ফার্স্ট স্টেপেই ইউনিক হ্যান্ডেল ভ্যালিডেশন ম্যাপিং
+            let isTaken = await checkIfUsernameIsAlreadyTaken(name);
+            if(isTaken) { alert(`🚫 The username handle "@${name}" is already registered! Please pick a different unique name.`); return; }
+
             try {
                 let creds = await createUserWithEmailAndPassword(auth, email, password);
+                
+                // গ্লোবাল ইউজার ট্র্যাকার ডক রাইট পুশ
+                await setDoc(doc(db, "users", creds.user.uid), {
+                    username: name,
+                    searchName: name.toLowerCase(),
+                    uid: creds.user.uid
+                });
+
                 safeStorage.setItem("profile_name_" + creds.user.uid, name);
                 safeStorage.setItem("permanent_uid_session", creds.user.uid);
                 await updateProfile(creds.user, { displayName: name });
@@ -859,7 +875,15 @@
             try {
                 let creds = await signInWithEmailAndPassword(auth, email, password);
                 safeStorage.setItem("permanent_uid_session", creds.user.uid);
-                if (creds.user.displayName) safeStorage.setItem("profile_name_" + creds.user.uid, creds.user.displayName);
+                
+                // ডাটাবেজ থেকে হ্যান্ডেল রিস্টোর ব্যাকআপ পুশ
+                let userDoc = await getDoc(doc(db, "users", creds.user.uid));
+                if(userDoc.exists()) {
+                    let dName = userDoc.data().username;
+                    safeStorage.setItem("profile_name_" + creds.user.uid, dName);
+                    if(!creds.user.displayName) await updateProfile(creds.user, { displayName: dName });
+                }
+                
                 hidePopup('loginPopup'); location.reload();
             } catch(e) { alert(e.message); }
         }
@@ -934,7 +958,8 @@
             buildFeedDOM("searchFeed", cat, false);
         }
 
-        function buildFeedDOM(targetDivId, categoryFilter = "all", selfUidOnly = false) {
+        // 🔍 গ্লোবাল ডিসকভারি রেন্ডারিং প্যাটচড ইঞ্জিন
+        async function buildFeedDOM(targetDivId, categoryFilter = "all", selfUidOnly = false) {
             let box = document.getElementById(targetDivId); if(!box) return; box.innerHTML = "";
             let now = new Date().getTime();
             
@@ -950,14 +975,30 @@
                 return true;
             });
             
+            // 🛠️ রিয়েল-টাইম গ্লোবাল ইউজার এক্সিস্টেন্স চেকার (গল্প না থাকলেও প্রোফাইল শো করার সিক্রেট লজিক)
             if(dataset.length === 0 && targetDivId === "searchFeed" && currentSearchQueryFilterKeyword) {
-                box.innerHTML = `
-                    <div class="card" style="border-color: rgba(0, 195, 255, 0.25); text-align: center;">
-                        <div style="font-weight: 600; color: #00c3ff; font-size: 15px; margin-bottom: 5px;">@${currentSearchQueryFilterKeyword}</div>
-                        <p style="font-size: 12px; opacity: 0.5; margin-bottom: 15px;">This anonymous person hasn't published any chronicles yet.</p>
-                        <button class="btn createBtn" onclick="openLiveChatWithUser('searched_uid_placeholder_${currentSearchQueryFilterKeyword}', '${currentSearchQueryFilterKeyword}')" style="margin-top:0; padding: 12px;">📩 Launch Secure Chat Channel</button>
-                    </div>
-                `;
+                // চেক করা হচ্ছে সিস্টেমে এই নামে কোনো আসল একাউন্ট হোল্ডার রেজিস্টার্ড আছে কিনা
+                let cleanCheckName = currentSearchQueryFilterKeyword.trim().toLowerCase();
+                let q = query(collection(db, "users"), where("searchName", "==", cleanCheckName));
+                let userMatchSnap = await getDocs(q);
+
+                if(!userMatchSnap.empty) {
+                    // ইউজার সিস্টেমে এক্সিস্ট করে (আছে)! কিন্তু কোনো পোস্ট নাই
+                    let matchedUserRawData = userMatchSnap.docs[0].data();
+                    let verifiedUsername = matchedUserRawData.username;
+                    let verifiedUid = matchedUserRawData.uid;
+
+                    box.innerHTML = `
+                        <div class="card" style="border: 1px solid rgba(0, 195, 255, 0.4); background: rgba(0, 195, 255, 0.02); text-align: center; padding: 30px 20px;">
+                            <div style="font-weight: 700; color: #00c3ff; font-size: 18px; margin-bottom: 4px;">@${verifiedUsername}</div>
+                            <p style="font-size: 12px; opacity: 0.5; margin-bottom: 18px;">This midnight soul exists in our chronicles but hasn't published any secret stories yet.</p>
+                            <button class="btn createBtn" onclick="openLiveChatWithUser('${verifiedUid}', '${verifiedUsername}')" style="margin-top:0; padding: 12px; max-width: 250px; margin: 0 auto;">💬 Launch Live 4H Chat</button>
+                        </div>
+                    `;
+                } else {
+                    // ইউজার সিস্টেমে নাই! (ভুল নাম সার্চ করেছে)
+                    box.innerHTML = `<p style='text-align:center; opacity:0.4; padding:40px; font-size:13px;'>🚫 No anonymous user handle found matching "@${currentSearchQueryFilterKeyword}"</p>`;
+                }
                 return;
             } else if(dataset.length === 0) {
                 box.innerHTML = "<p style='text-align:center; opacity:0.4; padding:30px; font-size:13px;'>No confessions found here.</p>"; 
