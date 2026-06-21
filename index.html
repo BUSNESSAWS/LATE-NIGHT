@@ -8,61 +8,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
 
-        body {
-            background: #000;
-            overflow-x: hidden;
-            color: white;
-            padding-bottom: 110px;
-        }
+        body { background: #000; overflow-x: hidden; color: white; padding-bottom: 110px; }
 
-        .bg {
-            position: fixed;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            z-index: -10;
-            background: radial-gradient(circle at top, #300025, #050505 50%, #000 90%);
-        }
+        #chatActiveTimerHUD { display: none !important; }
 
-        .blur1, .blur2, .blur3 {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            animation: float 10s infinite ease-in-out;
-            opacity: 0.85;
-        }
+        .bg { position: fixed; width: 100%; height: 100vh; overflow: hidden; z-index: -10; background: radial-gradient(circle at top, #300025, #050505 50%, #000 90%); }
 
+        .blur1, .blur2, .blur3 { position: absolute; border-radius: 50%; filter: blur(100px); animation: float 10s infinite ease-in-out; opacity: 0.85; }
         .blur1 { width: 350px; height: 350px; background: #ff0077; top: -100px; left: -100px; }
         .blur2 { width: 300px; height: 300px; background: #6c42ff; bottom: 50px; right: -80px; animation-delay: 2s; }
         .blur3 { width: 250px; height: 250px; background: #00c3ff; top: 35%; left: 40%; animation-delay: 4s; }
 
-        @keyframes float { 
-            0%, 100% { transform: translateY(0px) translateX(0px); }
-            50% { transform: translateY(-40px) translateX(30px); } 
-        }
+        @keyframes float { 0%, 100% { transform: translateY(0px) translateX(0px); } 50% { transform: translateY(-40px) translateX(30px); } }
 
-        .shooting-star-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%; z-index: -9;
-            transform: rotate(-25deg); pointer-events: none;
-        }
-
-        .star {
-            position: absolute; top: 0; left: 0; height: 2px;
-            background: linear-gradient(-45deg, #fff, rgba(0, 195, 255, 0));
-            filter: drop-shadow(0 0 6px #ff0088);
-            animation: tail 4s ease-in-out infinite, shooting 4s ease-in-out infinite;
-            opacity: 0;
-        }
-
+        .shooting-star-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -9; transform: rotate(-25deg); pointer-events: none; }
+        .star { position: absolute; top: 0; left: 0; height: 2px; background: linear-gradient(-45deg, #fff, rgba(0, 195, 255, 0)); filter: drop-shadow(0 0 6px #ff0088); animation: tail 4s ease-in-out infinite, shooting 4s ease-in-out infinite; opacity: 0; }
         .star:nth-child(1) { left: 30%; animation-delay: 0s; animation-duration: 3.5s; }
         .star:nth-child(2) { left: 60%; animation-delay: 1.5s; animation-duration: 4.5s; filter: drop-shadow(0 0 6px #00c3ff); }
         .star:nth-child(3) { left: 15%; animation-delay: 3s; animation-duration: 3.8s; filter: drop-shadow(0 0 6px #6c42ff); }
@@ -70,131 +32,105 @@
         @keyframes tail { 0%, 100% { width: 0; } 30% { width: 100px; } }
         @keyframes shooting { 0% { transform: translateX(0); opacity: 0; } 10% { opacity: 1; } 30%, 100% { transform: translateX(400px); opacity: 0; } }
 
-        .particle {
-            position: absolute; width: 4px; height: 4px; background: white; border-radius: 50%; opacity: 0.3;
-            animation: particle 12s linear infinite;
-        }
+        .particle { position: absolute; width: 4px; height: 4px; background: white; border-radius: 50%; opacity: 0.3; animation: particle 12s linear infinite; }
         @keyframes particle { from { transform: translateY(100vh) scale(0); } to { transform: translateY(-100vh) scale(1.4); } }
 
-        /* 🪐 🍏 INTRO/LOADING SCREEN: ULTIMATE IPHONE MIX-COLOR GLASS EFFECT FIXED */
-        #intro {
-            position: fixed; 
-            width: 100%; 
-            height: 100vh; 
-            display: flex; 
-            justify-content: center;
-            align-items: center; 
-            z-index: 99999;
-            /* ব্ল্যাক মুছে লিকুইড মিক্সড নিয়ন ব্যাকগ্রাউন্ড জেনারেট করা হলো */
-            background: linear-gradient(135deg, #1f0018 0%, #050505 40%, #000c1a 100%);
-            backdrop-filter: blur(50px) saturate(220%);
-            -webkit-backdrop-filter: blur(50px) saturate(220%);
+        /* ========================================================= */
+        /* ✨ HIGH-LEVEL 3-SECOND 3D GEOMETRIC GLASS INTRO ANIMATION ✨  */
+        /* ========================================================= */
+        #intro { 
+            position: fixed; width: 100%; height: 100vh; 
+            display: flex; justify-content: center; align-items: center; 
+            z-index: 99999; 
+            background: linear-gradient(135deg, rgba(31, 0, 40, 0.4) 0%, rgba(10, 5, 20, 0.5) 50%, rgba(0, 20, 40, 0.4) 100%);
+            backdrop-filter: blur(40px) saturate(250%);
+            -webkit-backdrop-filter: blur(40px) saturate(250%);
+            box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.05);
+            overflow: hidden; perspective: 1200px;
         }
 
-        /* ইন্ট্রো স্ক্রিনের পেছনে ডাইনামিক লাইট ইফেক্ট গ্লো */
-        #intro::before {
-            content: ''; position: absolute; width: 300px; height: 300px; background: #ff0077; border-radius: 50%; filter: blur(120px); top: 20%; left: 10%; opacity: 0.6;
-        }
-        #intro::after {
-            content: ''; position: absolute; width: 250px; height: 250px; background: #00c3ff; border-radius: 50%; filter: blur(120px); bottom: 20%; right: 10%; opacity: 0.5;
-        }
+        #intro::before { content: ''; position: absolute; width: 400px; height: 400px; background: #ff0077; border-radius: 50%; filter: blur(120px); top: -10%; left: -10%; opacity: 0.6; z-index: -1; animation: introGlow 3s ease-in-out infinite alternate; }
+        #intro::after { content: ''; position: absolute; width: 400px; height: 400px; background: #00c3ff; border-radius: 50%; filter: blur(120px); bottom: -10%; right: -10%; opacity: 0.5; z-index: -1; animation: introGlow 3s ease-in-out infinite alternate-reverse; }
+        @keyframes introGlow { 0% { opacity: 0.4; transform: scale(0.8); } 100% { opacity: 0.8; transform: scale(1.2); } }
 
-        .introTitle {
-            font-size: 48px; font-weight: 900; letter-spacing: 2px;
-            background: linear-gradient(90deg, #fff, #ff4ecd, #7f5cff, #00c3ff, #fff);
-            background-size: 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shine 3s infinite, zoom 3s infinite;
-            z-index: 10;
-            filter: drop-shadow(0 4px 15px rgba(255, 78, 205, 0.3));
-        }
+        .intro-geo-wrapper { position: absolute; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; transform-style: preserve-3d; z-index: 1; }
+        .intro-shape { position: absolute; border: 2px solid transparent; border-radius: 15px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 195, 255, 0.4), inset 0 0 20px rgba(255, 0, 136, 0.4); opacity: 0; transform-style: preserve-3d; }
+        .intro-shape:nth-child(1) { width: 120px; height: 120px; border-color: #00c3ff; background: rgba(0, 195, 255, 0.05); backdrop-filter: blur(5px); animation: shapeSpin1 3s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
+        .intro-shape:nth-child(2) { width: 220px; height: 220px; border-color: #ff0088; border-radius: 50%; border-style: dashed; animation: shapeSpin2 3s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
+        .intro-shape:nth-child(3) { width: 380px; height: 380px; border-color: #7f5cff; background: rgba(127, 92, 255, 0.02); animation: shapeSpin3 3s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
+        .intro-shape:nth-child(4) { width: 580px; height: 580px; border-color: rgba(255, 255, 255, 0.15); border-radius: 50%; box-shadow: 0 0 50px rgba(255,255,255,0.05); animation: shapeSpin4 3s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
 
-        #entryPage {
-            display: none; width: 100%; height: 100vh;
-            justify-content: center; align-items: center; padding: 20px; z-index: 10;
-            background: rgba(10, 10, 10, 0.2); backdrop-filter: blur(35px) saturate(200%); -webkit-backdrop-filter: blur(35px) saturate(200%);
-        }
+        @keyframes shapeSpin1 { 0% { transform: scale(0) rotateZ(0deg) rotateX(0deg); opacity: 0; } 30% { transform: scale(1) rotateZ(180deg) rotateX(45deg); opacity: 1; } 85% { transform: scale(1.5) rotateZ(300deg) rotateX(60deg); opacity: 1; } 100% { transform: scale(4) rotateZ(360deg) rotateX(90deg); opacity: 0; } }
+        @keyframes shapeSpin2 { 0% { transform: scale(0) rotateZ(360deg) rotateY(0deg); opacity: 0; } 35% { transform: scale(1) rotateZ(180deg) rotateY(45deg); opacity: 1; } 85% { transform: scale(1.2) rotateZ(60deg) rotateY(70deg); opacity: 1; } 100% { transform: scale(5) rotateZ(0deg) rotateY(90deg); opacity: 0; } }
+        @keyframes shapeSpin3 { 0% { transform: scale(0) rotateX(45deg) rotateZ(0deg); opacity: 0; } 40% { transform: scale(1) rotateX(45deg) rotateZ(-180deg); opacity: 0.8; } 85% { transform: scale(1.3) rotateX(45deg) rotateZ(-300deg); opacity: 0.8; } 100% { transform: scale(6) rotateX(45deg) rotateZ(-360deg); opacity: 0; } }
+        @keyframes shapeSpin4 { 0% { transform: scale(0) rotate(0deg); opacity: 0; } 45% { transform: scale(1) rotate(90deg); opacity: 0.4; } 85% { transform: scale(1.1) rotate(140deg); opacity: 0.4; } 100% { transform: scale(7) rotate(180deg); opacity: 0; } }
 
-        .entry-container { width: 100%; max-width: 400px; transform: translateY(-40px); }
+        .introTitle { font-size: 55px; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; background: linear-gradient(90deg, #fff, #ff0088, #00c3ff, #fff); background-size: 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; z-index: 10; position: relative; opacity: 0; filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 25px rgba(0, 195, 255, 0.6)); animation: titleReveal 3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        @keyframes titleReveal { 0% { transform: scale(0.3) translateY(50px); opacity: 0; letter-spacing: -10px; filter: blur(20px); } 30% { transform: scale(1.1) translateY(0); opacity: 1; letter-spacing: 8px; filter: blur(0px); background-position: 100% center; } 85% { transform: scale(1) translateY(0); opacity: 1; letter-spacing: 4px; filter: blur(0px); } 100% { transform: scale(2.5) translateY(-30px); opacity: 0; letter-spacing: 15px; filter: blur(15px); } }
 
-        .glass {
-            width: 100%; padding: 45px 25px; border-radius: 32px;
-            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.16); 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
+        #entryPage { display: none; width: 100%; height: 100vh; position: relative; justify-content: center; align-items: center; padding: 20px; z-index: 10; background: rgba(10, 10, 10, 0.2); backdrop-filter: blur(35px) saturate(200%); -webkit-backdrop-filter: blur(35px) saturate(200%); overflow: hidden; }
+        
+        .geo-anim-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
+        .geo-shape { position: absolute; top: 50%; left: 50%; border-radius: 12px; animation: geoRotate linear infinite; border: 2px solid transparent; box-shadow: 0 0 30px rgba(0, 195, 255, 0.1); }
+        .geo-shape:nth-child(1) { width: 280px; height: 280px; border-color: rgba(0, 195, 255, 0.4); animation-duration: 18s; }
+        .geo-shape:nth-child(2) { width: 380px; height: 380px; border-color: rgba(255, 0, 136, 0.3); animation-duration: 25s; animation-direction: reverse; border-radius: 50%; border-style: dashed; }
+        .geo-shape:nth-child(3) { width: 180px; height: 180px; border-color: rgba(127, 92, 255, 0.5); animation-duration: 12s; }
+        @keyframes geoRotate { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
 
-        .mainTitle {
-            font-size: 38px; font-weight: 900; text-align: center; margin-bottom: 8px; line-height: 1.1;
-            background: linear-gradient(90deg, #ff4ecd, #7f5cff, #00c3ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
+        .entry-container { width: 100%; max-width: 400px; transform: translateY(-40px); z-index: 10; position: relative; }
+        .glass { width: 100%; padding: 45px 25px; border-radius: 32px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.16); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
 
+        .mainTitle { font-size: 38px; font-weight: 900; text-align: center; margin-bottom: 8px; line-height: 1.1; background: linear-gradient(90deg, #ff4ecd, #7f5cff, #00c3ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .sub { text-align: center; opacity: 0.6; margin-bottom: 35px; font-size: 13px; letter-spacing: 1px; }
 
-        .btn {
-            width: 100%; padding: 16px; margin-top: 15px; border: none; border-radius: 16px;
-            font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; color: white;
-        }
-
+        .btn { width: 100%; padding: 16px; margin-top: 15px; border: none; border-radius: 16px; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; color: white; position: relative; z-index: 15; }
         .btn:hover { transform: translateY(-2px); }
         .createBtn { background: linear-gradient(135deg, #ff0088, #7f5cff); box-shadow: 0 0 20px rgba(255, 0, 128, 0.3); }
         .loginBtn { background: linear-gradient(135deg, #00c3ff, #0077ff); box-shadow: 0 0 20px rgba(0, 195, 255, 0.3); }
         .skipBtn { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.1); }
 
         .header-wrapper { position: sticky; top: 0; z-index: 100; width: 100%; }
-        nav {
-            width: 100%; padding: 10px 18px; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(10, 10, 10, 0.35); backdrop-filter: blur(40px) saturate(240%); -webkit-backdrop-filter: blur(40px) saturate(240%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); height: 54px;
+        
+        /* ✨ UPDATED NAV BAR WITH RELATIVE POSITIONING FOR ANIMATION ✨ */
+        nav { position: relative; width: 100%; padding: 10px 18px; display: flex; justify-content: space-between; align-items: center; background: rgba(10, 10, 10, 0.35); backdrop-filter: blur(40px) saturate(240%); -webkit-backdrop-filter: blur(40px) saturate(240%); border-bottom: 1px solid rgba(255, 255, 255, 0.1); height: 54px; overflow: hidden; }
+        
+        .orange-strip-light { width: 100%; height: 2px; background: linear-gradient(90deg, #ff5500, #ffaa00, #00d2ff, #0077ff); background-size: 200% auto; box-shadow: 0 0 8px rgba(255, 85, 0, 0.6), 0 0 15px rgba(0, 210, 255, 0.6); animation: stripPulse 3s infinite linear; }
+
+        /* ======================================================================== */
+        /* ✨ INFINITE GEOMETRIC NAV BAR BACKGROUND ANIMATION ✨ */
+        /* ======================================================================== */
+        .nav-bg-anim { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; display: flex; align-items: center; }
+        .nav-geo-shape { position: absolute; border: 1px solid rgba(255, 255, 255, 0.15); opacity: 0; animation: navDrift linear infinite; }
+        
+        /* Transparent and delicate shapes */
+        .nav-geo-shape:nth-child(1) { width: 35px; height: 35px; border-radius: 8px; border-color: rgba(0, 195, 255, 0.25); animation-duration: 12s; left: -50px; }
+        .nav-geo-shape:nth-child(2) { width: 25px; height: 25px; border-radius: 50%; border-style: dashed; border-color: rgba(255, 0, 136, 0.25); animation-duration: 18s; animation-delay: 4s; left: -50px; }
+        .nav-geo-shape:nth-child(3) { width: 45px; height: 45px; border-radius: 4px; border-color: rgba(127, 92, 255, 0.2); animation-duration: 22s; animation-delay: 8s; left: -50px; }
+        .nav-geo-shape:nth-child(4) { width: 20px; height: 20px; border-radius: 50%; border-color: rgba(0, 255, 102, 0.2); animation-duration: 15s; animation-delay: 2s; left: -50px; }
+        
+        @keyframes navDrift { 
+            0% { transform: translateX(0) rotate(0deg); opacity: 0; } 
+            10% { opacity: 0.8; } 
+            90% { opacity: 0.8; } 
+            100% { transform: translateX(calc(100vw + 100px)) rotate(360deg); opacity: 0; } 
         }
 
-        .orange-strip-light {
-            width: 100%; height: 2px;
-            background: linear-gradient(90deg, #ff5500, #ffaa00, #00d2ff, #0077ff); background-size: 200% auto;
-            box-shadow: 0 0 8px rgba(255, 85, 0, 0.6), 0 0 15px rgba(0, 210, 255, 0.6);
-            animation: stripPulse 3s infinite linear;
-        }
+        /* Protect Text to stay above the animation */
+        .logo-container, #navStatus { position: relative; z-index: 2; display: flex; align-items: center; gap: 5px;}
+        /* ======================================================================== */
 
-        /* 📱 🍏 IPHONE TRUE LIQUID CRYSTAL GLASS BOTTOM BAR */
-        .bottom-nav {
-            position: fixed; bottom: 16px; left: 4%; width: 90%; height: 66px;
-            background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(45px) saturate(250%); -webkit-backdrop-filter: blur(45px) saturate(250%);
-            border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 28px;
-            display: flex; justify-content: space-around; align-items: center; z-index: 999;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-        }
-
-        .nav-item {
-            position: relative; flex: 1; height: 100%;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            color: rgba(255, 255, 255, 0.4); cursor: pointer; font-size: 10px; font-weight: 500;
-            z-index: 5; transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
+        .bottom-nav { position: fixed; bottom: 16px; left: 4%; width: 90%; height: 66px; background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(45px) saturate(250%); -webkit-backdrop-filter: blur(45px) saturate(250%); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 28px; display: flex; justify-content: space-around; align-items: center; z-index: 999; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), inset 0 1px 1px rgba(255, 255, 255, 0.2); }
+        .nav-item { position: relative; flex: 1; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.4); cursor: pointer; font-size: 10px; font-weight: 500; z-index: 5; transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .nav-item svg { width: 22px; height: 22px; fill: currentColor; margin-bottom: 4px; transition: transform 0.25s ease; }
         .nav-item.active { color: #ff4ecd; }
         .nav-item.active svg { transform: scale(1.1); }
+        .glass-sliding-capsule-ring { position: absolute; top: 12%; left: 2%; width: 16%; height: 76%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 20px; z-index: 1; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); pointer-events: none; transition: left 0.45s cubic-bezier(0.25, 1, 0.5, 1), width 0.45s cubic-bezier(0.25, 1, 0.5, 1); }
 
-        .glass-sliding-capsule-ring {
-            position: absolute; top: 12%; left: 2%; width: 16%; height: 76%;
-            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 20px; z-index: 1;
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); pointer-events: none;
-            transition: left 0.45s cubic-bezier(0.25, 1, 0.5, 1), width 0.45s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        /* 📝 POST CARDS */
-        .card {
-            position: relative; padding: 25px; margin-bottom: 20px; border-radius: 24px;
-            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08); overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-        }
-
+        .card { position: relative; padding: 25px; margin-bottom: 20px; border-radius: 24px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
         .app-section { display: none !important; width: 92%; max-width: 680px; margin: 20px auto; animation: fadeIn 0.35s ease; }
         .app-section.active-section { display: block !important; }
 
-        .ad-slider-container {
-            width: 100%; height: 120px; position: relative; margin-bottom: 20px;
-            border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08);
-            background: #111; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        }
+        .ad-slider-container { width: 100%; height: 120px; position: relative; margin-bottom: 20px; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); background: #111; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); }
         .ad-slider-link { width: 100%; height: 100%; display: block; position: relative; }
         .ad-slider-link.no-click-allowed { cursor: default; pointer-events: none; }
         .ad-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.8s ease-in-out; z-index: 1; }
@@ -243,28 +179,12 @@
 
         .online-dot { width: 10px; height: 10px; background-color: #00ff66; border-radius: 50%; display: inline-block; margin-left: auto; box-shadow: 0 0 8px #00ff66; }
 
-        /* 🔮 📲 FULL PAGE LIQUID GLASS CHAT INTERFACE */
-        .popup-full-chat {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: none;
-            flex-direction: column; background: rgba(10, 10, 10, 0.4);
-            backdrop-filter: blur(40px) saturate(220%); -webkit-backdrop-filter: blur(40px) saturate(220%);
-            z-index: 10000; overflow: hidden;
-        }
-
+        .popup-full-chat { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: none; flex-direction: column; background: rgba(10, 10, 10, 0.4); backdrop-filter: blur(40px) saturate(220%); -webkit-backdrop-filter: blur(40px) saturate(220%); z-index: 10000; overflow: hidden; }
         .chat-particle-canvas { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
         .floating-emoji-item { position: absolute; font-size: 24px; opacity: 0; animation: floatUpEmoji 4.5s linear infinite; bottom: -50px; }
+        @keyframes floatUpEmoji { 0% { transform: translateY(0) scale(0.6) rotate(0deg); opacity: 0; } 15% { opacity: 0.6; } 85% { opacity: 0.6; } 100% { transform: translateY(-105vh) scale(1.2) rotate(360deg); opacity: 0; } }
 
-        @keyframes floatUpEmoji {
-            0% { transform: translateY(0) scale(0.6) rotate(0deg); opacity: 0; }
-            15% { opacity: 0.6; }
-            85% { opacity: 0.6; }
-            100% { transform: translateY(-105vh) scale(1.2) rotate(360deg); opacity: 0; }
-        }
-
-        .chat-head-nav {
-            width: 100%; height: 65px; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 20px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        .chat-head-nav { width: 100%; height: 65px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .chat-room-scroll-box { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
         
         .msg-bubble { max-width: 75%; padding: 12px 16px; font-size: 14px; line-height: 1.5; border-radius: 20px; word-wrap: break-word; display: flex; flex-direction: column; position: relative; }
@@ -276,18 +196,29 @@
         .chat-wipe-action-btn { background: rgba(255, 59, 48, 0.15); border: 1px solid rgba(255, 59, 48, 0.4); padding: 8px 14px; border-radius: 14px; color: #ff3b30; cursor: pointer; font-size: 12px; font-weight: 700; transition: 0.2s; }
         .chat-wipe-action-btn:hover { background: #ff3b30; color: white; box-shadow: 0 0 15px rgba(255, 59, 48, 0.5); }
 
-        .chat-input-dock-row {
-            width: 100%; padding: 16px 20px 30px; display: flex; gap: 10px; align-items: center;
-            background: rgba(15, 15, 15, 0.6); border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
+        .chat-input-dock-row { width: 100%; padding: 16px 20px 30px; display: flex; gap: 10px; align-items: center; background: rgba(15, 15, 15, 0.6); border-top: 1px solid rgba(255, 255, 255, 0.08); }
         .chat-back-btn { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 8px 16px; border-radius: 14px; color: white; cursor: pointer; font-size: 13px; font-weight: 600; }
         .chat-send-btn { background: linear-gradient(135deg, #00c3ff, #0077ff); border: none; padding: 14px 24px; border-radius: 14px; color: white; cursor: pointer; font-weight: 600; font-size: 14px; box-shadow: 0 0 15px rgba(0,195,255,0.4); }
 
-        .popup { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: none; justify-content: center; align-items: center; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 9999; }
-        .popupBox { width: 90%; max-width: 440px; padding: 30px; border-radius: 28px; background: rgba(20, 20, 20, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-height: 85vh; overflow-y: auto; }
+        .popup { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: none; justify-content: center; align-items: center; background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(20px); z-index: 9999; overflow: hidden; }
+        .popupBox { width: 90%; max-width: 430px; padding: 35px 25px; border-radius: 28px; background: #111113 !important; border: 1px solid rgba(255, 255, 255, 0.08); animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-height: 85vh; overflow-y: auto; position: relative; z-index: 10; box-shadow: 0 25px 60px rgba(0,0,0,0.9); }
+        .popupBox > * { position: relative; z-index: 2; }
+        .popup-inner-bg { position: absolute !important; top: 0; left: 0; width: 100%; height: 100%; z-index: 0 !important; pointer-events: none; display: flex; justify-content: center; align-items: center; overflow: hidden; border-radius: 28px; opacity: 0.25; }
+
+        .anim-hex { position: absolute; border: 2px solid rgba(255, 0, 136, 0.6); border-radius: 24px; box-shadow: 0 0 30px rgba(255, 0, 136, 0.4); animation: hexFloat 8s infinite linear; transform-style: preserve-3d; }
+        .anim-hex:nth-child(1) { width: 340px; height: 340px; animation-duration: 22s; border-color: rgba(127, 92, 255, 0.5); }
+        .anim-hex:nth-child(2) { width: 240px; height: 240px; animation-duration: 14s; animation-direction: reverse; border-color: rgba(0, 195, 255, 0.5); }
+        .anim-hex:nth-child(3) { width: 120px; height: 120px; animation-duration: 9s; border-color: rgba(255, 255, 255, 0.3); }
+        @keyframes hexFloat { 0% { transform: rotateX(30deg) rotateY(30deg) rotateZ(0deg); } 100% { transform: rotateX(30deg) rotateY(30deg) rotateZ(360deg); } }
+
+        .anim-ring { position: absolute; border: 2px dashed rgba(0, 195, 255, 0.6); border-radius: 50%; box-shadow: 0 0 30px rgba(0, 195, 255, 0.3); animation: ringPulse 10s infinite ease-in-out; }
+        .anim-ring:nth-child(1) { width: 360px; height: 360px; animation-duration: 18s; border-color: rgba(127, 92, 255, 0.5); }
+        .anim-ring:nth-child(2) { width: 260px; height: 260px; animation-duration: 12s; animation-direction: reverse; border-style: dotted; border-color: rgba(255, 0, 136, 0.5); }
+        .anim-ring:nth-child(3) { width: 150px; height: 150px; animation-duration: 7s; border-style: solid; border-color: rgba(255, 255, 255, 0.2); }
+        @keyframes ringPulse { 0% { transform: scale(0.7) rotate(0deg); opacity: 0.4; } 50% { transform: scale(1.1) rotate(180deg); opacity: 1; } 100% { transform: scale(0.7) rotate(360deg); opacity: 0.4; } }
+
         .input { width: 100%; padding: 16px; margin-top: 14px; border: none; outline: none; border-radius: 14px; background: rgba(255, 255, 255, 0.05); color: white; font-size: 15px; border: 1px solid rgba(255,255,255,0.05); }
-        .popupBtn { width: 100%; padding: 15px; margin-top: 18px; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; background: linear-gradient(135deg, #ff0088, #7f5cff); color: white; }
+        .popupBtn { width: 100%; padding: 15px; margin-top: 18px; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; background: linear-gradient(135deg, #ff0088, #7f5cff); color: white; position: relative; z-index: 15; }
         .closeBtn { background: rgba(255, 255, 255, 0.08); margin-top: 10px; color: rgba(255,255,255,0.7); }
         .delete-btn { background: none; border: none; color: #ff3b30; cursor: pointer; font-size: 13px; opacity: 0.7; margin-left: auto;}
     </style>
@@ -306,11 +237,23 @@
     <div class="particle" style="left:55%;animation-delay:3s;"></div>
     <div class="particle" style="left:85%;animation-delay:1.5s;"></div>
 
-    <!-- 🌌 🪐 INTRO SCREEN MASTER BUILD FIXED -->
-    <div id="intro"><div class="introTitle">Late Night</div></div>
+    <div id="intro">
+        <div class="intro-geo-wrapper">
+            <div class="intro-shape"></div>
+            <div class="intro-shape"></div>
+            <div class="intro-shape"></div>
+            <div class="intro-shape"></div>
+        </div>
+        <div class="introTitle">Late Night</div>
+    </div>
 
-    <!-- ENTRY PAGE -->
     <div id="entryPage">
+        <div class="geo-anim-container">
+            <div class="geo-shape"></div>
+            <div class="geo-shape"></div>
+            <div class="geo-shape"></div>
+        </div>
+        
         <div class="entry-container">
             <div class="glass">
                 <div class="mainTitle">Late Night<br>Confessions</div>
@@ -322,10 +265,16 @@
         </div>
     </div>
 
-    <!-- MAIN DASHBOARD -->
     <div id="mainPage">
         <div class="header-wrapper">
+            <!-- ✨ TOP NAV BAR WITH INFINITE GEOMETRIC DRIFT BACKGROUND ✨ -->
             <nav>
+                <div class="nav-bg-anim">
+                    <div class="nav-geo-shape"></div>
+                    <div class="nav-geo-shape"></div>
+                    <div class="nav-geo-shape"></div>
+                    <div class="nav-geo-shape"></div>
+                </div>
                 <div class="logo-container">
                     <span class="animated-moon">🌙</span>
                     <div class="logo">Late Night</div>
@@ -335,12 +284,10 @@
             <div class="orange-strip-light"></div>
         </div>
 
-        <!-- 1. HOME TAB -->
         <div id="section-home" class="app-section active-section">
             <div class="feed" id="globalFeed"></div>
         </div>
 
-        <!-- 2. POST TAB -->
         <div id="section-post" class="app-section">
             <div class="post-box">
                 <h3 style="font-size: 18px; margin-bottom: 5px;">Share a Confession</h3>
@@ -355,13 +302,10 @@
             </div>
         </div>
 
-        <!-- 3. SEARCH TAB -->
         <div id="section-search" class="app-section">
             <div class="search-container">
                 <button class="download-app-bar" onclick="redirectToAppDownload()">Download Official App 📲</button>
-                
                 <input type="text" class="input" id="usernameLiveSearchBarField" placeholder="🔍 Enter exact @username to match user profile..." style="margin-top:5px; background: rgba(255,255,255,0.06);">
-                
                 <div class="category-grid">
                     <button class="cat-btn active-cat" data-cat="all" onclick="switchCategory('all', this)">All</button>
                     <button class="cat-btn" data-cat="love" onclick="switchCategory('love', this)">❤️ Love</button>
@@ -372,13 +316,11 @@
             </div>
         </div>
 
-        <!-- 4. INBOX TAB -->
         <div id="section-chats" class="app-section">
             <h3 style="font-size: 18px; margin-bottom: 15px; color: #ff4ecd;">Active Conversations</h3>
             <div id="inboxChannelsFeedList"></div>
         </div>
 
-        <!-- 5. PROFILE TAB -->
         <div id="section-profile" class="app-section">
             <div class="profile-header-card">
                 <div class="profile-avatar" id="profileDisplayAvatarCircleNode" onclick="toggleAvatarSelectionMode()">👤</div>
@@ -402,22 +344,18 @@
                         <div class="stat-label">Comments</div>
                     </div>
                 </div>
-                
                 <div style="margin-top:25px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.06); text-align:left;">
                     <label style="font-size:12px; opacity:0.6;">Modify Handle (Unique Name):</label>
                     <button class="popupBtn" onclick="triggerUsernameChangeModalFlow()" style="padding:12px; font-size:14px; background:linear-gradient(135deg, #00c3ff, #7f5cff); margin-top:8px;">Change Username 📝</button>
                 </div>
-
                 <button class="btn skipBtn" onclick="triggerLogout()" style="margin-top: 20px; padding: 10px; font-size: 14px;">Logout Account 🚪</button>
             </div>
             <h3 style="font-size: 16px; margin-bottom: 15px; color: #ff4ecd;">My Secret Chronicles</h3>
             <div id="myPersonalFeed"></div>
         </div>
 
-        <!-- 📱 GLASS BOTTOM NAV BAR WITH LIVE SLIDING CAPSULE LAYER -->
         <div class="bottom-nav" id="mainCoreBottomNavigationDOMTrackNode">
             <div class="glass-sliding-capsule-ring" id="liquidSlidingGlassCapsuleIndicatorBubble"></div>
-            
             <div class="nav-item active" data-index="0" onclick="switchTab('home', this)">
                 <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home
             </div>
@@ -436,28 +374,22 @@
         </div>
     </div>
 
-    <!-- 🔮 📲 FULL SCREEN TRANS_LIQUID GLASS LIVE CHAT WINDOW MODAL -->
     <div class="popup-full-chat" id="liveChatRoomFullScreenModal">
         <div class="chat-particle-canvas" id="liveFloatingEmojiAnimationOverlayBox"></div>
-        
         <div class="chat-head-nav">
             <button class="chat-back-btn" id="closeLiveChatModalRoomBtn">⬅️ Back</button>
             <div style="text-align: center;">
                 <h3 id="chatRoomHeaderTitle" style="font-size: 15px; font-weight:700; color: #00c3ff;">@username</h3>
-                <span id="chatActiveTimerHUD" style="font-size: 10px; color: #ffaa00; font-weight: 800;">2h 00m active time left</span>
             </div>
-            <button class="chat-wipe-action-btn" id="wipeEntireConversationHistoryActionButton">🗑️ Delete Local Chat</button>
+            <button class="chat-wipe-action-btn" id="wipeEntireConversationHistoryActionButton">🗑️ Delete From Server</button>
         </div>
-        
         <div class="chat-room-scroll-box" id="chatMessageLiveTrackBox"></div>
-        
         <div class="chat-input-dock-row">
             <input type="text" class="input" id="liveChatMessageInputField" placeholder="Type secret message..." style="margin-top:0; flex:1; height:48px; background: rgba(255,255,255,0.08);">
             <button class="chat-send-btn" id="sendLiveMsgActionButton">Send</button>
         </div>
     </div>
 
-    <!-- POPUPS -->
     <div class="popup" id="gatekeeperPopup">
         <div class="popupBox" style="text-align: center;">
             <div class="popupTitle" style="font-size: 24px;">Join Late Night Confessions 🌙</div>
@@ -470,6 +402,11 @@
 
     <div class="popup" id="signupPopup">
         <div class="popupBox">
+            <div class="popup-inner-bg">
+                <div class="anim-hex"></div>
+                <div class="anim-hex"></div>
+                <div class="anim-hex"></div>
+            </div>
             <div class="popupTitle" style="font-size: 26px;">Create Account</div>
             <input type="text" class="input" id="signupName" placeholder="Unique Username Handle (No Emojis)">
             <input type="email" class="input" id="signupEmail" placeholder="Email Address">
@@ -481,6 +418,11 @@
 
     <div class="popup" id="loginPopup">
         <div class="popupBox">
+            <div class="popup-inner-bg">
+                <div class="anim-ring"></div>
+                <div class="anim-ring"></div>
+                <div class="anim-ring"></div>
+            </div>
             <div class="popupTitle">Welcome Back</div>
             <input type="email" class="input" id="loginEmail" placeholder="Email Address">
             <input type="password" class="input" id="loginPassword" placeholder="Enter Password">
@@ -515,14 +457,26 @@
         let memoryBackupStore = {};
         let sliderTimerInterval = null;
         let selectedAvatarStyleMode = "emoji"; 
+        
+        window.profileStatsData = { posts: 0, likes: 0, comments: 0 };
 
         const safeStorage = {
             getItem: (key) => { try { return localStorage.getItem(key); } catch(e) { return memoryBackupStore[key] || null; } },
             setItem: (key, value) => { try { localStorage.setItem(key, value); return true; } catch(e) { memoryBackupStore[key] = value; return true; } }
         };
 
-        function showPopup(id) { document.getElementById(id).style.display = "flex"; }
-        function hidePopup(id) { document.getElementById(id).style.display = "none"; }
+        function showPopup(id) { 
+            const node = document.getElementById(id);
+            if(node) {
+                node.style.display = "flex"; 
+            }
+        }
+        function hidePopup(id) { 
+            const node = document.getElementById(id);
+            if(node) {
+                node.style.display = "none"; 
+            }
+        }
         function openSignup() { showPopup('signupPopup'); }
         function openLogin() { showPopup('loginPopup'); }
         
@@ -531,6 +485,24 @@
             document.getElementById("mainPage").style.display = "block";
             document.getElementById("navStatus").innerText = "Guest Mode 👤";
             realignLiquidPillIndicator(0);
+        }
+
+        function animateStatValue(elementId, endValue, duration) {
+            let obj = document.getElementById(elementId);
+            if (!obj) return;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                obj.innerText = Math.floor(easeOut * endValue);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    obj.innerText = endValue;
+                }
+            };
+            window.requestAnimationFrame(step);
         }
 
         function switchTab(targetSection, element) {
@@ -547,6 +519,17 @@
             document.querySelectorAll('.app-section').forEach(sec => { sec.classList.remove('active-section'); });
             const targetDOM = document.getElementById('section-' + targetSection);
             if(targetDOM) targetDOM.classList.add('active-section');
+
+            if (targetSection === 'profile') {
+                document.getElementById("stat-posts").innerText = "0";
+                document.getElementById("stat-likes").innerText = "0";
+                document.getElementById("stat-comments").innerText = "0";
+                setTimeout(() => {
+                    animateStatValue("stat-posts", window.profileStatsData.posts, 2000);
+                    animateStatValue("stat-likes", window.profileStatsData.likes, 2000);
+                    animateStatValue("stat-comments", window.profileStatsData.comments, 2000);
+                }, 50);
+            }
         }
 
         function realignLiquidPillIndicator(index) {
@@ -562,17 +545,11 @@
             selectedPostCategory = category;
         }
 
-        function triggerCoinInfoPopup() {
-            alert("Earn 1 R-Coin for every 10 midnight confessions. Amass 5 R-Coins to unlock the prestigious Creator Star Badge! ⭐️");
-        }
+        function triggerCoinInfoPopup() { alert("Earn 1 R-Coin for every 10 midnight confessions. Amass 5 R-Coins to unlock the prestigious Creator Star Badge! ⭐️"); }
 
         function redirectToAppDownload() {
             const appDownloadUrl = "https://your-app-download-link.com/file.apk";
-            if(appDownloadUrl.includes("your-app-download-link")) {
-                alert("App download link placeholder works!");
-            } else {
-                window.open(appDownloadUrl, "_blank");
-            }
+            if(appDownloadUrl.includes("your-app-download-link")) { alert("App download link placeholder works!"); } else { window.open(appDownloadUrl, "_blank"); }
         }
 
         function startLiveImageSliders() {
@@ -606,7 +583,6 @@
         }
     </script>
 
-    <!-- CORE FIREBASE ENGINE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, increment, setDoc, getDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
@@ -632,11 +608,7 @@
         let activeChatCountdownLoop = null;
         let currentSearchQueryFilterKeyword = "";
         
-        window.activeChatMetaEngineContainer = {
-            currentRoomId: null,
-            targetUid: null,
-            targetUsername: null
-        };
+        window.activeChatMetaEngineContainer = { currentRoomId: null, targetUid: null, targetUsername: null };
 
         const strictlyProhibitedWords = [
             "খারাপশব্দ১", "খারাপশব্দ২", "gali1", "gali2", "bokachoda", "khanki", "bador", "gali", "gandu", 
@@ -647,9 +619,7 @@
 
         function hasProfanity(text) { 
             let found = false; 
-            strictlyProhibitedWords.forEach(word => { 
-                if(text.toLowerCase().includes(word.toLowerCase())) { found = true; } 
-            }); 
+            strictlyProhibitedWords.forEach(word => { if(text.toLowerCase().includes(word.toLowerCase())) { found = true; } }); 
             return found; 
         }
 
@@ -664,8 +634,10 @@
 
         try { await setPersistence(auth, browserLocalPersistence); } catch(e) { console.log(e); }
         
-        // ⏱️ ৩ সেকেন্ড (৩০০০ মিলি-সেকেন্ড) পর ডাইনামিকলি স্প্ল্যাশ ইনট্রো স্ক্রিন ভ্যানিশ প্রোটোকল
-        setTimeout(() => { document.getElementById("intro").style.display = "none"; }, 3000);
+        setTimeout(() => { 
+            document.getElementById("intro").style.display = "none"; 
+            document.getElementById("entryPage").style.display = "flex"; 
+        }, 3000);
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -708,7 +680,6 @@
                 if(!safeStorage.getItem("permanent_uid_session")) {
                     globalUserSession = null;
                     document.getElementById("mainPage").style.display = "none";
-                    document.getElementById("entryPage").style.display = "flex";
                 }
             }
         });
@@ -747,7 +718,6 @@
             if(globalUserSession.uid === targetUid) { alert("You cannot chat with yourself!"); return; }
             
             let chatRoomId = [globalUserSession.uid, targetUid].sort().join("_");
-            
             window.activeChatMetaEngineContainer.currentRoomId = chatRoomId;
             window.activeChatMetaEngineContainer.targetUid = targetUid;
             window.activeChatMetaEngineContainer.targetUsername = targetUsername;
@@ -777,32 +747,26 @@
             let storageKey = "active_seconds_left_" + chatRoomId;
             let secondsLeft = parseInt(safeStorage.getItem(storageKey));
             
-            if(isNaN(secondsLeft) || secondsLeft <= 0) { secondsLeft = 2 * 60 * 60; }
+            if(isNaN(secondsLeft) || secondsLeft <= 0) { secondsLeft = 20 * 60; }
 
             activeChatCountdownLoop = setInterval(async () => {
                 secondsLeft--;
                 safeStorage.setItem(storageKey, secondsLeft);
 
-                let hours = Math.floor(secondsLeft / 3600);
-                let minutes = Math.floor((secondsLeft % 3600) / 60);
-                let hudDisplay = document.getElementById("chatActiveTimerHUD");
-                if(hudDisplay) hudDisplay.innerText = `${hours}h ${minutes}m active time left`;
-
                 if(secondsLeft <= 0) {
                     clearInterval(activeChatCountdownLoop);
-                    if(hudDisplay) hudDisplay.innerText = "Expired 💥";
-                    await updateDoc(doc(db, "inbox_channels", chatRoomId), { isExpired: true });
                     
+                    await updateDoc(doc(db, "inbox_channels", chatRoomId), { isExpired: true });
                     const querySnapshot = await getDocs(collection(db, "inbox_channels", chatRoomId, "messages"));
-                    querySnapshot.forEach(async (docSnapshot) => { await deleteDoc(doc(db, "inbox_channels", chatRoomId, "messages", docSnapshot.id)); });
+                    querySnapshot.forEach(async (docSnapshot) => { 
+                        await deleteDoc(doc(db, "inbox_channels", chatRoomId, "messages", docSnapshot.id)); 
+                    });
 
-                    alert("⏰ Talk time complete! Messages vanished.");
+                    alert("⏰ 20 minutes passed! Chat has been permanently wiped from the server.");
                     document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
-                    safeStorage.setItem(storageKey, 2 * 60 * 60); 
+                    safeStorage.setItem(storageKey, 20 * 60); 
                 }
             }, 1000);
-
-            let clearedTimestampMarker = parseInt(safeStorage.getItem("local_chat_cleared_ts_" + globalUserSession.uid + "_" + chatRoomId)) || 0;
 
             chatUnsubscribeTracker = onSnapshot(collection(db, "inbox_channels", chatRoomId, "messages"), (snap) => {
                 let box = document.getElementById("chatMessageLiveTrackBox");
@@ -813,12 +777,10 @@
                 arr.sort((a,b) => (a.timestamp || 0) - (b.timestamp || 0));
                 
                 arr.forEach(m => {
-                    if (m.timestamp > clearedTimestampMarker) {
-                        let bubble = document.createElement("div");
-                        bubble.className = "msg-bubble " + (m.senderUid === globalUserSession.uid ? "msg-sent" : "msg-received");
-                        bubble.innerHTML = `<div>${m.text}</div>`;
-                        box.appendChild(bubble);
-                    }
+                    let bubble = document.createElement("div");
+                    bubble.className = "msg-bubble " + (m.senderUid === globalUserSession.uid ? "msg-sent" : "msg-received");
+                    bubble.innerHTML = `<div>${m.text}</div>`;
+                    box.appendChild(bubble);
                 });
                 box.scrollTop = box.scrollHeight;
             });
@@ -833,46 +795,40 @@
 
         document.getElementById("sendLiveMsgActionButton").onclick = async function() {
             let activeRoomId = window.activeChatMetaEngineContainer.currentRoomId;
-            if(!activeRoomId || !globalUserSession) {
-                alert("Session error! Re-open chat room.");
-                return;
-            }
+            if(!activeRoomId || !globalUserSession) { alert("Session error! Re-open chat room."); return; }
             
             let inputField = document.getElementById("liveChatMessageInputField");
             let txt = inputField.value.trim();
             if(!txt) return;
 
-            if(hasProfanity(txt)) { 
-                alert("🚫 Safety Guard Activated: Sharing sensitive, vulgar, or abusive messages is strictly forbidden inside incognito rooms!"); 
-                return; 
-            }
+            if(hasProfanity(txt)) { alert("🚫 Safety Guard Activated: Sharing sensitive, vulgar, or abusive messages is strictly forbidden inside incognito rooms!"); return; }
 
             try {
-                await addDoc(collection(db, "inbox_channels", activeRoomId, "messages"), {
-                    senderUid: globalUserSession.uid,
-                    text: txt, 
-                    timestamp: new Date().getTime()
-                });
+                await addDoc(collection(db, "inbox_channels", activeRoomId, "messages"), { senderUid: globalUserSession.uid, text: txt, timestamp: new Date().getTime() });
                 await updateDoc(doc(db, "inbox_channels", activeRoomId), { lastUpdated: new Date().getTime() });
-                inputField.value = ""; 
-                inputField.focus();
-            } catch(err) {
-                console.error("Error sending message: ", err);
-            }
+                inputField.value = ""; inputField.focus();
+            } catch(err) { console.error("Error sending message: ", err); }
         };
 
-        document.getElementById("wipeEntireConversationHistoryActionButton").onclick = function() {
+        document.getElementById("wipeEntireConversationHistoryActionButton").onclick = async function() {
             let activeRoomId = window.activeChatMetaEngineContainer.currentRoomId;
             if(!activeRoomId || !globalUserSession) return;
 
-            let localConfirm = confirm("🗑️ Clear chat history from your screen? (This will NOT delete the chat history from the other user's mobile device)");
+            let localConfirm = confirm("🗑️ আপনি কি এই চ্যাটের সমস্ত মেসেজ সার্ভার থেকে স্থায়ীভাবে মুছে ফেলতে চান? (অপর প্রান্তের ইউজারও আর দেখতে পাবে না)");
             if(!localConfirm) return;
 
-            let currentTimestamp = new Date().getTime();
-            safeStorage.setItem("local_chat_cleared_ts_" + globalUserSession.uid + "_" + activeRoomId, currentTimestamp);
-
-            alert("Chonicles cleared from your screen! 🪐");
-            document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
+            try {
+                const querySnapshot = await getDocs(collection(db, "inbox_channels", activeRoomId, "messages"));
+                querySnapshot.forEach(async (docSnapshot) => {
+                    await deleteDoc(doc(db, "inbox_channels", activeRoomId, "messages", docSnapshot.id));
+                });
+                
+                alert("চ্যাট সার্ভার থেকে সম্পূর্ণ মুছে ফেলা হয়েছে! 🪐");
+                document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
+            } catch (error) {
+                console.error("Error deleting chat from server:", error);
+                alert("Delete failed! Please try again.");
+            }
         };
 
         function triggerChatRoomNeonParticles() {
@@ -919,7 +875,7 @@
                         <div style="flex:1; display: flex; align-items: center; justify-content: space-between;">
                             <div>
                                 <div style="font-weight:600;font-size:14px;color:#00c3ff;">@${opponentName}</div>
-                                <div style="font-size:11px;opacity:0.5;margin-top:2px;">Secured 2-Hour Active Conversation Loop</div>
+                                <div style="font-size:11px;opacity:0.5;margin-top:2px;">Secured Active Conversation Loop</div>
                             </div>
                             <span class="online-dot"></span>
                         </div>
@@ -941,13 +897,7 @@
 
             try {
                 let creds = await createUserWithEmailAndPassword(auth, email, password);
-                
-                await setDoc(doc(db, "users", creds.user.uid), {
-                    username: name,
-                    searchName: name.toLowerCase(),
-                    uid: creds.user.uid
-                });
-
+                await setDoc(doc(db, "users", creds.user.uid), { username: name, searchName: name.toLowerCase(), uid: creds.user.uid });
                 safeStorage.setItem("profile_name_" + creds.user.uid, name);
                 safeStorage.setItem("permanent_uid_session", creds.user.uid);
                 await updateProfile(creds.user, { displayName: name });
@@ -961,23 +911,17 @@
             try {
                 let creds = await signInWithEmailAndPassword(auth, email, password);
                 safeStorage.setItem("permanent_uid_session", creds.user.uid);
-                
                 let userDoc = await getDoc(doc(db, "users", creds.user.uid));
                 if(userDoc.exists()) {
                     let dName = userDoc.data().username;
                     safeStorage.setItem("profile_name_" + creds.user.uid, dName);
                     if(!creds.user.displayName) await updateProfile(creds.user, { displayName: dName });
                 }
-                
                 hidePopup('loginPopup'); location.reload();
             } catch(e) { alert(e.message); }
         }
 
-        window.triggerLogout = async function() {
-            if(!confirm("Sign out from device?")) return;
-            safeStorage.setItem("permanent_uid_session", "");
-            await signOut(auth); location.reload();
-        }
+        window.triggerLogout = async function() { if(!confirm("Sign out from device?")) return; safeStorage.setItem("permanent_uid_session", ""); await signOut(auth); location.reload(); }
 
         window.submitConfession = async function() {
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
@@ -989,11 +933,8 @@
             let expiry = new Date(); expiry.setDate(expiry.getDate() + 29);
 
             try {
-                await addDoc(collection(db, "stories"), {
-                    uid: globalUserSession.uid, username: authorName, content: rawText, category: selectedPostCategory, likes: 0, commentCount: 0, timestamp: new Date().getTime(), expiryTimestamp: expiry.getTime()
-                });
-                document.getElementById("postContentInput").value = "";
-                alert("Confession published 🌙"); switchTab('home', document.querySelectorAll('.nav-item')[0]);
+                await addDoc(collection(db, "stories"), { uid: globalUserSession.uid, username: authorName, content: rawText, category: selectedPostCategory, likes: 0, commentCount: 0, timestamp: new Date().getTime(), expiryTimestamp: expiry.getTime() });
+                document.getElementById("postContentInput").value = ""; alert("Confession published 🌙"); switchTab('home', document.querySelectorAll('.nav-item')[0]);
             } catch(e) { alert(e.message); }
         }
 
@@ -1015,14 +956,12 @@
 
             const unsubscribe = onSnapshot(collection(db, "stories", storyId, "comments"), (snap) => {
                 let commentListDiv = document.getElementById("popupCommentList");
-                if(!commentListDiv) return;
-                commentListDiv.innerHTML = "";
+                if(!commentListDiv) return; commentListDiv.innerHTML = "";
                 let subArr = []; snap.forEach(d => subArr.push(d.data()));
                 subArr.sort((a,b) => (a.timestamp || 0) - (b.timestamp || 0));
                 subArr.forEach(c => {
                     let box = document.createElement("div"); box.className = "comment-item";
-                    box.innerHTML = `<div class="comment-user">@${c.username}</div><div>${c.text}</div>`;
-                    commentListDiv.appendChild(box);
+                    box.innerHTML = `<div class="comment-user">@${c.username}</div><div>${c.text}</div>`; commentListDiv.appendChild(box);
                 });
             });
 
@@ -1053,11 +992,7 @@
                 if(s.expiryTimestamp && now > s.expiryTimestamp) return false;
                 if(selfUidOnly && s.uid !== globalUserSession?.uid) return false;
                 if(categoryFilter !== "all" && s.category !== categoryFilter) return false;
-                
-                if(targetDivId === "searchFeed" && currentSearchQueryFilterKeyword) {
-                    let uName = (s.username || "").toLowerCase();
-                    if(!uName.includes(currentSearchQueryFilterKeyword)) return false;
-                }
+                if(targetDivId === "searchFeed" && currentSearchQueryFilterKeyword) { let uName = (s.username || "").toLowerCase(); if(!uName.includes(currentSearchQueryFilterKeyword)) return false; }
                 return true;
             });
             
@@ -1071,21 +1006,10 @@
                     let verifiedUsername = matchedUserRawData.username;
                     let verifiedUid = matchedUserRawData.uid;
 
-                    box.innerHTML = `
-                        <div class="card" style="border: 1px solid rgba(0, 195, 255, 0.4); background: rgba(0, 195, 255, 0.02); text-align: center; padding: 30px 20px;">
-                            <div style="font-weight: 700; color: #00c3ff; font-size: 18px; margin-bottom: 4px;">@${verifiedUsername}</div>
-                            <p style="font-size: 12px; opacity: 0.5; margin-bottom: 18px;">This midnight soul exists in our chronicles but hasn't published any secret stories yet.</p>
-                            <button class="btn createBtn" onclick="openLiveChatWithUser('${verifiedUid}', '${verifiedUsername}')" style="margin-top:0; padding: 12px; max-width: 250px; margin: 0 auto;">💬 Launch Live 2H Chat</button>
-                        </div>
-                    `;
-                } else {
-                    box.innerHTML = `<p style='text-align:center; opacity:0.4; padding:40px; font-size:13px;'>🚫 No anonymous user handle found matching "@${currentSearchQueryFilterKeyword}"</p>`;
-                }
+                    box.innerHTML = `<div class="card" style="border: 1px solid rgba(0, 195, 255, 0.4); background: rgba(0, 195, 255, 0.02); text-align: center; padding: 30px 20px;"><div style="font-weight: 700; color: #00c3ff; font-size: 18px; margin-bottom: 4px;">@${verifiedUsername}</div><p style="font-size: 12px; opacity: 0.5; margin-bottom: 18px;">This midnight soul exists in our chronicles but hasn't published any secret stories yet.</p><button class="btn createBtn" onclick="openLiveChatWithUser('${verifiedUid}', '${verifiedUsername}')" style="margin-top:0; padding: 12px; max-width: 250px; margin: 0 auto;">💬 Launch Live Chat</button></div>`;
+                } else { box.innerHTML = `<p style='text-align:center; opacity:0.4; padding:40px; font-size:13px;'>🚫 No anonymous user handle found matching "@${currentSearchQueryFilterKeyword}"</p>`; }
                 return;
-            } else if(dataset.length === 0) {
-                box.innerHTML = "<p style='text-align:center; opacity:0.4; padding:30px; font-size:13px;'>No confessions found here.</p>"; 
-                return;
-            }
+            } else if(dataset.length === 0) { box.innerHTML = "<p style='text-align:center; opacity:0.4; padding:30px; font-size:13px;'>No confessions found here.</p>"; return; }
 
             let nextAdTriggerIndex = Math.floor(Math.random() * (6 - 3 + 1)) + 3; let processedCardsCount = 0;
 
@@ -1093,41 +1017,16 @@
                 processedCardsCount++;
                 let card = document.createElement("div"); card.className = "card"; card.id = "card-" + item.id;
                 let delBtn = (globalUserSession && item.uid === globalUserSession.uid) ? `<button class="delete-btn" onclick="deleteStory('${item.id}')">🗑️ Delete</button>` : '';
+                let authorPosts = globalAllStories.filter(s => s.uid === item.uid); let authorCoins = Math.floor(authorPosts.length / 10); let authorStar = (authorCoins >= 5) ? " ⭐️" : "";
 
-                let authorPosts = globalAllStories.filter(s => s.uid === item.uid);
-                let authorCoins = Math.floor(authorPosts.length / 10);
-                let authorStar = (authorCoins >= 5) ? " ⭐️" : "";
-
-                card.innerHTML = `
-                    <div class="card-header">
-                        <div class="user-header-block">
-                            <span class="card-user">@${item.username || 'anon'}${authorStar}***</span>
-                            <button class="head-chat-btn" onclick="openLiveChatWithUser('${item.uid}', '${item.username}')">💬 Chat</button>
-                        </div>
-                        <span class="card-tag tag-${item.category || 'love'}">${item.category || 'Love'}</span>
-                    </div>
-                    <div class="story">${item.content}</div>
-                    <div class="actions">
-                        <button onclick="likeStory('${item.id}')">❤️ <span>${item.likes || 0}</span></button>
-                        <button onclick="openCommentModal('${item.id}')">💬 <span>${item.commentCount || 0}</span></button>
-                        <button onclick="generateShareImage('${item.id}')">📤 Share</button>
-                        ${delBtn}
-                    </div>
-                `;
+                card.innerHTML = `<div class="card-header"><div class="user-header-block"><span class="card-user">@${item.username || 'anon'}${authorStar}***</span><button class="head-chat-btn" onclick="openLiveChatWithUser('${item.uid}', '${item.username}')">💬 Chat</button></div><span class="card-tag tag-${item.category || 'love'}">${item.category || 'Love'}</span></div><div class="story">${item.content}</div><div class="actions"><button onclick="likeStory('${item.id}')">❤️ <span>${item.likes || 0}</span></button><button onclick="openCommentModal('${item.id}')">💬 <span>${item.commentCount || 0}</span></button><button onclick="generateShareImage('${item.id}')">📤 Share</button>${delBtn}</div>`;
                 box.appendChild(card);
 
                 if (processedCardsCount === nextAdTriggerIndex && !selfUidOnly) {
                     let sliderWrapper = document.createElement("div"); sliderWrapper.className = "ad-slider-container";
-                    const customRedirectLink = ""; const image1_src = "ad.jpeg"; const image2_src = "ad1.jpeg";
-                    let linkClass = customRedirectLink ? "ad-slider-link" : "ad-slider-link no-click-allowed";
-                    sliderWrapper.innerHTML = `
-                        <div class="ad-badge">Sponsored</div>
-                        <a href="${customRedirectLink || 'javascript:void(0)'}" target="${customRedirectLink ? '_blank' : '_self'}" class="${linkClass}">
-                            <img src="${image1_src}" class="ad-slide active-slide" alt="Promo 1"><img src="${image2_src}" class="ad-slide" alt="Promo 2">
-                        </a>
-                    `;
-                    box.appendChild(sliderWrapper);
-                    let nextRandomGap = Math.floor(Math.random() * (6 - 3 + 1)) + 3; nextAdTriggerIndex = processedCardsCount + nextRandomGap;
+                    const customRedirectLink = ""; const image1_src = "ad.jpeg"; const image2_src = "ad1.jpeg"; let linkClass = customRedirectLink ? "ad-slider-link" : "ad-slider-link no-click-allowed";
+                    sliderWrapper.innerHTML = `<div class="ad-badge">Sponsored</div><a href="${customRedirectLink || 'javascript:void(0)'}" target="${customRedirectLink ? '_blank' : '_self'}" class="${linkClass}"><img src="${image1_src}" class="ad-slide active-slide" alt="Promo 1"><img src="${image2_src}" class="ad-slide" alt="Promo 2"></a>`;
+                    box.appendChild(sliderWrapper); let nextRandomGap = Math.floor(Math.random() * (6 - 3 + 1)) + 3; nextAdTriggerIndex = processedCardsCount + nextRandomGap;
                 }
             });
             startLiveImageSliders();
@@ -1135,17 +1034,20 @@
 
         function calculateAnalytics() {
             let personalStories = globalAllStories.filter(s => s.uid === globalUserSession?.uid); let rCoins = Math.floor(personalStories.length / 10);
-            let pCount = document.getElementById("stat-posts"); let lCount = document.getElementById("stat-likes"); let cCount = document.getElementById("stat-comments"); let coinCount = document.getElementById("r-coin-count-label");
-            if(pCount) pCount.innerText = personalStories.length; if(coinCount) coinCount.innerText = rCoins + " R-Coins" + (rCoins >= 5 ? " [STAR PRO] ⭐️" : "");
-            let totalLikes = 0, totalComments = 0; personalStories.forEach(s => { totalLikes += (s.likes || 0); totalComments += (s.commentCount || 0); });
-            if(lCount) lCount.innerText = totalLikes; if(cCount) cCount.innerText = totalComments;
+            
+            window.profileStatsData.posts = personalStories.length;
+            
+            let coinCount = document.getElementById("r-coin-count-label");
+            if(coinCount) coinCount.innerText = rCoins + " R-Coins" + (rCoins >= 5 ? " [STAR PRO] ⭐️" : "");
+            
+            let totalLikes = 0, totalComments = 0; 
+            personalStories.forEach(s => { totalLikes += (s.likes || 0); totalComments += (s.commentCount || 0); });
+            
+            window.profileStatsData.likes = totalLikes;
+            window.profileStatsData.comments = totalComments;
         }
 
-        function rebuildAllFeeds() {
-            buildFeedDOM("globalFeed", "all", false); 
-            buildFeedDOM("searchFeed", currentActiveCategoryFilter, false);
-            if(globalUserSession) { buildFeedDOM("myPersonalFeed", "all", true); calculateAnalytics(); }
-        }
+        function rebuildAllFeeds() { buildFeedDOM("globalFeed", "all", false); buildFeedDOM("searchFeed", currentActiveCategoryFilter, false); if(globalUserSession) { buildFeedDOM("myPersonalFeed", "all", true); calculateAnalytics(); } }
 
         window.generateShareImage = function(cardId) {
             const node = document.getElementById("card-" + cardId); if(!node) return; showPopup('sharePopup'); document.getElementById('generatedImageHolder').src = "";
@@ -1162,7 +1064,7 @@
 
         onSnapshot(collection(db, "stories"), (snap) => {
             globalAllStories = []; snap.forEach(doc => { let d = doc.data(); if(!d.parentStoryId) { d.id = doc.id; globalAllStories.push(d); } });
-            globalAllStories.sort((a,b) => { let tA = a.timestamp ? (typeof a.timestamp === 'object' * 1000 ? a.timestamp.seconds*1000 : a.timestamp) : 0; let tB = b.timestamp ? (typeof b.timestamp === 'object' ? b.timestamp.seconds*1000 : b.timestamp) : 0; return tB - tA; });
+            globalAllStories.sort((a,b) => { let tA = a.timestamp ? (typeof a.timestamp === 'object' ? a.timestamp.seconds*1000 : a.timestamp) : 0; let tB = b.timestamp ? (typeof b.timestamp === 'object' ? b.timestamp.seconds*1000 : b.timestamp) : 0; return tB - tA; });
             rebuildAllFeeds();
         });
     </script>
