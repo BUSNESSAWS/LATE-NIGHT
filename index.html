@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Late Night Confessions - Ultimate Secure Build</title>
+    <title>Late Night Confessions - Patched Final Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -189,7 +189,7 @@
         .card-user { color: #ff4ecd; font-weight: 600; font-size: 14px; }
         .card-tag { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
         .tag-love { background: rgba(255, 0, 136, 0.15); color: #ff0088; border: 1px solid rgba(255, 0, 136, 0.3); }
-        .tag-sad { background: rgba(0, 195, 255, 0.15); color: #00c3ff; border: 1px solid rgba(0, 195, 255, 0.3); }
+        .tag-sad { background: rgba(0, 195, 255, 0.15); color: #00c3ff; border: 1px solid rgba(255, 0, 136, 0.3); }
         .tag-romantic { background: rgba(127, 92, 255, 0.15); color: #7f5cff; border: 1px solid rgba(127, 92, 255, 0.3); }
 
         .story { line-height: 1.7; font-size: 15px; opacity: 0.95; word-wrap: break-word; margin-bottom: 15px; letter-spacing: 0.2px; }
@@ -220,10 +220,6 @@
         .stat-box { text-align: center; }
         .stat-num { font-size: 20px; font-weight: 700; color: #ff4ecd; }
         .stat-label { font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
-
-        .chat-user-item { display: flex; align-items: center; padding: 16px 20px; margin-bottom: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; cursor: pointer; transition: 0.3s; }
-        .chat-user-item:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
-        .chat-user-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #ff4ecd, #00c3ff); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 20px; margin-right: 15px; }
 
         /* 🔮 📲 FULL PAGE LIQUID GLASS CHAT INTERFACE WITH FLOATING NEON PARTICLES */
         .popup-full-chat {
@@ -280,7 +276,7 @@
 
     <div id="intro"><div class="introTitle">Late Night</div></div>
 
-    <!-- ENTRY PAGE WITH REAL GLASS GLASSMORPHISM FILTER OVERLAY -->
+    <!-- ENTRY PAGE -->
     <div id="entryPage">
         <div class="entry-container">
             <div class="glass">
@@ -602,18 +598,18 @@
         let chatUnsubscribeTracker = null;
         let activeChatCountdownLoop = null;
         let currentSearchQueryFilterKeyword = "";
+        let globalActiveChatRoomId = null; // চ্যাট সেশন ট্র্যাকার
 
         const badWords = ["খারাপশব্দ১", "খারাপশব্দ২", "gali1", "gali2", "bokachoda", "khanki", "bador", "gali", "gandu", "baal", "chuda"];
         function hasProfanity(text) { let found = false; badWords.forEach(word => { if(text.toLowerCase().includes(word.toLowerCase())) { found = true; } }); return found; }
         function cleanProfanity(text) { let clean = text; badWords.forEach(word => { const regex = new RegExp(word, "gi"); clean = clean.replace(regex, "****"); }); return clean; }
         function containsEmoji(text) { const regex = /[\uD800-\uDFFF]|\u2705|\u274C|\u2B50|[\u2000-\u3300]/g; return regex.test(text); }
 
-        // 🛡️ ইউজারনেম গ্লোবাল ইউনিক ম্যাচিং চেকার ফাংশন
         async function checkIfUsernameIsAlreadyTaken(targetName) {
             let cleanCheckName = targetName.trim().toLowerCase();
             let q = query(collection(db, "users"), where("searchName", "==", cleanCheckName));
             let snap = await getDocs(q);
-            return !snap.empty; // খালি না হলে ট্রু (নাম অলরেডি টেকেন)
+            return !snap.empty; 
         }
 
         try { await setPersistence(auth, browserLocalPersistence); } catch(e) { console.log(e); }
@@ -665,7 +661,6 @@
             }
         });
 
-        // 📝 প্রোফাইল হ্যান্ডেল এডিট ইঞ্জিন (ইউনিক মেমোরি লক প্যাটচড)
         window.triggerUsernameChangeModalFlow = async function() {
             if(!globalUserSession) return;
             let promptName = prompt("Enter your unique new desired username handle (No Emojis):");
@@ -675,7 +670,6 @@
             if(!finalCleanName) { alert("Username cannot be left empty!"); return; }
             if(containsEmoji(finalCleanName)) { alert("🚫 Emojis are strictly blocked inside handles!"); return; }
 
-            // 🛑 ইউনিক নেম ম্যাচ ভ্যালিডেশন চেক
             let isTaken = await checkIfUsernameIsAlreadyTaken(finalCleanName);
             if(isTaken) { alert(`🚫 The username handle "@${finalCleanName}" is already taken by another person! Pick a different name.`); return; }
 
@@ -696,13 +690,15 @@
             } catch(e) { alert(e.message); }
         };
 
+        // 🔮 🛠️ গ্লোবাল চ্যাট ওপেনার (বাটন লুপ সেপারেটেড)
         window.openLiveChatWithUser = async function(targetUid, targetUsername) {
             if(!globalUserSession) { showPopup('gatekeeperPopup'); return; }
             if(globalUserSession.uid === targetUid) { alert("You cannot chat with yourself!"); return; }
             
             let chatRoomId = [globalUserSession.uid, targetUid].sort().join("_");
-            document.getElementById("chatRoomHeaderTitle").innerText = "@" + targetUsername;
+            globalActiveChatRoomId = chatRoomId; // কারেন্ট রুম লক
             
+            document.getElementById("chatRoomHeaderTitle").innerText = "@" + targetUsername;
             document.getElementById("liveChatRoomFullScreenModal").style.display = "flex";
             triggerChatRoomNeonParticles();
 
@@ -765,32 +761,36 @@
                 });
                 box.scrollTop = box.scrollHeight;
             });
+        };
 
-            document.getElementById("closeLiveChatModalRoomBtn").onclick = () => {
-                if(chatUnsubscribeTracker) chatUnsubscribeTracker();
-                if(activeChatCountdownLoop) clearInterval(activeChatCountdownLoop); 
-                document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
-            };
+        // 🛠️ 🪐 গ্লোবাল স্কোপ বাটন লিসেনারস (যা ১০০% বাটন ফ্রিজিং বাগ ফিক্স করবে)
+        document.getElementById("closeLiveChatModalRoomBtn").onclick = () => {
+            if(chatUnsubscribeTracker) chatUnsubscribeTracker();
+            if(activeChatCountdownLoop) clearInterval(activeChatCountdownLoop); 
+            document.getElementById("liveChatRoomFullScreenModal").style.display = "none";
+            globalActiveChatRoomId = null;
+        };
 
-            document.getElementById("sendLiveMsgActionButton").onclick = async () => {
-                let inputField = document.getElementById("liveChatMessageInputField");
-                let txt = inputField.value.trim();
-                if(!txt) return;
+        document.getElementById("sendLiveMsgActionButton").onclick = async () => {
+            if(!globalActiveChatRoomId || !globalUserSession) return;
+            
+            let inputField = document.getElementById("liveChatMessageInputField");
+            let txt = inputField.value.trim();
+            if(!txt) return;
 
-                if(hasProfanity(txt)) { alert("🚫 Bad words are blocked!"); return; }
+            if(hasProfanity(txt)) { alert("🚫 Bad words are blocked!"); return; }
 
-                try {
-                    await addDoc(collection(db, "inbox_channels", chatRoomId, "messages"), {
-                        senderUid: globalUserSession.uid,
-                        text: cleanProfanity(txt),
-                        timestamp: new Date().getTime()
-                    });
-                    await updateDoc(doc(db, "inbox_channels", chatRoomId), { lastUpdated: new Date().getTime() });
-                    inputField.value = ""; 
-                } catch(err) {
-                    console.error("Error sending message: ", err);
-                }
-            };
+            try {
+                await addDoc(collection(db, "inbox_channels", globalActiveChatRoomId, "messages"), {
+                    senderUid: globalUserSession.uid,
+                    text: cleanProfanity(txt),
+                    timestamp: new Date().getTime()
+                });
+                await updateDoc(doc(db, "inbox_channels", globalActiveChatRoomId), { lastUpdated: new Date().getTime() });
+                inputField.value = ""; 
+            } catch(err) {
+                console.error("Error sending message: ", err);
+            }
         };
 
         function triggerChatRoomNeonParticles() {
@@ -848,14 +848,12 @@
             let password = document.getElementById("signupPassword").value;
             if(!name || containsEmoji(name)) { alert("🚫 Enter valid name without emojis!"); return; }
             
-            // 🛑 একাউন্ট খোলার ফার্স্ট স্টেপেই ইউনিক হ্যান্ডেল ভ্যালিডেশন ম্যাপিং
             let isTaken = await checkIfUsernameIsAlreadyTaken(name);
             if(isTaken) { alert(`🚫 The username handle "@${name}" is already registered! Please pick a different unique name.`); return; }
 
             try {
                 let creds = await createUserWithEmailAndPassword(auth, email, password);
                 
-                // গ্লোবাল ইউজার ট্র্যাকার ডক রাইট পুশ
                 await setDoc(doc(db, "users", creds.user.uid), {
                     username: name,
                     searchName: name.toLowerCase(),
@@ -876,7 +874,6 @@
                 let creds = await signInWithEmailAndPassword(auth, email, password);
                 safeStorage.setItem("permanent_uid_session", creds.user.uid);
                 
-                // ডাটাবেজ থেকে হ্যান্ডেল রিস্টোর ব্যাকআপ পুশ
                 let userDoc = await getDoc(doc(db, "users", creds.user.uid));
                 if(userDoc.exists()) {
                     let dName = userDoc.data().username;
@@ -958,7 +955,6 @@
             buildFeedDOM("searchFeed", cat, false);
         }
 
-        // 🔍 গ্লোবাল ডিসকভারি রেন্ডারিং প্যাটচড ইঞ্জিন
         async function buildFeedDOM(targetDivId, categoryFilter = "all", selfUidOnly = false) {
             let box = document.getElementById(targetDivId); if(!box) return; box.innerHTML = "";
             let now = new Date().getTime();
@@ -975,15 +971,12 @@
                 return true;
             });
             
-            // 🛠️ রিয়েল-টাইম গ্লোবাল ইউজার এক্সিস্টেন্স চেকার (গল্প না থাকলেও প্রোফাইল শো করার সিক্রেট লজিক)
             if(dataset.length === 0 && targetDivId === "searchFeed" && currentSearchQueryFilterKeyword) {
-                // চেক করা হচ্ছে সিস্টেমে এই নামে কোনো আসল একাউন্ট হোল্ডার রেজিস্টার্ড আছে কিনা
                 let cleanCheckName = currentSearchQueryFilterKeyword.trim().toLowerCase();
                 let q = query(collection(db, "users"), where("searchName", "==", cleanCheckName));
                 let userMatchSnap = await getDocs(q);
 
                 if(!userMatchSnap.empty) {
-                    // ইউজার সিস্টেমে এক্সিস্ট করে (আছে)! কিন্তু কোনো পোস্ট নাই
                     let matchedUserRawData = userMatchSnap.docs[0].data();
                     let verifiedUsername = matchedUserRawData.username;
                     let verifiedUid = matchedUserRawData.uid;
@@ -996,7 +989,6 @@
                         </div>
                     `;
                 } else {
-                    // ইউজার সিস্টেমে নাই! (ভুল নাম সার্চ করেছে)
                     box.innerHTML = `<p style='text-align:center; opacity:0.4; padding:40px; font-size:13px;'>🚫 No anonymous user handle found matching "@${currentSearchQueryFilterKeyword}"</p>`;
                 }
                 return;
