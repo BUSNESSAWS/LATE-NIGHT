@@ -18,11 +18,20 @@
         /* ========================================================= */
         /* ✨ 1. PURE LIQUID COLOR BACKGROUND ✨ */
         /* ========================================================= */
-        .liquid-universe-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -999; background: linear-gradient(135deg, #1b0a33, #3a115c, #0a2044, #320c45); background-size: 300% 300%; animation: proFluidMove 15s ease infinite; overflow: hidden; pointer-events: none; transition: background 0.8s ease; }
+        .liquid-universe-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -999; background: linear-gradient(135deg, #1b0a33, #3a115c, #0a2044, #320c45); background-size: 300% 300%; animation: proFluidMove 15s ease infinite; overflow: hidden; pointer-events: none; transition: 0.8s ease; }
+        
+        /* Smooth Background Transition Trick for Light Theme */
+        .liquid-universe-bg::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #ff758c, #ff7eb3, #a1c4fd, #fdcbf1); background-size: 300% 300%; animation: proFluidMove 15s ease infinite; opacity: 0; transition: opacity 1s ease; z-index: -1; }
+        body.light-theme-active .liquid-universe-bg::before { opacity: 1; }
+
         @keyframes proFluidMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         
-        /* LIGHT MIX THEME CLASS (Pink, Yellow, Black, Maroon Glass Mix) */
-        .theme-light-mix { background: linear-gradient(135deg, rgba(255,0,136,0.8), rgba(255,215,0,0.7), rgba(18,9,36,0.95), rgba(128,0,0,0.85)) !important; background-size: 300% 300%; backdrop-filter: blur(20px); }
+        /* ✨ LIGHT MIX THEME OVERRIDE ✨ */
+        body.light-theme-active .card, 
+        body.light-theme-active .post-box-premium, 
+        body.light-theme-active .profile-header-card,
+        body.light-theme-active .bottom-nav,
+        body.light-theme-active .ai-chat-banner-btn { background: rgba(15, 10, 30, 0.65) !important; backdrop-filter: blur(35px); border-color: rgba(255,255,255,0.3) !important; }
 
         .liquid-orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.65; mix-blend-mode: screen; animation: orbFloat 14s infinite alternate ease-in-out; pointer-events: none; }
         .orb-magenta { width: 450px; height: 450px; background: #ff0088; top: -10%; left: -10%; }
@@ -63,8 +72,10 @@
         /* ✨ 4. FUTURISTIC ENTRY PORTAL ✨ */
         /* ========================================================= */
         #futuristic-entry-wrapper { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999999; background: rgba(10, 5, 25, 0.95); backdrop-filter: blur(30px); overflow: hidden; transition: opacity 0.8s ease, visibility 0.8s; display: flex; justify-content: center; align-items: center; }
+        
         .floating-skip-btn { position: absolute; top: max(20px, env(safe-area-inset-top)); right: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.3s; z-index: 3000; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .floating-skip-btn:hover { background: #fff; color: #000; }
+        
         .siri-wave-glow { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(0, 242, 254, 1) 0%, rgba(123, 44, 191, 0.85) 35%, rgba(255, 0, 127, 0.9) 60%, transparent 100%); filter: blur(15px); mix-blend-mode: screen; opacity: 0.95; }
         .w-1 { animation: siriOrbit1 5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; width: 250px; height: 250px;}
         .w-2 { animation: siriOrbit2 7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; background: radial-gradient(circle, rgba(255, 0, 127, 1), rgba(0, 242, 254, 0.7), transparent); width: 280px; height: 280px;}
@@ -138,7 +149,7 @@
         /* ========================================================= */
         /* ✨ POST CARDS ✨ */
         /* ========================================================= */
-        .app-section { display: none !important; width: 100%; max-width: 680px; margin: 0 auto 20px; animation: fadeIn 0.4s ease; }
+        .app-section { display: none !important; width: 100%; max-width: 680px; margin: 0 auto; animation: fadeIn 0.4s ease; padding-bottom: 20px; }
         .app-section.active-section { display: block !important; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -165,26 +176,31 @@
         .rotating-comment-box { flex: 1; font-size: 13px; color: #ff0088; font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 8px 12px; background: rgba(255, 0, 136, 0.05); border-left: 3px solid #ff0088; border-radius: 8px; transition: opacity 0.3s ease; }
 
         /* ✨ POST PAGE ✨ */
-        #section-post { height: calc(100vh - 170px); overflow: hidden; padding: 0 15px; display: flex; flex-direction: column;}
-        .post-box-premium { display: flex; flex-direction: column; flex: 1; background: rgba(20, 15, 40, 0.7); backdrop-filter: blur(25px); border: 1px solid rgba(0, 242, 254, 0.3); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 242, 254, 0.1); padding: 25px; border-radius: 28px; position: relative; overflow: hidden; }
-        .chip-group { display: flex; gap: 10px; margin: 10px 0; position: relative; z-index: 2; flex-wrap: wrap;}
-        .chip { padding: 8px 18px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; background: rgba(255,255,255,0.05); border: 1px solid rgba(255, 255, 255, 0.15); transition: 0.3s; letter-spacing: 0.5px;}
+        #section-post { height: calc(100vh - 170px); padding: 0 15px; display: flex; flex-direction: column;}
+        .post-box-premium { display: flex; flex-direction: column; flex: 1; background: rgba(20, 15, 40, 0.7); backdrop-filter: blur(25px); border: 1px solid rgba(0, 242, 254, 0.3); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 242, 254, 0.1); padding: 25px; border-radius: 28px; position: relative; overflow: hidden; margin-bottom: 25px; }
+        .chip-group { display: flex; gap: 8px; margin-bottom: 12px; position: relative; z-index: 2; flex-wrap: wrap;}
+        .chip { padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; background: rgba(255,255,255,0.05); border: 1px solid rgba(255, 255, 255, 0.15); transition: 0.3s; letter-spacing: 0.5px;}
         .chip.selected[data-val="love"] { background: rgba(255, 0, 136, 0.2); border-color: #ff0088; color: #ff0088; box-shadow: 0 0 15px rgba(255,0,136,0.4); }
         .chip.selected[data-val="sad"] { background: rgba(0, 242, 254, 0.2); border-color: #00f2fe; color: #00f2fe; box-shadow: 0 0 15px rgba(0,242,254,0.4); }
         .chip.selected[data-val="romantic"] { background: rgba(127, 92, 255, 0.2); border-color: #7f5cff; color: #b39eff; box-shadow: 0 0 15px rgba(127,92,255,0.4); }
+        .chip.selected[data-val="bn"], .chip.selected[data-val="en"], .chip.selected[data-val="hi"] { background: rgba(255, 215, 0, 0.2); border-color: #ffd700; color: #ffd700; box-shadow: 0 0 15px rgba(255,215,0,0.4); }
+        
         .color-picker-row { display: flex; gap: 15px; margin-bottom: 15px; align-items: center; z-index: 2; position: relative; }
         .color-dot { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: 0.3s; box-shadow: 0 0 10px rgba(0,0,0,0.5);}
         .color-dot.active { border-color: #fff; transform: scale(1.15); box-shadow: 0 0 15px rgba(255,255,255,0.6); }
-        .live-preview-wrapper { flex: 1; position: relative; display: flex; flex-direction: column; min-height: 0; z-index: 2; margin-bottom: 15px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-        .premium-textarea { flex: 1; padding: 30px 25px; font-size: 18px; font-weight: 500; font-style: italic; text-align: center; color: #fdfcff; border: 1px dashed; outline: none; resize: none !important; transition: 0.3s; width: 100%; height: 100% !important; overflow-y: auto; }
+        
+        /* 🔥 TEXTAREA INCREASED & SCROLLABLE 🔥 */
+        .live-preview-wrapper { flex: 1; position: relative; display: flex; flex-direction: column; min-height: 250px; z-index: 2; margin-bottom: 15px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .premium-textarea { flex: 1; padding: 30px 25px; font-size: 18px; font-weight: 500; font-style: italic; text-align: center; color: #fdfcff; border: 1px dashed; outline: none; resize: none !important; transition: 0.3s; width: 100%; height: 100% !important; overflow-y: auto; -webkit-overflow-scrolling: touch; }
         .premium-textarea::placeholder { color: rgba(255,255,255,0.4); }
+        
         .premium-publish-btn { background: linear-gradient(270deg, #ff0088, #7f5cff, #00f2fe, #ff0088); background-size: 300% 300%; animation: proBtnGlow 4s ease infinite; border: none; color: white; font-weight: 800; padding: 18px; border-radius: 18px; width: 100%; cursor: pointer; transition: 0.3s; position: relative; z-index: 2; font-size: 16px; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 10px 30px rgba(255, 0, 136, 0.4); flex-shrink: 0;}
         .premium-publish-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0, 242, 254, 0.6); }
 
         /* Search Section */
-        .search-container { display: flex; flex-direction: column; gap: 15px; padding: 0 16px; }
-        .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 5px; }
-        .cat-btn { padding: 12px 5px; border: none; border-radius: 14px; font-weight: 700; font-size: 12px; cursor: pointer; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+        .search-container { display: flex; flex-direction: column; gap: 15px; padding: 0 16px; margin-bottom: 25px; }
+        .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .cat-btn { padding: 12px 5px; border: none; border-radius: 14px; font-weight: 700; font-size: 12px; cursor: pointer; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; white-space: nowrap; }
         .cat-btn.active-cat { background: rgba(0, 242, 254, 0.15); border-color: #00f2fe; color: #00f2fe; box-shadow: 0 0 15px rgba(0, 242, 254, 0.4); }
         
         .search-user-chip { padding: 8px 15px; background: rgba(0, 242, 254, 0.1); border: 1px solid rgba(0, 242, 254, 0.4); border-radius: 12px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s; margin-right: 8px; margin-bottom: 8px; }
@@ -225,9 +241,6 @@
         .ai-chat-banner-btn { background: linear-gradient(135deg, rgba(20,15,40,0.8), rgba(30,20,60,0.9)); backdrop-filter: blur(15px); border: 1px solid rgba(0, 242, 254, 0.4); border-radius: 24px; padding: 25px; text-align: center; cursor: pointer; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); margin: 0 16px 25px; transition: 0.3s; position: relative; overflow: hidden; }
         .ai-chat-banner-btn:hover { transform: translateY(-4px); box-shadow: 0 20px 45px rgba(0, 242, 254, 0.3); border-color: #00f2fe; }
         
-        .global-chat-banner { background: linear-gradient(135deg, #ff0088, #7f5cff); border-radius: 24px; padding: 20px; text-align: center; cursor: pointer; box-shadow: 0 10px 30px rgba(255, 0, 136, 0.5); margin: 0 16px 25px; transition: 0.3s; position: relative; overflow: hidden; }
-        .global-chat-banner:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(255, 0, 136, 0.7); }
-        
         .popup-full-chat { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: none; flex-direction: column; background: rgba(10, 8, 20, 0.98); z-index: 100000; }
         .chat-head-nav { width: 100%; padding: calc(env(safe-area-inset-top, 20px) + 15px) 20px 15px; display: flex; align-items: center; justify-content: space-between; background: rgba(15, 12, 30, 0.95); border-bottom: 1px solid rgba(0, 242, 254, 0.2); z-index: 50; box-shadow: 0 5px 20px rgba(0,0,0,0.5);}
         .chat-room-scroll-box { flex: 1; overflow-y: auto; padding: 25px 20px; display: flex; flex-direction: column; gap: 16px; z-index: 10; position: relative; }
@@ -263,7 +276,8 @@
 
     <div id="futuristic-entry-wrapper">
         <canvas id="bg-flow-canvas"></canvas><div class="bg-dimmer"></div>
-        <button class="floating-skip-btn" onclick="window.skipLogin()">Skip ➔</button>
+        
+        <button class="floating-skip-btn" id="topSkipBtn" style="display: none;" onclick="window.skipLogin()">Skip ➔</button>
 
         <div id="intro-page">
             <div class="siri-activation-container"><div class="siri-wave-glow w-1"></div><div class="siri-wave-glow w-2"></div><div class="siri-wave-glow w-3"></div><div class="siri-emoji-overlay">🤫</div></div>
@@ -334,19 +348,31 @@
         <div id="section-post" class="app-section">
             <div class="post-box-premium">
                 <h3 style="font-size: 22px; margin-bottom: 5px; color: #00f2fe; text-shadow: 0 0 10px rgba(0,242,254,0.5);">Share a Confession</h3>
-                <p style="font-size: 13px; opacity: 0.7; margin-bottom: 12px;">Select category and theme</p>
+                
+                <!-- ✨ LANGUAGE SELECTION (MANDATORY & EMOJIS) ✨ -->
+                <p style="font-size: 13px; opacity: 0.7; margin-bottom: 8px; margin-top: 10px;">1. Language / ভাষা / भाषा</p>
                 <div class="chip-group">
-                    <div class="chip selected" data-val="love" onclick="window.selectPostChip('love', this)">❤️ Love</div>
-                    <div class="chip" data-val="sad" onclick="window.selectPostChip('sad', this)">😢 Sad</div>
-                    <div class="chip" data-val="romantic" onclick="window.selectPostChip('romantic', this)">✨ Romantic</div>
+                    <div class="chip" data-val="bn" onclick="window.selectPostLang('bn', this)">🇧🇩 Bengali</div>
+                    <div class="chip" data-val="en" onclick="window.selectPostLang('en', this)">🇺🇸 English</div>
+                    <div class="chip" data-val="hi" onclick="window.selectPostLang('hi', this)">🇮🇳 Hindi</div>
                 </div>
+
+                <!-- ✨ CATEGORY SELECTION (MANDATORY & EMOJIS) ✨ -->
+                <p style="font-size: 13px; opacity: 0.7; margin-bottom: 8px; margin-top: 10px;">2. Category</p>
+                <div class="chip-group">
+                    <div class="chip" data-val="love" onclick="window.selectPostChip('love', this)">❤️ Love</div>
+                    <div class="chip" data-val="sad" onclick="window.selectPostChip('sad', this)">😢 Sad</div>
+                    <div class="chip" data-val="romantic" onclick="window.selectPostChip('romantic', this)">🥰 Romantic</div>
+                </div>
+                
+                <p style="font-size: 13px; opacity: 0.7; margin-bottom: 8px; margin-top: 10px;">3. Theme</p>
                 <div class="color-picker-row">
-                    <span style="font-size: 12px; opacity: 0.8; font-weight:600;">Theme:</span>
                     <div class="color-dot theme-default active" onclick="window.selectTheme('default', this)"></div>
                     <div class="color-dot theme-dark" onclick="window.selectTheme('dark', this)"></div>
                     <div class="color-dot theme-blue" onclick="window.selectTheme('blue', this)"></div>
                 </div>
-                <div class="live-preview-wrapper">
+                
+                <div class="live-preview-wrapper" style="margin-top: 10px;">
                     <div style="position:absolute; top:12px; left:18px; font-size:45px; color:rgba(255,255,255,0.15); z-index:5; pointer-events:none;">❝</div>
                     <textarea class="premium-textarea theme-default" id="postContentInput" placeholder="Write your secret... It will look exactly like this!"></textarea>
                 </div>
@@ -360,18 +386,28 @@
                 <input type="text" class="input" id="usernameLiveSearchBarField" placeholder="🔍 Search by @username...">
                 <div id="searchUserResultsBlock" style="display:flex; flex-wrap:wrap; padding: 10px 0; gap: 8px;"></div>
                 
-                <div class="category-grid"><button class="cat-btn active-cat" data-cat="all" onclick="window.switchCategory('all', this)">All</button><button class="cat-btn" data-cat="love" onclick="window.switchCategory('love', this)">❤️ Love</button><button class="cat-btn" data-cat="sad" onclick="window.switchCategory('sad', this)">😢 Sad</button><button class="cat-btn" data-cat="romantic" onclick="window.switchCategory('romantic', this)">✨ Romantic</button></div>
-                <div class="feed" id="searchFeed"></div>
+                <!-- ✨ LANGUAGE FILTERS IN SEARCH (EMOJIS) ✨ -->
+                <div class="category-grid" style="margin-bottom: 8px;">
+                    <button class="cat-btn active-cat" data-lang="all" onclick="window.switchLang('all', this)">🌐 All</button>
+                    <button class="cat-btn" data-lang="bn" onclick="window.switchLang('bn', this)">🇧🇩 Bengali</button>
+                    <button class="cat-btn" data-lang="en" onclick="window.switchLang('en', this)">🇺🇸 English</button>
+                    <button class="cat-btn" data-lang="hi" onclick="window.switchLang('hi', this)">🇮🇳 Hindi</button>
+                </div>
+                
+                <!-- ✨ CATEGORY FILTERS IN SEARCH (EMOJIS) ✨ -->
+                <div class="category-grid">
+                    <button class="cat-btn active-cat" data-cat="all" onclick="window.switchCategory('all', this)">🌐 All</button>
+                    <button class="cat-btn" data-cat="love" onclick="window.switchCategory('love', this)">❤️ Love</button>
+                    <button class="cat-btn" data-cat="sad" onclick="window.switchCategory('sad', this)">😢 Sad</button>
+                    <button class="cat-btn" data-cat="romantic" onclick="window.switchCategory('romantic', this)">🥰 Romantic</button>
+                </div>
+
+                <div class="feed" id="searchFeed" style="margin-top: 15px;"></div>
             </div>
         </div>
 
         <!-- INBOX -->
         <div id="section-chats" class="app-section">
-            <div class="global-chat-banner" onclick="window.openCommunityChat()">
-                <h2 style="font-size: 20px; color: #fff; margin-bottom: 5px; font-weight: 800; text-shadow:0 0 10px rgba(255,255,255,0.5);">🌍 Global Community Room</h2>
-                <p style="font-size: 13px; color:rgba(255,255,255,0.8); margin-top:5px;">সবার সাথে আড্ডা দিন! (অজ্ঞাত পরিচয়)</p>
-            </div>
-            
             <div class="ai-chat-banner-btn" onclick="window.openRobotAI()">
                 <h2>🤖 Chat with @LateNight_AI</h2>
                 <p style="font-size: 13px; opacity: 0.8; margin-top:5px;">গল্প, জোকস এবং শায়রি শুনতে ট্যাপ করুন...</p>
@@ -452,9 +488,9 @@
     <div class="popup" id="aboutUsPopup">
         <div class="popupBox" style="max-height: 80vh; overflow-y:auto;">
             <div class="popupTitle" style="font-size: 22px; color:#00f2fe; text-align:center; margin-bottom:20px;">About Us ℹ️</div>
-            <div class="about-text-box"><h4>🇺🇸 English</h4><p>Earn 1 R-Coin for every 10 posts. Global chat is anonymous & deletes in 24h. Profanity is strictly banned. You can delete your own posts anytime. Likes & Comments are permanent.</p></div>
-            <div class="about-text-box"><h4>🇧🇩 বাংলা (Bengali)</h4><p>প্রতি ১০টি পোস্টের জন্য ১টি R-Coin জিতুন। গ্লোবাল চ্যাট সম্পূর্ণ অজ্ঞাত এবং ২৪ ঘণ্টা পর ডিলিট হয়ে যায়। কোনো প্রকার খারাপ ভাষার ব্যবহার কঠোরভাবে নিষিদ্ধ। নিজের পোস্ট ডিলিট করতে পারবেন, তবে লাইক ও কমেন্ট আজীবন থেকে যাবে।</p></div>
-            <div class="about-text-box"><h4>🇮🇳 हिंदी (Hindi)</h4><p>हर 10 पोस्ट के लिए 1 R-Coin कमाएं। ग्लोबल चैट में नाम गुप्त रहता है और 24 घंटे में डिलीट हो जाता है। गाली-गलौज सख्त मना है। आप अपनी पोस्ट को कभी भी डिलीट कर सकते हैं।</p></div>
+            <div class="about-text-box"><h4>🇺🇸 English</h4><p>Earn 1 R-Coin for every 10 posts. Chat is fully encrypted. Profanity is strictly banned. You can delete your own posts anytime. Likes & Comments are permanent.</p></div>
+            <div class="about-text-box"><h4>🇧🇩 বাংলা (Bengali)</h4><p>প্রতি ১০টি পোস্টের জন্য ১টি R-Coin জিতুন। চ্যাট সম্পূর্ণ নিরাপদ। কোনো প্রকার খারাপ ভাষার ব্যবহার কঠোরভাবে নিষিদ্ধ। নিজের পোস্ট ডিলিট করতে পারবেন, তবে লাইক ও কমেন্ট আজীবন থেকে যাবে।</p></div>
+            <div class="about-text-box"><h4>🇮🇳 हिंदी (Hindi)</h4><p>हर 10 पोस्ट के लिए 1 R-Coin कमाएं। चैट सुरक्षित है। गाली-गलौज सख्त मना है। आप अपनी पोस्ट को कभी भी डिलीট कर सकते हैं।</p></div>
             <button class="popupBtn closeBtn" onclick="window.hidePopup('aboutUsPopup'); window.showPopup('settingsPopup')">⬅️ Back to Settings</button>
         </div>
     </div>
@@ -472,34 +508,66 @@
     <div class="popup" id="sharePopup" style="z-index: 99999999;"><div class="popupBox"><div class="popupTitle" style="font-size: 22px;">Share Snap</div><div id="sharePreviewContainer" style="margin-bottom: 15px;"><img id="generatedImageHolder" src="" style="width:100%; border-radius:16px;"></div><button class="popupBtn" id="downloadImageBtn">Download Image 📥</button><button class="popupBtn closeBtn" onclick="window.hidePopup('sharePopup')">Close</button></div></div>
 
     <script>
-        // --- SAFE STORAGE DEFINED FIRST ---
         window.safeStorage = { 
             getItem: (key) => { try { return localStorage.getItem(key); } catch(e) { return null; } }, 
             setItem: (key, value) => { try { localStorage.setItem(key, value); } catch(e) {} } 
         };
 
-        // --- PROFANITY FILTER ---
         const badWords = ["bokachoda", "magi", "gali", "fuck", "shit", "bitch", "khanki", "bal", "suorer", "kutta", "bastard", "madarchod", "barwa", "bara"];
         function checkBadWords(text) { return badWords.some(bw => text.toLowerCase().includes(bw)); }
 
+        // ✨ GLOBAL STATE VARIABLES ✨
         window.selectedPostTheme = 'default';
+        window.selectedPostCategory = null; 
+        window.selectedPostLanguage = null; 
+        
+        window.currentActiveCategoryFilter = "all"; 
+        window.currentActiveLanguageFilter = "all"; 
+        window.currentSearchQueryFilterKeyword = "";
+        window.isLiveSearching = false;
+
+        // ✨ UPDATE 7: INDEPENDENT SCROLLING ✨
+        window.currentVisibleSection = 'home';
+        window.tabScrollPositions = { 'home': 0, 'post': 0, 'search': 0, 'chats': 0, 'profile': 0, 'public-profile': 0 };
+
         window.selectTheme = function(theme, el) {
             document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active')); el.classList.add('active'); window.selectedPostTheme = theme;
             const textarea = document.getElementById('postContentInput'); textarea.className = 'premium-textarea';
             if(theme === 'dark') textarea.classList.add('theme-dark'); else if(theme === 'blue') textarea.classList.add('theme-blue'); else textarea.classList.add('theme-default');
         };
 
-        // ✨ GLOBAL APP BACKGROUND THEME LOGIC ✨
+        window.selectPostLang = function(lang, element) { 
+            document.querySelectorAll('#section-post .chip[data-val="bn"], #section-post .chip[data-val="en"], #section-post .chip[data-val="hi"]').forEach(c => c.classList.remove('selected')); 
+            element.classList.add('selected'); window.selectedPostLanguage = lang; 
+        };
+
+        window.selectPostChip = function(category, element) { 
+            document.querySelectorAll('#section-post .chip[data-val="love"], #section-post .chip[data-val="sad"], #section-post .chip[data-val="romantic"]').forEach(c => c.classList.remove('selected')); 
+            element.classList.add('selected'); window.selectedPostCategory = category; 
+        };
+
+        window.switchCategory = function(cat, element) { 
+            document.querySelectorAll('#section-search .cat-btn[data-cat]').forEach(b => b.classList.remove('active-cat')); 
+            element.classList.add('active-cat'); window.currentActiveCategoryFilter = cat; 
+            window.buildFeedDOM("searchFeed", false); 
+        };
+
+        window.switchLang = function(lang, element) { 
+            document.querySelectorAll('#section-search .cat-btn[data-lang]').forEach(b => b.classList.remove('active-cat')); 
+            element.classList.add('active-cat'); window.currentActiveLanguageFilter = lang; 
+            window.buildFeedDOM("searchFeed", false); 
+        };
+
         window.applySavedTheme = function() {
             let t = window.safeStorage.getItem('appThemeStyle') || 'dark';
-            let bgEl = document.querySelector('.liquid-universe-bg');
-            if(t === 'light') { bgEl.classList.add('theme-light-mix'); } 
-            else { bgEl.classList.remove('theme-light-mix'); }
+            if(t === 'light') { document.body.classList.add('light-theme-active'); } 
+            else { document.body.classList.remove('light-theme-active'); }
         };
         
         window.changeTheme = function(mode) {
             window.safeStorage.setItem('appThemeStyle', mode);
-            location.reload(); 
+            window.applySavedTheme();
+            window.hidePopup('settingsPopup');
         };
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -507,13 +575,21 @@
             const introPage = document.getElementById("intro-page"), dialPage = document.getElementById("portal-dial-page"), loginPage = document.getElementById("login-page"), signupPage = document.getElementById("signup-page");
             setTimeout(() => { if(introPage) introPage.style.opacity = "0"; if(introPage) introPage.style.visibility = "hidden"; if(dialPage) dialPage.classList.add("active"); }, 1800);
             
-            document.getElementById("trigger-login").addEventListener("click", () => { dialPage.classList.remove("active"); setTimeout(() => { dialPage.style.display = "none"; signupPage.style.display = "flex"; setTimeout(() => { signupPage.classList.add("active"); }, 50); }, 500); });
+            document.getElementById("trigger-login").addEventListener("click", () => { 
+                dialPage.classList.remove("active"); 
+                setTimeout(() => { 
+                    dialPage.style.display = "none"; 
+                    signupPage.style.display = "flex"; 
+                    document.getElementById("topSkipBtn").style.display = "block"; 
+                    setTimeout(() => { signupPage.classList.add("active"); }, 50); 
+                }, 500); 
+            });
+            
             window.switchToLogin = function() { signupPage.classList.remove("active"); setTimeout(() => { signupPage.style.display = "none"; loginPage.style.display = "flex"; setTimeout(() => loginPage.classList.add("active"), 50); }, 300); };
             window.switchToSignup = function() { loginPage.classList.remove("active"); setTimeout(() => { loginPage.style.display = "none"; signupPage.style.display = "flex"; setTimeout(() => signupPage.classList.add("active"), 50); }, 300); };
             document.getElementById("signup-userid").addEventListener("input", (e) => { e.target.value = e.target.value.replace(/[^a-zA-Z0-9_]/g, ''); });
             document.getElementById("newUsernameInput").addEventListener("input", (e) => { e.target.value = e.target.value.replace(/[^a-zA-Z0-9_]/g, ''); });
 
-            // ✨ ROBOT PASSWORD FOCUS EVENT ✨
             document.querySelectorAll('input[type="password"]').forEach(input => {
                 input.addEventListener('focus', () => {
                     document.getElementById('login-bot-avatar').classList.add('robot-hide-eyes');
@@ -540,15 +616,25 @@
             clearTimeout(idleTimer); idleTimer = setTimeout(() => { bnav.classList.remove('nav-hidden'); }, 3000);
         }, false);
 
+        // ✨ UPDATE 8: STAGGERED TYPEWRITER OBSERVER ✨
         const typeWriterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
                     const el = entry.target;
                     if(el.dataset.typed !== "true") {
-                        el.dataset.typed = "true"; const text = el.dataset.rawText; el.innerHTML = ""; let i = 0;
-                        let speed = Math.max(15, Math.min(60, 2500 / (text.length || 1))); 
-                        function typeWriter() { if (i < text.length) { el.innerHTML += text.charAt(i); i++; setTimeout(typeWriter, speed); } }
-                        setTimeout(typeWriter, 300);
+                        el.dataset.typed = "true"; 
+                        const text = el.getAttribute('data-raw-text'); 
+                        el.innerHTML = ""; 
+                        let i = 0;
+                        let speed = Math.max(15, Math.min(45, 2000 / (text.length || 1))); 
+                        function typeWriter() { 
+                            if (i < text.length) { 
+                                el.innerHTML += text.charAt(i); 
+                                i++; 
+                                setTimeout(typeWriter, speed); 
+                            } 
+                        }
+                        setTimeout(typeWriter, 100 + Math.random() * 200);
                     }
                 }
             });
@@ -593,17 +679,17 @@
                 opts: [{l:"রোমান্টিক গল্প", n:"story"}, {l:"🌌 শায়রি", n:"shayari"}, {l:"⬅️ মেনু", n:"start"}]
             },
             story: {
-                txt: ["এক বৃদ্ধা প্রতিদিন সকালে সমুদ্রের তীরে গিয়ে ঝিনুক কুড়াতেন। একদিন কেউ জিজ্ঞেস করলো, কেন কুড়ান? তিনি বললেন, আমি শুধু এই ঝিনুকগুলোকে আবার সাগরে ফিরিয়ে দিচ্ছি যাতে তারা বাঁচে। তার সেই ছোট কাজটি সমুদ্রের বিশালতায় হয়তো সামান্য, কিন্তু ওই ঝিনুকগুলোর কাছে তা ছিল পুরো পৃথিবী। আপনার ছোট ছোট কাজগুলোও অন্যের জীবনে বড় পরিবর্তন আনতে পারে। ✨", "পাহাড়ের নিচে এক শিল্পী ছিল। সে প্রতিদিন শুধু একটা সাদা ক্যানভাসে নীল রঙ করত। মানুষ ভাবত সে পাগল। কিন্তু যেদিন পুরো পৃথিবী অন্ধকারে ডুবে গেল, ওই শিল্পীর আঁকা সেই নীল রঙই পথ দেখিয়েছিল সবাইকে। স্বপ্ন বড় হোক বা ছোট, নিজের সৃষ্টির ওপর ভরসা রাখতে হয়। 🎨", "এক পথিক দীর্ঘ পথ পাড়ি দিচ্ছিল। তার সাথে ছিল একটি পানির ঘটি। ঘটিটা ছিল ফুটো। কিন্তু সে দেখল, সে যে পথ দিয়ে যাচ্ছে, সেই পথের পাশে সবুজের সমারোহ। কারণ তার ফুটো ঘটি থেকে পড়া পানিই ওই গাছগুলোকে বাঁচিয়ে রেখেছে। আপনার ব্যর্থতা বা ত্রুটিগুলোই হয়তো অন্য কারো জন্য আর্শীবাদ। 🌿"],
+                txt: ["এক বৃদ্ধা প্রতিদিন সকালে সমুদ্রের তীরে গিয়ে ঝিনুক কুড়াতেন। একদিন কেউ জিজ্ঞেস করলো, কেন কুড়ান? তিনি বললেন, আমি চরম শুধু এই ঝিনুকগুলোকে আবার সাগরে ফিরিয়ে দিচ্ছি যাতে তারা বাঁচে। তার সেই ছোট কাজটি সমুদ্রের বিশালতায় হয়তো সামান্য, কিন্তু ওই ঝিনুকগুলোর কাছে তা ছিল পুরো পৃথিবী। আপনার ছোট ছোট কাজগুলোও অন্যের জীবনে বড় পরিবর্তন আনতে পারে। ✨", "পাহাড়ের নিচে এক শিল্পী ছিল। সে প্রতিদিন শুধু একটা সাদা ক্যানভাসে নীল রঙ করত। মানুষ ভাবত সে পাগল। কিন্তু যেদিন পুরো পৃথিবী অন্ধকারে ডুবে গেল, ওই শিল্পীর আঁকা সেই নীল রঙই পথ দেখিয়েছিল সবাইকে। স্বপ্ন বড় হোক বা ছোট, নিজের সৃষ্টির ওপর ভরসা রাখতে হয়। 🎨", "এক পথিক দীর্ঘ পথ পাড়ি দিচ্ছিল। তার সাথে ছিল একটি পানির ঘটি। ঘটিটা ছিল ফুটো। কিন্তু সে দেখল, সে যে পথ দিয়ে যাচ্ছে, সেই পথের পাশে সবুজের সমারোহ। কারণ তার ফুটো ঘটি থেকে পড়া পানিই ওই গাছগুলোকে বাঁচিয়ে রেখেছে। আপনার ব্যর্থতা বা ত্রুটিগুলোই হয়তো অন্য কারো জন্য আর্শীবাদ। 🌿"],
                 shareable: true,
                 opts: [{l:"আরেকটি গল্প", n:"story"}, {l:"💡 মোটিভেশন", n:"motivation"}, {l:"⬅️ মেনু", n:"start"}]
             },
             shayari: {
-                txt: ["জীবন এক কঠিন পরীক্ষা, আর আমরা সবাই তার পরীক্ষার্থী। যদি হেরে যাও, তবে ভেঙে পড়োচ্ছ না, আবার নতুন করে শেখার সুযোগ নাও। শায়রি: 'ম্যায়নে কভি হর্না নহি শিখা, কিয়ুঁকি জিন্দেগি নে মুঝে হার বার লড়না শিখায়া হ্যায়।' 🌌", "ভালোবাসা মানুষের অহংকার কমায়, কিন্তু সম্মান বাড়ায়। শায়রি: 'তেরে পাস সব কুছ হ্যায়, সিওয়ায়ে মেরে, অর মেরে পাস কুছ নহি, সিওয়ায়ে তেরে।' 💖", "সময়ের স্রোতে সব মুছে যায়, শুধু থেকে যায় কিছু স্মৃতি। শায়রি: 'কুছ ইশ্ক কিয়া, কুছ কাম কিয়া, ওহ জো কুছ বাচা, উসি কা নাম জিন্দেগি রাখ দিয়া।' 🥀"],
+                txt: ["জীবন এক কঠিন পরীক্ষা, আর আমরা সবাই তার পরীক্ষার্থী। যদি হেরে যাও, তবে ভেঙে পড়োচ্ছ না, আবার নতুন করে শেখার সুযোগ নাও। শায়রি: 'ম্যায়নে কভি হর্না নহি শিখা, কিয়ুঁকি জিন্দেগি নে মুঝে হার বার লড়না শিখায়া হ্যায়।' 🌌", "ভালোবাসা মানুষের অহংকার কমায়, কিন্তু সম্মান বাড়ায়। শায়রি: 'তেরে পাস সব কুছ হ্যায়, সিওয়ায়ে মেরে, অর মেরে পাস কুছ নহি, সিওয়ায়ে তেরে।' 💖", "সময়ের স্রোতে তৃতীয় কিছু মুছে যায়, শুধু থেকে যায় কিছু স্মৃতি। শায়রি: 'কুছ ইশ্ক কিয়া, কুছ কাম কিয়া, ওহ জো কুছ বাচা, উসি কা নাম জিন্দেগি রাখ দিয়া।' 🥀"],
                 shareable: true,
                 opts: [{l:"আবার শায়রি", n:"shayari"}, {l:"❤️ ভালোবাসা", n:"love"}, {l:"⬅️ মেনু", n:"start"}]
             },
             motivation: {
-                txt: ["সকালটা যদি আপনার হয়, তবে গোটা দিনটা আপনার। ঘুম থেকে উঠেই ভাবুন, আজ আমি এমন কিছু করব যা আমাকে আমার লক্ষ্যের আরও এক ধাপ কাছে নিয়ে যাবে। আপনার ভেতর যে আগুন আছে, তাকে নেভাতে দেবেন মহাশয়। আপনিই আপনার শ্রেষ্ঠ শিক্ষক। 🔥", "সাফল্যের কোনো শর্টকাট নেই। যারা আপনাকে বলছে আপনি পারবেন না, তাদের মুখে জবাব দেওয়ার একমাত্র উপায় হলো—নিজের লক্ষ্যে অবিচল থাকা। পৃথিবীর সবচেয়ে শক্তিশালী অস্ত্র হলো আপনার ইচ্ছাশক্তি। সেটাকে কখনোই দুর্বল হতে দেবেন মহাশয়। 🚀"],
+                txt: ["সকালটা যদি আপনার হয়, তবে গোটা দিনটা আপনার। ঘুম থেকে উঠেই ভাবুন, আজ আমি এমন কিছু করব যা আমাকে আমার লক্ষ্যের আরও এক ধাপ কাছে নিয়ে যাবে। আপনার ভেতর যে আগুন আছে, তাকে নেভাতে দেবেন মহাশয়। আপনিই আপনার শ্রেষ্ঠ শিক্ষক। 🔥", "সাফল্যের কোনো শর্টকাট নেই। যারা আপনাকে বলছে আপনি পারবেন না, তাদের মুখে জবাব দেওয়ার একমাত্র উপায় হলো--নিজের লক্ষ্যে অবিচল থাকা। পৃথিবীর সবচেয়ে শক্তিশালী অস্ত্র হলো আপনার ইচ্ছাশক্তি। সেটাকে কখনোই দুর্বল হতে দেবেন মহাশয়। 🚀"],
                 shareable: true,
                 opts: [{l:"আরেকটু মোটিভেশন", n:"motivation"}, {l:"📖 গল্প", n:"story"}, {l:"⬅️ মেনু", n:"start"}]
             },
@@ -706,14 +792,13 @@
         const firebaseConfig = { apiKey: "AIzaSyDouDj1wDkZr4yy2dNTuYMVDPkzk_vt9V8", authDomain: "late-night-confessions.firebaseapp.com", projectId: "late-night-confessions", storageBucket: "late-night-confessions.firebasestorage.app", messagingSenderId: "719053036633", appId: "1:719053036633:web:1e9b8ce879b2e3ce6fe548" };
         const app = initializeApp(firebaseConfig); const db = getFirestore(app); const auth = getAuth(app);
 
-        window.globalUserSession = null; window.selectedPostCategory = "love"; window.currentActiveCategoryFilter = "all"; window.globalAllStories = []; window.globalAllUsers = []; window.postsToShowCount = 15; window.profileStatsData = { posts: 0, likes: 0, comments: 0 }; window.activeChatMetaEngineContainer = { currentRoomId: null, targetUid: null, targetUsername: null }; let chatUnsubscribeTracker = null; let currentSearchQueryFilterKeyword = ""; let rotCommentIntervals = {}; let currentUserStatsUnsubscribe = null;
+        window.globalUserSession = null; window.globalAllStories = []; window.globalAllUsers = []; window.postsToShowCount = 15; window.profileStatsData = { posts: 0, likes: 0, comments: 0 }; window.activeChatMetaEngineContainer = { currentRoomId: null, targetUid: null, targetUsername: null }; let chatUnsubscribeTracker = null; let rotCommentIntervals = {}; let currentUserStatsUnsubscribe = null;
         
-        // ✨ FETCH ALL USERS FOR SEARCH PIPELINE ✨
         onSnapshot(collection(db, "users"), (snap) => {
             window.globalAllUsers = [];
             snap.forEach(doc => { 
                 let data = doc.data();
-                data.uid = doc.id; // Force UID matching
+                data.uid = doc.id;
                 window.globalAllUsers.push(data); 
             });
         });
@@ -723,15 +808,34 @@
         window.goToFuturisticLogin = function() { window.hidePopup('gatekeeperPopup'); document.getElementById('mainPage').style.display = 'none'; document.getElementById('futuristic-entry-wrapper').style.display = 'flex'; const signupPage = document.getElementById('signup-page'); signupPage.style.display = 'flex'; setTimeout(() => signupPage.classList.add('active'), 50); };
         window.skipLogin = function() { document.getElementById("futuristic-entry-wrapper").style.display = "none"; document.getElementById("mainPage").style.display = "block"; document.getElementById("topNavStatus").innerText = "@Guest"; window.realignLiquidPillIndicator(0); };
         
+        // ✨ UPDATE 7: INDEPENDENT TAB SCROLLING LOGIC FIXED ✨
         window.switchTab = function(targetSection, element) { 
             if (!window.globalUserSession && (targetSection === 'post' || targetSection === 'chats' || targetSection === 'profile')) { window.showPopup('gatekeeperPopup'); return; } 
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); element.classList.add('active'); 
-            let tabIndex = parseInt(element.getAttribute('data-index')); window.realignLiquidPillIndicator(tabIndex); 
-            document.querySelectorAll('.app-section').forEach(sec => sec.classList.remove('active-section')); document.getElementById('section-' + targetSection).classList.add('active-section'); 
+            
+            // Save current scroll position BEFORE changing DOM
+            window.tabScrollPositions[window.currentVisibleSection] = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
+
+            // Handle Nav active states
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); 
+            if(element) element.classList.add('active'); 
+            let tabIndex = element ? parseInt(element.getAttribute('data-index')) : 0; 
+            window.realignLiquidPillIndicator(tabIndex); 
+            
+            // Switch DOM visibility
+            document.querySelectorAll('.app-section').forEach(sec => sec.classList.remove('active-section')); 
+            document.getElementById('section-' + targetSection).classList.add('active-section'); 
+            
+            window.currentVisibleSection = targetSection;
+
+            // Force aggressive scroll restore overriding any animation layout glitches
+            let destY = window.tabScrollPositions[targetSection] || 0;
+            window.scrollTo(0, destY);
+            setTimeout(() => window.scrollTo(0, destY), 10);
+            setTimeout(() => window.scrollTo(0, destY), 50);
+            requestAnimationFrame(() => window.scrollTo(0, destY));
         };
         
         window.realignLiquidPillIndicator = function(index) { let pill = document.getElementById("liquidSlidingGlassCapsuleIndicatorBubble"); if(pill) { pill.style.left = `calc(${index * 20}% + 2%)`; } };
-        window.selectPostChip = function(category, element) { document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected')); element.classList.add('selected'); window.selectedPostCategory = category; };
 
         window.showEditProfileModal = function() { if(!window.globalUserSession) return; document.getElementById('newUsernameInput').value = window.globalUserSession.displayName || ""; window.showPopup('editProfilePopup'); };
         window.updateUsername = async function() {
@@ -741,20 +845,23 @@
             try { await updateProfile(window.globalUserSession, { displayName: newName }); await setDoc(doc(db, "users", window.globalUserSession.uid), { username: newName, searchName: newName.toLowerCase() }, { merge: true }); window.safeStorage.setItem("profile_name_" + window.globalUserSession.uid, newName); document.getElementById("topNavStatus").innerText = "@" + newName; document.getElementById("profileTitleName").innerText = "@" + newName; window.hidePopup('editProfilePopup'); alert("User ID updated successfully!"); location.reload(); } catch(e) { alert("Failed to update: " + e.message); }
         };
 
-        // ✨ VIEW PUBLIC USER PROFILE & SHOW CHAT OPTION ✨
         window.viewUserProfile = async function(uid, username) {
+            window.tabScrollPositions[window.currentVisibleSection] = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
             document.querySelectorAll('.app-section').forEach(sec => sec.classList.remove('active-section'));
             document.getElementById('section-public-profile').classList.add('active-section');
             document.getElementById('publicProfileName').innerText = "@" + username;
             
-            // Show/Hide Chat Button
+            window.currentVisibleSection = 'public-profile';
+            
+            window.scrollTo(0, 0);
+            setTimeout(() => window.scrollTo(0, 0), 10);
+
             let chatBtn = document.getElementById('publicChatBtn');
             if(window.globalUserSession && window.globalUserSession.uid !== uid) {
                 chatBtn.style.display = "inline-block";
                 chatBtn.onclick = () => window.openLiveChatWithUser(uid, username);
             } else { chatBtn.style.display = "none"; }
 
-            // Dynamic Stats Calculation (100% Accurate)
             let userPosts = window.globalAllStories.filter(s => s.uid === uid);
             let totalLikes = userPosts.reduce((sum, post) => sum + (post.likes || 0), 0);
             let totalComments = userPosts.reduce((sum, post) => sum + (post.commentCount || 0), 0);
@@ -763,7 +870,6 @@
             document.getElementById('public-stat-likes').innerText = totalLikes;
             document.getElementById('public-stat-comments').innerText = totalComments;
 
-            // Populate feed
             let feedBox = document.getElementById('publicPersonalFeed');
             feedBox.innerHTML = "";
             if(userPosts.length === 0) {
@@ -778,14 +884,12 @@
 
         try { await setPersistence(auth, browserLocalPersistence); } catch(e) {}
 
-        // ✨ REALTIME STATS FOR CURRENT USER ✨
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 window.globalUserSession = user; document.getElementById("futuristic-entry-wrapper").style.display = "none"; document.getElementById("mainPage").style.display = "block";
                 let cachedName = window.safeStorage.getItem("profile_name_" + user.uid); let finalName = user.displayName || cachedName || "anon";
                 document.getElementById("topNavStatus").innerText = "@" + finalName; document.getElementById("profileTitleName").innerText = "@" + finalName; document.getElementById("profileEmailLabel").innerText = user.email;
                 
-                // Keep Stats Always Updated
                 if(currentUserStatsUnsubscribe) currentUserStatsUnsubscribe();
                 currentUserStatsUnsubscribe = onSnapshot(doc(db, "users", user.uid), (d) => {
                     if(d.exists() && d.data().stats) {
@@ -818,31 +922,6 @@
             });
         }
 
-        window.openCommunityChat = function() {
-            if(!window.globalUserSession) { window.showPopup('gatekeeperPopup'); return; }
-            window.activeChatMetaEngineContainer.currentRoomId = "GLOBAL_COMMUNITY";
-            document.getElementById("chatRoomHeaderTitle").innerText = "🌍 Global Community Room";
-            document.getElementById("liveChatRoomFullScreenModal").style.display = "flex";
-            if(chatUnsubscribeTracker) chatUnsubscribeTracker();
-            let now = new Date().getTime(); let oneDay = 24 * 60 * 60 * 1000;
-            
-            chatUnsubscribeTracker = onSnapshot(collection(db, "community_chat"), (snap) => {
-                let box = document.getElementById("chatMessageLiveTrackBox"); if(!box) return; box.innerHTML = ""; let arr = [];
-                snap.forEach((d) => { arr.push({id: d.id, ...d.data()}); }); arr.sort((a,b) => (a.timestamp || 0) - (b.timestamp || 0));
-                
-                arr.forEach(m => { 
-                    if(now - m.timestamp > oneDay) return;
-                    let isMe = m.senderUid === window.globalUserSession.uid;
-                    let bubble = document.createElement("div"); bubble.className = "msg-bubble " + (isMe ? "msg-sent" : "msg-received");
-                    let maskedName = m.senderName || "anon";
-                    if(maskedName.length > 2) { maskedName = maskedName.charAt(0).toUpperCase() + "..." + maskedName.charAt(maskedName.length - 1).toUpperCase(); } else { maskedName = maskedName + "..."; }
-                    let nameDiv = isMe ? "" : `<div style="font-size:11px; opacity:0.8; margin-bottom:4px; font-weight:800; color:#00f2fe;">@${maskedName}</div>`;
-                    bubble.innerHTML = `${nameDiv}<div>${m.text}</div>`; box.appendChild(bubble); 
-                });
-                box.scrollTop = box.scrollHeight;
-            });
-        };
-
         window.openLiveChatWithUser = async function(targetUid, targetUsername) {
             if(!window.globalUserSession) { window.showPopup('gatekeeperPopup'); return; }
             if(window.globalUserSession.uid === targetUid) { alert("You cannot chat with yourself!"); return; }
@@ -857,7 +936,7 @@
                 let box = document.getElementById("chatMessageLiveTrackBox"); if(!box) return; box.innerHTML = ""; let arr = [];
                 snap.forEach((documentSnapshot) => { arr.push(documentSnapshot.data()); }); arr.sort((a,b) => (a.timestamp || 0) - (b.timestamp || 0));
                 arr.forEach(m => { 
-                    if(now - m.timestamp > oneDay) return; // HIDE 1-DAY OLD MESSAGES
+                    if(now - m.timestamp > oneDay) return; 
                     let bubble = document.createElement("div"); bubble.className = "msg-bubble " + (m.senderUid === window.globalUserSession.uid ? "msg-sent" : "msg-received"); bubble.innerHTML = `<div>${m.text}</div>`; box.appendChild(bubble); 
                 });
                 box.scrollTop = box.scrollHeight;
@@ -883,21 +962,13 @@
             btn.disabled = true;
 
             try { 
-                if(activeRoomId === "GLOBAL_COMMUNITY") { 
-                    await addDoc(collection(db, "community_chat"), { 
-                        senderUid: window.globalUserSession.uid, 
-                        senderName: window.globalUserSession.displayName || "anon", 
-                        text: txt, 
-                        timestamp: new Date().getTime() 
-                    }); 
-                } else { 
-                    await addDoc(collection(db, "inbox_channels", activeRoomId, "messages"), { 
-                        senderUid: window.globalUserSession.uid, 
-                        text: txt, 
-                        timestamp: new Date().getTime() 
-                    }); 
-                    await updateDoc(doc(db, "inbox_channels", activeRoomId), { lastUpdated: new Date().getTime() }); 
-                }
+                await addDoc(collection(db, "inbox_channels", activeRoomId, "messages"), { 
+                    senderUid: window.globalUserSession.uid, 
+                    text: txt, 
+                    timestamp: new Date().getTime() 
+                }); 
+                await updateDoc(doc(db, "inbox_channels", activeRoomId), { lastUpdated: new Date().getTime() }); 
+                
                 inputField.value = ""; 
                 inputField.focus(); 
             } catch(err) { 
@@ -919,22 +990,41 @@
         
         document.getElementById("wipeEntireConversationHistoryActionButton").onclick = async function() { 
             let activeRoomId = window.activeChatMetaEngineContainer.currentRoomId; 
-            if(activeRoomId === "GLOBAL_COMMUNITY") { alert("You cannot wipe the global community chat!"); return;}
             if(!activeRoomId || !window.globalUserSession) return; 
             if(!confirm("🗑️ Wipe entire conversation history from server?")) return; 
-            try { const querySnapshot = await getDocs(collection(db, "inbox_channels", activeRoomId, "messages")); querySnapshot.forEach(async (docSnapshot) => { await deleteDoc(doc(db, "inbox_channels", activeRoomId, "messages", docSnapshot.id)); }); alert("Chat wiped! 🪐"); document.getElementById("liveChatRoomFullScreenModal").style.display = "none"; } catch (error) { console.error(error); } 
+            try { 
+                const querySnapshot = await getDocs(collection(db, "inbox_channels", activeRoomId, "messages")); 
+                querySnapshot.forEach(async (docSnapshot) => { await deleteDoc(doc(db, "inbox_channels", activeRoomId, "messages", docSnapshot.id)); }); 
+                alert("Chat wiped! 🪐"); 
+                document.getElementById("liveChatRoomFullScreenModal").style.display = "none"; 
+            } catch (error) { console.error(error); } 
         };
 
-        window.signupAction = async function() { let name = document.getElementById("signup-userid").value.trim(); let email = document.getElementById("signup-email").value.trim(); let password = document.getElementById("signup-password").value; if(!name) { alert("User ID needed!"); return; } if(checkBadWords(name)) { alert("অশ্লীল ইউজারনেম ব্যবহার করা যাবে না!"); return; } try { let creds = await createUserWithEmailAndPassword(auth, email, password); await setDoc(doc(db, "users", creds.user.uid), { username: name, searchName: name.toLowerCase(), uid: creds.user.uid, stats: {posts:0, likes:0, comments:0} }); await updateProfile(creds.user, { displayName: name }); location.reload(); } catch(e) { alert(e.message); } };
+        window.signupAction = async function() { let name = document.getElementById("signup-userid").value.trim(); let email = document.getElementById("signup-email").value.trim(); let password = document.getElementById("signup-password").value; if(!name) { alert("User ID needed!"); return; } if(checkBadWords(name)) { alert("অশ্লীল ইউজারনেম ব্যবহার করা যাবেবিধা!"); return; } try { let creds = await createUserWithEmailAndPassword(auth, email, password); await setDoc(doc(db, "users", creds.user.uid), { username: name, searchName: name.toLowerCase(), uid: creds.user.uid, stats: {posts:0, likes:0, comments:0} }); await updateProfile(creds.user, { displayName: name }); location.reload(); } catch(e) { alert(e.message); } };
         window.loginAction = async function() { let email = document.getElementById("login-email").value.trim(); let password = document.getElementById("login-password").value; try { await signInWithEmailAndPassword(auth, email, password); location.reload(); } catch(e) { alert("Login failed: " + e.message); } };
         window.triggerLogout = async function() { if(confirm("Sign out?")) { await signOut(auth); location.reload(); } };
         
         window.submitConfession = async function() { 
             if(!window.globalUserSession) { window.showPopup('gatekeeperPopup'); return; } 
+            
+            // ✨ MANDATORY SELECTION VALIDATION ✨
+            if(!window.selectedPostLanguage) { alert("দয়া করে একটি ভাষা (Language) নির্বাচন করুন!"); return; }
+            if(!window.selectedPostCategory) { alert("দয়া করে একটি ক্যাটাগরি (Category) নির্বাচন করুন!"); return; }
+
             let text = document.getElementById("postContentInput").value.trim(); if(!text) return; if(checkBadWords(text)) { alert("অশ্লীল বা খারাপ ভাষা ব্যবহার করা কঠোরভাবে নিষিদ্ধ!"); return; } 
             try { 
                 let name = window.globalUserSession.displayName || "anon"; 
-                await addDoc(collection(db, "stories"), { uid: window.globalUserSession.uid, username: name, content: text, category: window.selectedPostCategory, theme: window.selectedPostTheme, likes: 0, commentCount: 0, timestamp: new Date().getTime() }); 
+                await addDoc(collection(db, "stories"), { 
+                    uid: window.globalUserSession.uid, 
+                    username: name, 
+                    content: text, 
+                    category: window.selectedPostCategory, 
+                    theme: window.selectedPostTheme, 
+                    language: window.selectedPostLanguage, 
+                    likes: 0, 
+                    commentCount: 0, 
+                    timestamp: new Date().getTime() 
+                }); 
                 updateUserStats(window.globalUserSession.uid, 'posts'); 
                 document.getElementById("postContentInput").value = ""; alert("Posted!"); window.switchTab('home', document.querySelectorAll('.nav-item')[0]); 
             } catch(e) { alert(e.message); } 
@@ -951,13 +1041,15 @@
             let story = window.globalAllStories.find(s => s.id === cardId); if(!story) return;
             let oldText = btnElement.innerHTML; btnElement.innerHTML = "⏳ Wait...";
             let themeBg = story.theme === 'dark' ? 'linear-gradient(135deg, rgba(15,15,18,0.95), rgba(5,5,8,0.98))' : story.theme === 'blue' ? 'linear-gradient(135deg, rgba(10,25,50,0.9), rgba(5,10,20,0.95))' : 'linear-gradient(135deg, rgba(42,8,69,0.8), rgba(16,5,29,0.9))';
+            let catText = story.category === 'love' ? '❤️ Love' : story.category === 'sad' ? '😢 Sad' : story.category === 'romantic' ? '🥰 Romantic' : (story.category || '❤️ Love');
+            
             let shareDiv = document.createElement("div"); 
             shareDiv.style.cssText = "position:absolute; left:-9999px; top:0; width:450px; background: #0f0c29; color:white; padding:40px 30px; border-radius:30px; font-family:'Poppins', sans-serif; overflow:hidden; border: 2px solid rgba(0,242,254,0.3); box-shadow: 0 0 30px rgba(0,242,254,0.2);";
             shareDiv.innerHTML = `
                 <div style="position:absolute; top:-30%; left:-20%; width:300px; height:300px; background:radial-gradient(circle, rgba(0,242,254,0.5) 0%, transparent 60%); z-index:0;"></div>
                 <div style="position:absolute; bottom:-30%; right:-20%; width:300px; height:300px; background:radial-gradient(circle, rgba(255,0,136,0.5) 0%, transparent 60%); z-index:0;"></div>
                 <div style="position:relative; z-index: 2;">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:25px; align-items:center;"><span style="color:#00f2fe; font-weight:800; font-size:20px; text-shadow:0 0 10px rgba(0,242,254,0.6);">@${story.username}</span><span style="background:rgba(255,0,136,0.2); color:#ff0088; padding:6px 18px; border-radius:20px; font-size:12px; font-weight:800; border:1px solid rgba(255,0,136,0.5); text-transform:uppercase; box-shadow:0 0 10px rgba(255,0,136,0.3);">${story.category}</span></div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:25px; align-items:center;"><span style="color:#00f2fe; font-weight:800; font-size:20px; text-shadow:0 0 10px rgba(0,242,254,0.6);">@${story.username}</span><span style="background:rgba(255,0,136,0.2); color:#ff0088; padding:6px 18px; border-radius:20px; font-size:12px; font-weight:800; border:1px solid rgba(255,0,136,0.5); text-transform:uppercase; box-shadow:0 0 10px rgba(255,0,136,0.3);">${catText}</span></div>
                     <div style="background:${themeBg}; padding:40px 30px; border-radius:20px; font-size:24px; font-weight:500; font-style:italic; text-align:center; color:#fdfcff; border:1px solid rgba(255,255,255,0.2); box-shadow:inset 0 0 20px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.5); margin-bottom:25px; line-height:1.6; position:relative;"><span style="position:absolute; top:10px; left:20px; font-size:50px; color:rgba(255,255,255,0.15); line-height:1;">❝</span>${story.content}</div>
                     <div style="display:flex; gap:20px; margin-bottom:25px; color:#fff; font-size:16px; font-weight:700;"><span style="background:rgba(255,255,255,0.05); padding:8px 15px; border-radius:12px; border:1px solid rgba(255,255,255,0.1);">❤️ ${story.likes || 0}</span><span style="background:rgba(255,255,255,0.05); padding:8px 15px; border-radius:12px; border:1px solid rgba(255,255,255,0.1);">💬 ${story.commentCount || 0}</span></div>
                     <div style="display:flex; align-items:center; justify-content:space-between; background:rgba(0,0,0,0.4); border:1px dashed rgba(0,242,254,0.4); padding:15px 20px; border-radius:18px;"><div><div style="font-size:18px; font-weight:800; color:#00f2fe; letter-spacing:1px;">Late Night Confessions</div><div style="font-size:12px; opacity:0.7; margin-top:4px;">Scan to read more secrets 🌙</div></div><div style="width:75px; height:75px; background:white; border-radius:12px; padding:6px; display:flex; justify-content:center; align-items:center; box-shadow:0 0 10px rgba(255,255,255,0.2);"><img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://busnessaws.github.io/LATE-NIGHT/" style="width:100%; height:100%;"></div></div>
@@ -979,29 +1071,25 @@
             }); 
         };
         
-        window.switchCategory = function(cat, element) { document.querySelectorAll('#section-search .cat-btn').forEach(b => b.classList.remove('active-cat')); element.classList.add('active-cat'); window.currentActiveCategoryFilter = cat; window.buildFeedDOM("searchFeed", cat, false); };
-        
-        // ✨ FIXED LIVE SEARCH (DISCOVERS ALL USERS EVEN IF DB COLLECTION BLOCKED) ✨
         document.getElementById("usernameLiveSearchBarField").addEventListener("input", (e) => { 
-            currentSearchQueryFilterKeyword = e.target.value.trim().toLowerCase(); 
-            window.buildFeedDOM("searchFeed", window.currentActiveCategoryFilter, false); 
+            window.currentSearchQueryFilterKeyword = e.target.value.trim().toLowerCase(); 
+            window.isLiveSearching = window.currentSearchQueryFilterKeyword.length > 0;
+            window.buildFeedDOM("searchFeed", false); 
             
             let userResultsBox = document.getElementById("searchUserResultsBlock");
             userResultsBox.innerHTML = "";
             
-            if(currentSearchQueryFilterKeyword) {
+            if(window.currentSearchQueryFilterKeyword) {
                 let matchedUsersMap = new Map();
                 
-                // Method 1: Get from Users Collection
                 window.globalAllUsers.forEach(u => {
-                    if((u.username && u.username.toLowerCase().includes(currentSearchQueryFilterKeyword)) || (u.searchName && u.searchName.includes(currentSearchQueryFilterKeyword))) {
+                    if((u.username && u.username.toLowerCase().includes(window.currentSearchQueryFilterKeyword)) || (u.searchName && u.searchName.includes(window.currentSearchQueryFilterKeyword))) {
                         matchedUsersMap.set(u.uid, u);
                     }
                 });
                 
-                // Method 2: Get from Stories (Works even if Users Collection is restricted)
                 window.globalAllStories.forEach(s => {
-                    if(s.username && s.username.toLowerCase().includes(currentSearchQueryFilterKeyword)) {
+                    if(s.username && s.username.toLowerCase().includes(window.currentSearchQueryFilterKeyword)) {
                         if(!matchedUsersMap.has(s.uid)) { matchedUsersMap.set(s.uid, { uid: s.uid, username: s.username }); }
                     }
                 });
@@ -1022,49 +1110,78 @@
             }
         });
 
+        // ✨ GLITCH BUG FIXED: TYPEWRITER RESTORED UNIVERSALLY ✨
         function createPostCard(item, targetId) {
-            let card = document.createElement("div"); card.className = "card"; card.id = "card-" + item.id;
+            let uniqueCardId = targetId + "-" + item.id;
+            let card = document.createElement("div"); card.className = "card"; card.id = "card-" + uniqueCardId;
             let delBtn = (window.globalUserSession && item.uid === window.globalUserSession.uid) ? `<button onclick="window.deleteStory('${item.id}')" style="color:#ff3b30; border-color: rgba(255, 59, 48, 0.2); background: rgba(255, 59, 48, 0.05);">🗑️ Delete</button>` : '';
             let themeClass = item.theme === 'dark' ? 'theme-dark' : item.theme === 'blue' ? 'theme-blue' : 'theme-default';
+            let catText = item.category === 'love' ? '❤️ Love' : item.category === 'sad' ? '😢 Sad' : item.category === 'romantic' ? '🥰 Romantic' : (item.category || '❤️ Love');
             
             let contentHTML = "";
-            if(targetId === "searchFeed") {
-                contentHTML = `<div class="card-inner-text ${themeClass}" style="position:relative;"><span style="visibility:hidden;">${item.content}</span><div class="typewriter-text" data-raw-text="${item.content.replace(/"/g, '&quot;')}" style="position:absolute; top:30px; left:25px; right:25px; bottom:30px; overflow:hidden; text-align:center;"></div></div>`;
+            if(!window.isLiveSearching) {
+                let cleanText = (item.content || "").replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+                contentHTML = `<div class="card-inner-text ${themeClass}" style="position:relative; text-align:center;"><span style="visibility:hidden;">${item.content}</span><div class="typewriter-text" data-raw-text="${cleanText}" style="position:absolute; top:30px; left:25px; right:25px; bottom:30px; overflow:hidden;"></div></div>`;
             } else {
                 contentHTML = `<div class="card-inner-text ${themeClass}">${item.content}</div>`;
             }
 
-            card.innerHTML = `<div class="card-header"><span class="card-user" onclick="window.viewUserProfile('${item.uid}', '${item.username}')">@${item.username || 'anon'}</span><span class="card-tag tag-${item.category || 'love'}">${item.category || 'Love'}</span></div>${contentHTML}<div class="actions"><button onclick="window.likeStory('${item.id}', '${item.uid}')">❤️ <span>${item.likes || 0}</span></button><button onclick="window.openCommentModal('${item.id}', '${item.uid}')">💬 <span>${item.commentCount || 0}</span></button><div class="rotating-comment-box" id="rot-comment-${item.id}">No comments yet...</div><button onclick="window.generateShareImage('${item.id}', this)">📤 Share</button>${delBtn}</div>`;
-            if(targetId === "searchFeed") { typeWriterObserver.observe(card.querySelector('.typewriter-text')); }
+            card.innerHTML = `<div class="card-header"><span class="card-user" onclick="window.viewUserProfile('${item.uid}', '${item.username}')">@${item.username || 'anon'}</span><span class="card-tag tag-${item.category || 'love'}">${catText}</span></div>${contentHTML}<div class="actions"><button onclick="window.likeStory('${item.id}', '${item.uid}')">❤️ <span>${item.likes || 0}</span></button><button onclick="window.openCommentModal('${item.id}', '${item.uid}')">💬 <span>${item.commentCount || 0}</span></button><div class="rotating-comment-box" id="rot-comment-${uniqueCardId}">No comments yet...</div><button onclick="window.generateShareImage('${item.id}', this)">📤 Share</button>${delBtn}</div>`;
 
-            if(rotCommentIntervals[item.id]) clearInterval(rotCommentIntervals[item.id]);
+            if(!window.isLiveSearching) { 
+                setTimeout(() => {
+                    let twNode = card.querySelector('.typewriter-text');
+                    if(twNode) typeWriterObserver.observe(twNode);
+                }, 0);
+            }
+
+            if(rotCommentIntervals[uniqueCardId]) clearInterval(rotCommentIntervals[uniqueCardId]);
             getDocs(collection(db, "stories", item.id, "comments")).then(snap => {
-                let comms = []; snap.forEach(d => comms.push(d.data().text)); let rBox = card.querySelector("#rot-comment-" + item.id);
+                let comms = []; snap.forEach(d => comms.push(d.data().text)); 
+                let rBox = card.querySelector("#rot-comment-" + uniqueCardId);
                 if(rBox && comms.length > 0) {
                     let i = 0; rBox.innerText = `💬 "${comms[i]}"`;
-                    if(comms.length > 1) { rotCommentIntervals[item.id] = setInterval(() => { i = (i+1) % comms.length; if(document.getElementById("rot-comment-" + item.id)) { rBox.style.opacity = 0; setTimeout(() => { rBox.innerText = `💬 "${comms[i]}"`; rBox.style.opacity = 1; }, 300); } else { clearInterval(rotCommentIntervals[item.id]); } }, 1500); }
+                    if(comms.length > 1) { 
+                        rotCommentIntervals[uniqueCardId] = setInterval(() => { 
+                            i = (i+1) % comms.length; 
+                            let liveBox = document.getElementById("rot-comment-" + uniqueCardId);
+                            if(liveBox) { 
+                                liveBox.style.opacity = 0; 
+                                setTimeout(() => { liveBox.innerText = `💬 "${comms[i]}"`; liveBox.style.opacity = 1; }, 300); 
+                            } else { 
+                                clearInterval(rotCommentIntervals[uniqueCardId]); 
+                            } 
+                        }, 1500); 
+                    }
                 }
             });
             return card;
         }
 
-        window.buildFeedDOM = function(targetId, filterCat = "all", selfUidOnly = false) {
+        window.buildFeedDOM = function(targetId, selfUidOnly = false) {
             let box = document.getElementById(targetId); if(!box) return; 
-            let currentScrollY = window.scrollY; let oldScrollHeight = document.documentElement.scrollHeight;
-
-            box.innerHTML = ""; let dataset = window.globalAllStories;
-            let now = new Date().getTime(); let fiftyDays = 50 * 24 * 60 * 60 * 1000;
-            dataset = dataset.filter(s => (now - s.timestamp) < fiftyDays);
             
-            if(filterCat !== "all") { dataset = dataset.filter(s => s.category === filterCat); }
+            box.innerHTML = ""; let dataset = window.globalAllStories;
+            
+            // Language Filter Logic
+            if(window.currentActiveLanguageFilter && window.currentActiveLanguageFilter !== "all") {
+                dataset = dataset.filter(s => s.language === window.currentActiveLanguageFilter);
+            }
+
+            // Category Filter Logic
+            if(window.currentActiveCategoryFilter && window.currentActiveCategoryFilter !== "all") { 
+                dataset = dataset.filter(s => s.category === window.currentActiveCategoryFilter); 
+            }
+
             if(selfUidOnly && window.globalUserSession) { dataset = dataset.filter(s => s.uid === window.globalUserSession.uid); }
             
-            if(targetId === "searchFeed" && currentSearchQueryFilterKeyword) {
-                dataset = dataset.filter(s => (s.username || "").toLowerCase().includes(currentSearchQueryFilterKeyword) || (s.content || "").toLowerCase().includes(currentSearchQueryFilterKeyword));
+            if(targetId === "searchFeed" && window.currentSearchQueryFilterKeyword) {
+                dataset = dataset.filter(s => (s.username || "").toLowerCase().includes(window.currentSearchQueryFilterKeyword) || (s.content || "").toLowerCase().includes(window.currentSearchQueryFilterKeyword));
             }
 
             if(dataset.length === 0) { box.innerHTML = "<p style='text-align:center; opacity:0.4; padding:30px; font-size:13px;'>No confessions found here.</p>"; return; }
 
+            let now = new Date().getTime();
             if (targetId === "globalFeed") {
                 let twoDays = 2 * 24 * 60 * 60 * 1000;
                 let newPosts = dataset.filter(s => (now - s.timestamp) <= twoDays);
@@ -1086,14 +1203,11 @@
             } else {
                 dataset.sort((a,b) => b.timestamp - a.timestamp); dataset.slice(0, window.postsToShowCount).forEach((item) => { box.appendChild(createPostCard(item, targetId)); });
             }
-
-            requestAnimationFrame(() => { if(currentScrollY > 100) { let newScrollHeight = document.documentElement.scrollHeight; let heightDiff = newScrollHeight - oldScrollHeight; if(heightDiff !== 0) { window.scrollTo(0, currentScrollY + heightDiff); } } });
         };
 
         function calculateAnalytics() {
             if(!window.globalUserSession) return;
             
-            // Dynamic Stats Calculation for Current User
             let userPosts = window.globalAllStories.filter(s => s.uid === window.globalUserSession.uid);
             let livePostsCount = userPosts.length;
             let totalLikes = userPosts.reduce((sum, post) => sum + (post.likes || 0), 0);
@@ -1112,9 +1226,26 @@
             if(pComms) pComms.innerText = totalComments; 
         }
 
-        function rebuildAllFeeds() { window.buildFeedDOM("globalFeed", "all", false); window.buildFeedDOM("searchFeed", window.currentActiveCategoryFilter, false); if(window.globalUserSession) { window.buildFeedDOM("myPersonalFeed", "all", true); calculateAnalytics(); } }
+        function rebuildAllFeeds() { window.buildFeedDOM("globalFeed", false); window.buildFeedDOM("searchFeed", false); if(window.globalUserSession) { window.buildFeedDOM("myPersonalFeed", true); calculateAnalytics(); } }
 
-        onSnapshot(collection(db, "stories"), (snap) => { window.globalAllStories = []; snap.forEach(doc => { let d = doc.data(); d.id = doc.id; window.globalAllStories.push(d); }); window.globalAllStories.sort((a,b) => b.timestamp - a.timestamp); rebuildAllFeeds(); });
+        onSnapshot(collection(db, "stories"), (snap) => { 
+            window.globalAllStories = []; 
+            let now = new Date().getTime();
+            let maxAge = 45 * 24 * 60 * 60 * 1000; 
+            
+            snap.forEach(documentSnapshot => { 
+                let d = documentSnapshot.data(); 
+                d.id = documentSnapshot.id; 
+                
+                if (d.timestamp && (now - d.timestamp > maxAge)) {
+                    deleteDoc(doc(db, "stories", documentSnapshot.id)).catch(e=>{});
+                } else {
+                    window.globalAllStories.push(d); 
+                }
+            }); 
+            window.globalAllStories.sort((a,b) => b.timestamp - a.timestamp); 
+            rebuildAllFeeds(); 
+        });
     </script>
 </body>
 </html>
